@@ -39,7 +39,7 @@ public class CustomerController {
 	@RequestMapping("/queryAll")
 	public String list2(@RequestParam(value="page",required=false)int page,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
 		Pager<Customer> pager = new Pager<>();
-		pager.setPageSize(20);
+		pager.setPageSize(10);
 		pager.setPageNo(page);
 		System.out.println(page);
 		Map<String,Object> map=new HashMap<String,Object>();
