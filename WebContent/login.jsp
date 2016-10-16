@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="<%=request.getContextPath() %>/WEB-INF/view/login.jsp"></jsp:forward>
+tttttgggfhhhhhggg
 </body>
 </html>
