@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DENGTENGFA</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<!--[if IE]>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="htmleaf-container">
+		<header class="htmleaf-header">
+			<h1>HT客户管理系统开发成员
+				 <span align="left">刘&nbsp;&nbsp;&nbsp;&nbsp;邓腾发</br>hh</span>
+			</h1>
+		</header>
+	<canvas id="canvas"></canvas>
+		
+	</div>
+	
+	
+	<script type="text/javascript" src="js/smoke.js"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas')
+		var ctx = canvas.getContext('2d')
+		canvas.width = innerWidth
+		canvas.height = innerHeight
+
+		var party = smokemachine(ctx, [54, 16.8, 18.2])
+		party.start() // start animating
+
+		onmousemove = function (e) {
+			var x = e.clientX
+			var y = e.clientY
+			var n = .5
+			var t = Math.floor(Math.random() * 200) + 3800
+			party.addsmoke(x, y, n, t)
+		}
+
+		setInterval(function(){
+			party.addsmoke(innerWidth/2, innerHeight, 1)
+		}, 100)
+	</script>
+</body>
+</html>
