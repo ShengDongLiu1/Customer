@@ -504,7 +504,7 @@
 						"F_ParentId" : "5",
 						"F_FullName" : "管理预定",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/guanliwen",
+						"F_UrlAddress" : "/Customer/bespoke/bespokeQueryAll.do",
 					},
 					{
 						"F_ModuleId" : "6",
