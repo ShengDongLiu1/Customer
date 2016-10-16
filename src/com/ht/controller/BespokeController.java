@@ -25,9 +25,15 @@ public class BespokeController {
 	
 	@RequestMapping("/bespokeSelect")
 	public String bespokeSelect(@RequestParam(value="bepid",required=false)Integer bepid,HttpServletResponse response,HttpServletRequest request)throws Exception{
-		Bespoke bes= bespokeService.BespokeSelect(bepid);
+		try {	
+		Bespoke bes= bespokeService.BespokeSelect(Integer.valueOf(bepid));
 		request.setAttribute("bes", bes);
-		return "bespoke";
+		return "updateBespoke";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "信息载入失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
 	}
 	@RequestMapping("/bespokeQueryAll")
 	public String bespokeQueryAll(Bespoke bespoke,HttpServletResponse response, HttpServletRequest request)throws Exception{
@@ -39,5 +45,18 @@ public class BespokeController {
 		System.out.println(beslist.size()+"-------------------");
 		request.setAttribute("beslist", beslist);
 		return "bespoke";
+	}
+	
+	@RequestMapping("/update")
+	public String update(@RequestParam(value="bepid",required=false)String bepid ,HttpServletRequest request)throws Exception{
+		try {			
+			Bespoke bespoke = bespokeService.BespokeSelect(Integer.valueOf(bepid));
+			request.setAttribute("bespoke", bespoke);
+			return "updateBespoke";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "信息载入失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
 	}
 }

@@ -47,12 +47,22 @@
 							<td>${list.bepaddress}</td>
 							<td>${list.bepdate}</td>
 							<td>${list.beptype}</td>
-							<td><a href="modify.do?tid=${list.bepid}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="del.do?tid=${list.bepid}">删除</a></td>
+							<td><a href="<%=path %>/bespoke/bespokeSelect.do?bepid=${list.bepid}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+								href="<%=path %>/bespoke/delete.do?bepid=${list.bepid}">删除</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="pagination">
+					<ul>
+						<li><a href="<%=path %>/bespoke/queryAll.do?page=${lists.pageNo - 1}">上一页</a></li>
+						<li><a href="<%=path %>/bespoke/queryAll.do?page=${lists.pageNo + 1}">下一页</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
