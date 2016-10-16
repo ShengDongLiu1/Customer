@@ -32,14 +32,6 @@
 			<form class="form-horizontal" action="<%=path %>/customer/addqr.do" >
 				<div style='float: left;'>
 					<div class="control-group">
-						<label class="control-label"
-							style="font-size: 18px; font-weight: bold;">编号:</label>
-						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;" name="kid"
-								placeholder="编号" value="${customer.kid} " />
-						</div>
-					</div>
-					<div class="control-group">
 						<label class="control-label">公司名称:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;"
@@ -102,13 +94,6 @@
 						<div class="controls">
 							<input type="text" value="${customer.state}" style="height: 40px; width: 300px;" name="state"
 								placeholder="客户状态" />
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label">新建时间:</label>
-						<div class="controls">
-							<input type="text" value="${customer.newdate}" style="height: 40px; width: 300px;"
-								name="newdate" placeholder="新建时间" />
 						</div>
 					</div>
 					<div class="control-group">

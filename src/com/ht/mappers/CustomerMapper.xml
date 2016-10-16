@@ -5,53 +5,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ht.dao.CustomerDao">
 
 	<resultMap type="Customer" id="CustomerResult">
-		<id property="kid" column="kid"/>
-		<result property="comname" column="comname"/>
-		<result property="atype" column="atype"/>
-		<result property="combackdrop" column="combackdrop"/>
-		<result property="comaddress" column="comaddress"/>
-		<result property="product" column="product"/>
-		<result property="structure" column="structure"/>
-		<result property="testman" column="testman"/>
-		<result property="amessage" column="amessage"/>
-		<result property="state" column="state"/>
-		<result property="newdate" column="newdate"/>
-		<result property="designated" column="designated"/>
+		<id property="kid" column="kid" />
+		<result property="comname" column="comname" />
+		<result property="atype" column="atype" />
+		<result property="combackdrop" column="combackdrop" />
+		<result property="comaddress" column="comaddress" />
+		<result property="product" column="product" />
+		<result property="structure" column="structure" />
+		<result property="testman" column="testman" />
+		<result property="amessage" column="amessage" />
+		<result property="state" column="state" />
+		<result property="newdate" column="newdate" />
+		<result property="designated" column="designated" />
 	</resultMap>
-	
+
 	<select id="csrselect" parameterType="int" resultMap="CustomerResult">
-		select * from customer where kid = #{kid}
+		select *
+		from customer where kid = #{kid}
 	</select>
 
 	<select id="csrselectall" resultType="List">
 		select * from customer
 	</select>
-	
+
 	<select id="queryAll" parameterType="Map" resultMap="CustomerResult">
 		select * from customer
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
 		</if>
 	</select>
-	
+
 	<select id="queryCount" parameterType="int" resultMap="CustomerResult">
-		select count(*) from customer
+		select
+		count(*) from customer
 	</select>
-	
-	<!-- <select id="getTotal" parameterType="Map" resultType="Long">
-		select count(*) from t_customer_contact
-		<where>
-			<if test="cusId!=null and cusId!='' ">
-				and cusId = #{cusId}
-			</if>
-		</where>
-	</select> -->
-	
-	<insert id="cadd" parameterType="Contact">
-		insert into customer values(#{comname},,#{atype},#{combackdrop},#{comaddress},#{product},#{structure},#{testman},#{amessage},#{state},#{designated})
+
+	<!-- <select id="getTotal" parameterType="Map" resultType="Long"> select 
+		count(*) from t_customer_contact <where> <if test="cusId!=null and cusId!='' 
+		"> and cusId = #{cusId} </if> </where> </select> -->
+
+	<insert id="cadd" parameterType="Customer">
+		insert into customer
+		values(null,#{comname},#{atype},#{combackdrop},#{comaddress},#{product},#{structure},#{testman},#{amessage},#{state},#{newdate},#{designated})
 	</insert>
-	
-	<update id="csrcupdate" parameterType="Contact">
+	<update id="csrcupdate" parameterType="Customer">
 		update customer
 		<set>
 			<if test="comname!=null and comname!='' ">
@@ -87,9 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where kid=#{kid}
 	</update>
-	
 	<delete id="csrdelete" parameterType="Integer">
-		delete from customer where kid=#{kid}
+		delete from customer where
+		kid=#{kid}
 	</delete>
-	
+
 </mapper> 

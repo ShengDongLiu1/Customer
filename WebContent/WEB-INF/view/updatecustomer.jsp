@@ -32,11 +32,9 @@
 			<form class="form-horizontal" action="<%=path %>/customer/updateqr.do" >
 				<div style='float: left;'>
 					<div class="control-group">
-						<label class="control-label"
-							style="font-size: 18px; font-weight: bold;">编号:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;" name="kid"
-								placeholder="编号" value="${customer.kid} " />
+							<input type="hidden" style="height: 40px; width: 300px;" name="kid"
+								 value="${customer.kid} " />
 						</div>
 					</div>
 					<div class="control-group">

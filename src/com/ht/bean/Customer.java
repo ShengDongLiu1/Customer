@@ -17,7 +17,7 @@ public class Customer {
 	private String testman;		//测试人
 	private String amessage;	//申请信息
 	private String state;		//客户状态
-	private Date newdate;		//新建时间
+	private String newdate;		//新建时间
 	private String designated;	//指派人
 	
 	
@@ -81,10 +81,10 @@ public class Customer {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public Date getNewdate() {
+	public String getNewdate() {
 		return newdate;
 	}
-	public void setNewdate(Date newdate) {
+	public void setNewdate(String newdate) {
 		this.newdate = newdate;
 	}
 	public String getDesignated() {

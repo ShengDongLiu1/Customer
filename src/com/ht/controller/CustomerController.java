@@ -1,6 +1,8 @@
 package com.ht.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +72,7 @@ public class CustomerController {
 	public String update(Customer customer,HttpServletResponse response,HttpServletRequest request){
 		try {			
 			customerService.csrcupdate(customer);
-			response.sendRedirect("queryAll.do");
+			response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -83,7 +85,7 @@ public class CustomerController {
 	public String delete(@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
 		try {			
 			customerService.csrdelete(Integer.valueOf(kid));
-			response.sendRedirect("queryAll.do");
+			response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -100,9 +102,11 @@ public class CustomerController {
 
 	@RequestMapping("/addqr")
 	public String addqr(Customer customer,HttpServletResponse response,HttpServletRequest request){
-		try {			
+		try {	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");  
+			customer.setNewdate(sdf.format(new Date()));
 			customerService.cadd(customer);
-			response.sendRedirect("queryAll.do");
+			response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
