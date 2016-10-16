@@ -50,4 +50,27 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+  <servlet>
+    <description>yzm</description>
+    <display-name>yzm</display-name>
+    <servlet-name>DrawImage</servlet-name>
+    <servlet-class>com.ht.common.DrawImage</servlet-class>
+  </servlet>
+  <servlet>
+    <description>yzm</description>
+    <display-name>yzm</display-name>
+    <servlet-name>ResultServlet</servlet-name>
+    <servlet-class>com.ht.common.ResultServlet</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>DrawImage</servlet-name>
+    <url-pattern>/DrawImage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ResultServlet</servlet-name>
+    <url-pattern>/ResultServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,4 +1,4 @@
-package com.ht.controller;
+package com.ht.common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,12 +58,12 @@ public class ResultServlet extends HttpServlet {
 		String veryCode = request.getParameter("c");
 		PrintWriter out = response.getWriter();
 		if (veryCode == null || "".equals(veryCode)) {
-			out.println("ÇëÊäÈëÑéÖ¤Âë£¡");
+			out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ë£¡");
 		} else {
 			if (validateC.equals(veryCode)) {
 				out.println(1);
 			} else {
-				out.println("ÑéÖ¤ÂëÊäÈë´íÎó£¡");
+				out.println("ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			}
 		}
 		out.flush();
