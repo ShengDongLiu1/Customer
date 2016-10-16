@@ -103,13 +103,6 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">新建时间:</label>
-						<div class="controls">
-							<input type="text" value="${customer.newdate}" style="height: 40px; width: 300px;"
-								name="newdate" placeholder="新建时间" />
-						</div>
-					</div>
-					<div class="control-group">
 						<label class="control-label">指派人：</label>
 						<div class="controls">
 							<input type="text" value="${customer.designated}" style="height: 40px; width: 300px;"
