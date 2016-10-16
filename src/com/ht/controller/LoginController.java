@@ -23,7 +23,7 @@ public class LoginController {
 		Login userLogin = loginService.login(login);
 		if(userLogin == null){
 			req.setAttribute("user", userLogin);
-			req.setAttribute("errorLogin", "ÓÃ»§Ãû»òÃÜÂë´íÎó¡£¡£¡£");
+			req.setAttribute("errorLogin", "ç”¨æˆ·åæˆ–å¯†ç æœ‰è¯¯ã€‚ã€‚ã€‚ã€‚ã€‚");
 			return "login";
 		}else{
 			HttpSession session = req.getSession();

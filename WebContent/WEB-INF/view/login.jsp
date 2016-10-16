@@ -26,8 +26,10 @@
 		<script type="text/javascript" src="js/login-js/jquery.form.js"></script>
 		<script type="text/javascript" src="js/login-js/tooltips.js"></script>
 		<script type="text/javascript" src="js/login-js/login.js"></script>
-		<script>
-			
+		<script type=text/javascript>
+			if('${errorLogin}'!=''){
+				alert('${errorLogin}');
+			}
 		</script>
 	</head>
 	<body>
