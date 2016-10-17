@@ -479,13 +479,6 @@
 						"F_Icon" : "fa fa-globe",
 					},
 					{
-						"F_ModuleId" : "xinzyd",
-						"F_ParentId" : "5",
-						"F_FullName" : "新增预定",
-						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/xinzyd",
-					},
-					{
 						"F_ModuleId" : "guanliyuding",
 						"F_ParentId" : "5",
 						"F_FullName" : "新增预定",
@@ -497,7 +490,7 @@
 						"F_ParentId" : "5",
 						"F_FullName" : "管理预定",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/Customer/bespoke/bespokeQueryAll.do",
+						"F_UrlAddress" : "/Customer/bespoke/bespokeQueryAll.do?page=1",
 					},
 					{
 						"F_ModuleId" : "6",

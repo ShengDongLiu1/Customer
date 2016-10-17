@@ -39,7 +39,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${beslist}">
+					<c:forEach var="list" items="${beslist.rows}">
 						<tr class="success">
 							<td>${list.bepid}</td>
 							<td>${list.bepcom}</td>

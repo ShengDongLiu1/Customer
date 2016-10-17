@@ -35,13 +35,13 @@
 						<label class="control-label">预约公司名称:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;"
-								name="bepcom" value="${bes.bepcom}" placeholder="公司名称" />
+								name="bepcom"  placeholder="公司名称" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">预约人:</label>
 						<div class="controls">
-							<input type="text" value="${bes.bepman}" style="height: 40px; width: 300px;" name="bepman"
+							<input type="text"  style="height: 40px; width: 300px;" name="bepman"
 								placeholder="预约人" />
 						</div>
 						
@@ -50,7 +50,7 @@
 					<div class="control-group">
 						<label class="control-label">预约地址:</label>
 						<div class="controls">
-							<input type="text" value="${bes.bepaddress}" style="height: 40px; width: 300px;"
+							<input type="text"  style="height: 40px; width: 300px;"
 								name="bepaddress" placeholder="预约地址" />
 						</div>
 					</div>
@@ -60,14 +60,14 @@
 					<div class="control-group">
 						<label class="control-label">预约时间:</label>
 						<div class="controls">
-							<input type="date" value="${bes.bepdate}" style="height: 40px; width: 300px;"
+							<input type="date"  style="height: 40px; width: 300px;"
 								name="bepdate" placeholder="预约时间" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">预约类型:</label>
 						<div class="controls">
-							<input type="text" value="${bes.beptype}" style="height: 40px; width: 300px;"
+							<input type="text"  style="height: 40px; width: 300px;"
 								name="beptype" placeholder="预约类型" />
 						</div>
 					</div>

@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Bespoke;
-import com.ht.bean.Customer;
-import com.ht.common.PageBean;
+import com.ht.common.Pager;
 import com.ht.service.BespokeService;
 
 @Controller
@@ -39,14 +38,16 @@ public class BespokeController {
 		}
 	}
 	@RequestMapping("/bespokeQueryAll")
-	public String bespokeQueryAll(Bespoke bespoke,HttpServletResponse response, HttpServletRequest request)throws Exception{
-		PageBean pageBean=new PageBean(1,2);
+	public String bespokeQueryAll(@RequestParam(value="page",required=false)int page,Bespoke bespoke,HttpServletResponse response, HttpServletRequest request)throws Exception{
+		Pager<Bespoke> pager = new Pager<>();
+		pager.setPageSize(10);
+		pager.setPageNo(page);
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("start", pageBean.getStart());
-		map.put("size", pageBean.getPageSize());
-		List<Bespoke> beslist=bespokeService.BespokeQueryAll(map);
-		System.out.println(beslist.size()+"-------------------");
-		request.setAttribute("beslist", beslist);
+		map.put("start", pager.getBeginIndex());
+		map.put("size", pager.getPageSize());
+		List<Bespoke> userList=bespokeService.BespokeQueryAll(map);
+		pager.setRows(userList);
+		request.setAttribute("beslist", pager);
 		return "bespoke";
 	}
 	
