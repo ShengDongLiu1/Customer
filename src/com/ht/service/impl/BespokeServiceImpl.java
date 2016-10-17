@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ht.bean.Bespoke;
+import com.ht.bean.Customer;
 import com.ht.dao.BespokeDao;
 import com.ht.service.BespokeService;
 
@@ -52,5 +53,10 @@ public class BespokeServiceImpl implements BespokeService{
 	@Override
 	public Integer BespokeQueryCount() {
 		return bespokeDao.BespokeQueryCount();
+	}
+
+	@Override
+	public List<Customer> CustomerSelectName() {
+		return bespokeDao.CustomerSelectName();
 	}
 }

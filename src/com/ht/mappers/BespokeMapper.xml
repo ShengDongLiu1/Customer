@@ -15,6 +15,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="testman" column="testman"/>
 	</resultMap>
 	
+	<resultMap type="Customer" id="CustomerResult">
+		<id property="kid" column="kid" />
+		<result property="comname" column="comname" />
+		<result property="atype" column="atype" />
+		<result property="combackdrop" column="combackdrop" />
+		<result property="comaddress" column="comaddress" />
+		<result property="product" column="product" />
+		<result property="structure" column="structure" />
+		<result property="testman" column="testman" />
+		<result property="amessage" column="amessage" />
+		<result property="state" column="state" />
+		<result property="newdate" column="newdate" />
+		<result property="designated" column="designated" />
+	</resultMap>
 	<select id="BespokeSelect" parameterType="int" resultMap="BespokeResult">
 		select * from bespoke where bepid = #{bepid}
 	</select>
@@ -57,4 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into bespoke
 		values(null,#{bepcom},#{bepman},#{bepaddress},#{bepdate},#{beptype})
 	</insert>
+	
+	<select id="CustomerSelectName" parameterType="Customer" resultMap="CustomerResult">
+		select * from customer
+	</select>
 </mapper>

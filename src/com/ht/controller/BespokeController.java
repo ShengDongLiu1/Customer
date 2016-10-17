@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Bespoke;
+import com.ht.bean.Customer;
 import com.ht.common.Pager;
 import com.ht.service.BespokeService;
 
@@ -103,9 +104,10 @@ public class BespokeController {
 	}
 	
 	@RequestMapping("/add")
-	public String add(){
+	public String add(HttpServletResponse response,HttpServletRequest request){	
+		List<Customer> listName=bespokeService.CustomerSelectName();
+		request.setAttribute("listName", listName);
 		return "addBespoke";
 	}
-	
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ht.bean.Bespoke;
+import com.ht.bean.Customer;
 
 public interface BespokeService {
 public void BespokeAdd(Bespoke bespoke);
@@ -19,4 +20,6 @@ public void BespokeAdd(Bespoke bespoke);
 	public List<Bespoke> BespokeQueryAll(Map<String,Object> map);
 	
 	public Integer BespokeQueryCount();
+	
+	public List<Customer> CustomerSelectName();
 }
