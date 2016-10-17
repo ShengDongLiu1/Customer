@@ -1,6 +1,5 @@
 package com.ht.bean;
 
-import java.util.Date;
 /**
  * 客户信息
  * @author LiuShengDong

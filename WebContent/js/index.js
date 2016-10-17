@@ -367,13 +367,6 @@
 		
 					},
 					{
-						"F_ModuleId" : "4efd37bf-e3ef-4ced-8248-58eba046d78b",
-						"F_ParentId" : "1",
-						"F_FullName" : "系统桌面",
-						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/CRM/login2.jsp",
-					},
-					{
 						"F_ModuleId" : "4efd37bf-e3ef-4ced-8248-58eba046d78bq",
 						"F_ParentId" : "1",
 						"F_FullName" : "修改密码",

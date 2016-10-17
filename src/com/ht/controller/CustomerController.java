@@ -43,12 +43,10 @@ public class CustomerController {
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
 		pager.setPageNo(page);
-		System.out.println(page);
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
 		List<Customer> userList=customerService.queryAll(map);
-		System.out.println(userList.size()+"-------------------");
 		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		return "customer";
