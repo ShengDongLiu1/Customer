@@ -490,7 +490,7 @@
 						"F_ParentId" : "5",
 						"F_FullName" : "新增预定",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/guanliyuding",
+						"F_UrlAddress" : "/Customer/bespoke/add.do",
 					},
 					{
 						"F_ModuleId" : "guanliwen",

@@ -25,4 +25,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
+	
+	<update id="BespokeUpdate" parameterType="Bespoke">
+		update Bespoke
+		<set>
+			<if test="bepcom!=null and bepcom!='' ">
+				bepcom=#{bepcom},
+			</if>
+			<if test="bepman!=null and bepman!='' ">
+				bepman=#{bepman},
+			</if>
+			<if test="bepaddress!=null and bepaddress!='' ">
+				bepaddress=#{bepaddress},
+			</if>
+			<if test="bepdate!=null and bepdate!='' ">
+				bepdate=#{bepdate},
+			</if>
+			<if test="beptype!=null and beptype!='' ">
+				beptype=#{beptype},
+			</if>
+		</set>
+		where bepid=#{bepid}
+	</update>
+	
+	<delete id="BespokeDelete" parameterType="Integer">
+		delete from bespoke where
+		bepid=#{bepid}
+	</delete>
+	
+	<insert id="BespokeAdd" parameterType="Bespoke">
+		insert into bespoke
+		values(null,#{bepcom},#{bepman},#{bepaddress},#{bepdate},#{beptype})
+	</insert>
 </mapper>

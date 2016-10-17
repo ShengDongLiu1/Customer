@@ -32,14 +32,6 @@
 			<form class="form-horizontal" action="<%=path %>/bespoke/addqr.do" >
 				<div style='float: left;'>
 					<div class="control-group">
-						<label class="control-label"
-							style="font-size: 18px; font-weight: bold;">预约编号:</label>
-						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;" name="bepid"
-								placeholder="编号" value="${bes.bepid} " />
-						</div>
-					</div>
-					<div class="control-group">
 						<label class="control-label">预约公司名称:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;"
@@ -52,10 +44,9 @@
 							<input type="text" value="${bes.bepman}" style="height: 40px; width: 300px;" name="bepman"
 								placeholder="预约人" />
 						</div>
+						
+						
 					</div>
-					
-				</div>
-				<div style="float: left;">
 					<div class="control-group">
 						<label class="control-label">预约地址:</label>
 						<div class="controls">
@@ -63,10 +54,13 @@
 								name="bepaddress" placeholder="预约地址" />
 						</div>
 					</div>
+				</div>
+				<div style="float: left;">
+					
 					<div class="control-group">
 						<label class="control-label">预约时间:</label>
 						<div class="controls">
-							<input type="text" value="${bes.bepdate}" style="height: 40px; width: 300px;"
+							<input type="date" value="${bes.bepdate}" style="height: 40px; width: 300px;"
 								name="bepdate" placeholder="预约时间" />
 						</div>
 					</div>
