@@ -19,4 +19,6 @@ public void cadd(Customer customer);
 	public List<Customer> queryAll(Map<String,Object> map);
 	
 	public Integer queryCount();
+	
+	public List<Customer> selectState(String state);
 }

@@ -24,6 +24,13 @@
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
 <script src="<%=path %>/js/page.js"></script>
+   <script>
+        $(function () {
+            $("#checkAll").click(function () {
+                $("input[name='imgVo']:checkbox").prop("checked", this.checked);
+            });
+        });
+    </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -32,6 +39,7 @@
 			<table class="table">
 				<thead>
 					<tr>
+					 	<th><input type="checkbox" id="checkAll"/></th>
 						<th>编号</th>
 						<th>公司名称</th>
 						<th>申请类型</th>
@@ -49,6 +57,7 @@
 				<tbody>
 					<c:forEach var="list" items="${lists.rows}">
 						<tr class="success">
+							<td><input type="checkbox" name="imgVo" value="${list.kid}"/></td>
 							<td>${list.kid}</td>
 							<td>${list.comname}</td>
 							<td>${list.atype}</td>

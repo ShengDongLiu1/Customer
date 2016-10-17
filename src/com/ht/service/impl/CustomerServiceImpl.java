@@ -58,5 +58,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public Integer queryCount() {
 		return customerDao.queryCount();
 	}
+
+	@Override
+	public List<Customer> selectState(String state) {
+		return customerDao.selectState(state);
+	}
 	
 }

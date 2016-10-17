@@ -34,10 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
-
+	<select id="selectState" parameterType="Map" resultMap="CustomerResult">
+		select * from customer where state=#{state}
+	</select>
 	<select id="queryCount" parameterType="int" resultMap="CustomerResult">
-		select
-		count(*) from customer
+		select count(*) from customer
 	</select>
 
 	<!-- <select id="getTotal" parameterType="Map" resultType="Long"> select 

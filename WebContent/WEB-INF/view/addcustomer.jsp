@@ -92,8 +92,12 @@
 					<div class="control-group">
 						<label class="control-label">客户状态:</label>
 						<div class="controls">
-							<input type="text" value="${customer.state}" style="height: 40px; width: 300px;" name="state"
-								placeholder="客户状态" />
+							 <select id="usertype" name="state" style="height: 40px; width: 300px;">
+                                  <option value="正式客户">正式客户</option>
+                                  <option value="潜在客户">潜在客户</option>
+                                  <option value="放弃客户">放弃客户</option>
+                                  <option value="签约客户">签约客户</option>
+	                         </select>
 						</div>
 					</div>
 					<div class="control-group">

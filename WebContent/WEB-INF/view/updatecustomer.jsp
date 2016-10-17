@@ -24,7 +24,11 @@
 	font-weight: bold;
 }
 </style>
-
+<script type="text/javascript">
+	$(function(){
+		$("#customerstate").combobox("setValue",customer.atype);
+	})
+</script>
 </head>
 <body>
 	<div class="row-fluid">
@@ -73,6 +77,7 @@
 						</div>
 					</div>
 				</div>
+				<br/>
 				<div style="float: left;">
 					<div class="control-group">
 						<label class="control-label">组织结构:</label>
@@ -98,8 +103,12 @@
 					<div class="control-group">
 						<label class="control-label">客户状态:</label>
 						<div class="controls">
-							<input type="text" value="${customer.state}" style="height: 40px; width: 300px;" name="state"
-								placeholder="客户状态" />
+							 <select id="customerstate" name="state" style="height: 40px; width: 300px;">
+                                  <option value="正式客户">正式客户</option>
+                                  <option value="潜在客户">潜在客户</option>
+                                  <option value="放弃客户">放弃客户</option>
+                                  <option value="签约客户">签约客户</option>
+	                         </select>
 						</div>
 					</div>
 					<div class="control-group">

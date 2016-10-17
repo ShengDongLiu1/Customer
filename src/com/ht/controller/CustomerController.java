@@ -53,6 +53,35 @@ public class CustomerController {
 	}
 	
 	
+	//潜在客户
+	@RequestMapping("/queryState")
+	public String queryState(@RequestParam(value="page",required=false)int page,@RequestParam(value="state",required=false)int state,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
+		List<Customer> userList = null;
+		Pager<Customer> pager = new Pager<>();
+		pager.setPageSize(10);
+		pager.setPageNo(page);
+		System.out.println(page);
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("start", pager.getBeginIndex());
+		map.put("size", pager.getPageSize());
+		if(state==1){
+			 userList=customerService.selectState("潜在客户");
+		}else if(state==2){
+			 userList=customerService.selectState("正式客户");
+		}
+		else if(state==3){
+			 userList=customerService.selectState("放弃客户");
+		}else{
+			 userList=customerService.selectState("签约客户");
+		}
+		pager.setRows(userList);
+		request.setAttribute("lists", pager);
+		return "customer";
+	}
+
+	
+
+	
 	@RequestMapping("/update")
 	public String update(@RequestParam(value="kid",required=false)String kid ,HttpServletRequest request)throws Exception{
 		try {			
@@ -101,7 +130,7 @@ public class CustomerController {
 	@RequestMapping("/addqr")
 	public String addqr(Customer customer,HttpServletResponse response,HttpServletRequest request){
 		try {	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");  
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss ");  
 			customer.setNewdate(sdf.format(new Date()));
 			customerService.cadd(customer);
 			response.sendRedirect("queryAll.do?page=1");
