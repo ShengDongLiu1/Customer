@@ -390,7 +390,7 @@
 					{
 						"F_ModuleId" : "4efd37bf-e3edf-4ced-8248-58eba04226d78bq2",
 						"F_ParentId" : "2",
-						"F_FullName" : "新增用户",
+						"F_FullName" : "新增客户",
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/customer/add.do",
 					},
