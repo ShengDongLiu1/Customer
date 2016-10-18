@@ -1,5 +1,6 @@
 package com.ht.bean;
 
+
 /**
  * 客户信息
  * @author LiuShengDong
@@ -18,7 +19,6 @@ public class Customer {
 	private String state;		//客户状态
 	private String newdate;		//新建时间
 	private String designated;	//指派人
-	
 	
 	public Integer getKid() {
 		return kid;

@@ -4,11 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.dao.CustomerDao">
 
-
-	
-
-
-
 	<resultMap type="Customer" id="CustomerResult">
 		<id property="kid" column="kid" />
 		<result property="comname" column="comname" />
@@ -22,6 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="state" column="state" />
 		<result property="newdate" column="newdate" />
 		<result property="designated" column="designated" />
+		
+	
 	</resultMap>
 
 	<select id="csrselect" parameterType="int" resultMap="CustomerResult">

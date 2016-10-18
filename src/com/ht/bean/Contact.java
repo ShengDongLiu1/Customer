@@ -17,7 +17,6 @@ public class Contact {
 	private String manskill;	//技术程度
 	private Date logdate;		//日志日期
 	
-	
 	public Integer getManid() {
 		return manid;
 	}
