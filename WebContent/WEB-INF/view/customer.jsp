@@ -117,11 +117,15 @@
     		window.location.href="add.do";
     	}
         function delete1(){
-             var str=[];
-             $("[name='imgVo']:checked").each(function(){
-              str+=$(this).val()+",";
-             }) 
-            window.location.href='delete.do?kid='+str;
+        	if($("[name='imgVo']").is(':checked')) {  
+	             var str=[];
+	             $("[name='imgVo']:checked").each(function(){
+	              str+=$(this).val()+",";
+	             }) 
+	            window.location.href='delete.do?kid='+str;
+        	}else{
+        		alert("至少选中一行！");
+        	}
         }
         
         function update(){
