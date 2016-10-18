@@ -79,13 +79,12 @@ public class CustomerController {
 		return "customer";
 	}
 
-	
-
-	
 	@RequestMapping("/update")
 	public String update(@RequestParam(value="kid",required=false)String kid ,HttpServletRequest request)throws Exception{
-		try {			
-			Customer customer = customerService.csrselect(Integer.valueOf(kid));
+		try {	
+			
+			kid = kid.replace(" ", "");
+		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
 			request.setAttribute("customer", customer);
 			return "updatecustomer";
 		} catch (Exception e) {
@@ -110,9 +109,13 @@ public class CustomerController {
 	
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
-		try {			
-			customerService.csrdelete(Integer.valueOf(kid));
-			response.sendRedirect("queryAll.do?page=1");
+		try {	
+			kid = kid.replace(" ", "");
+			String []idsStr=kid.split(",");
+		 for(int i=0;i<idsStr.length;i++){
+			 customerService.csrdelete(Integer.parseInt(idsStr[i]));
+		 }
+		 response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
