@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.ContactDao">
+
+	<resultMap type="com.ht.bean.Contact" id="ContactResult">
+		<id property="manid" column="manid"/>
+		<result property="mancom" column="mancom"/>
+		<result property="manname" column="manname"/>
+		<result property="mandep" column="mandep"/>
+		<result property="manjob" column="manjob"/>
+		<result property="mannumber" column="mannumber"/>
+		<result property="manmobile" column="manmobile"/>
+		<result property="manemail" column="manemail"/>
+		<result property="manqq" column="manqq"/>
+		<result property="manmsn" column="manmsn"/>
+		<result property="manskill" column="manskill"/>
+		<result property="logdate" column="logdate"/>
+	</resultMap>
+	
+	<insert id="contactAdd" parameterType="com.ht.bean.Contact">
+		insert into contact 
+		values (null, #{mancom}, #{manname}, #{mandep},
+		  #{manjob}, #{mannumber}, #{manmobile}, #{manemail},
+		    #{manqq}, #{manmsn}, #{manskill}, #{logdate})
+	</insert>
+		
+</mapper> 

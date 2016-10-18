@@ -15,7 +15,7 @@ public class Contact {
 	private String manqq;		//客户QQ
 	private String manmsn;		//客户MSN
 	private String manskill;	//技术程度
-	private Date logdate;		//日志日期
+	private String logdate;		//日志日期
 	
 	public Integer getManid() {
 		return manid;
@@ -83,10 +83,10 @@ public class Contact {
 	public void setManskill(String manskill) {
 		this.manskill = manskill;
 	}
-	public Date getLogdate() {
+	public String getLogdate() {
 		return logdate;
 	}
-	public void setLogdate(Date logdate) {
+	public void setLogdate(String logdate) {
 		this.logdate = logdate;
 	}
 	

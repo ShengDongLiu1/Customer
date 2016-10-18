@@ -441,14 +441,14 @@
 						"F_ParentId" : "3",
 						"F_FullName" : "新增联络",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/xinz",
+						"F_UrlAddress" : "/Customer/contact/contactAdd.do",
 					},
 					{
 						"F_ModuleId" : "guanli",
 						"F_ParentId" : "3",
 						"F_FullName" : "管理联络",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/guanli",
+						"F_UrlAddress" : "/Customer/contact/contactQueryPager.do",
 					},
 					{
 						"F_ModuleId" : "4",
