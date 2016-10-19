@@ -15,4 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where email=#{email} and password=#{password} and status=#{status}
 	</select>
 	
+	<select id="selectmima" resultMap="LoginResult"><!-- 查询原始密码 -->
+		select * from user where userid=#{userid}
+	</select>
+	
+   <update id="updatemima" parameterType="Login">
+		update user 
+		<set>
+			<if test="password!=null and password!='' ">
+				password=#{password}
+			</if>
+		</set>
+		where userid=#{userid}
+	</update>
+	
 </mapper> 

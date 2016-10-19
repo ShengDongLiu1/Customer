@@ -18,5 +18,17 @@ public class LoginServiceImpl implements LoginService {
 	public Login login(Login login) {
 		return loginDao.login(login);
 	}
+	
+	@Override
+	public void updatemima(Login login) {
+		
+		loginDao.updatemima(login);
+	}
+
+	@Override
+	public Login selectmima(Login login) {
+		
+		return loginDao.selectmima(login);
+	}
 
 }

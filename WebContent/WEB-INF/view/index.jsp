@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,14 +67,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">administrator</span>
+                                <span class="hidden-xs">欢迎    ${user.email} 登录</span>
                             </a>
                             <ul class="dropdown-menu pull-right">
                                 <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
                                 <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
                                 <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
-                                <li class="divider"></li>
-                                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                                <li><a href="${pageContext.request.contextPath}/selectmima.do?userid=${user.userid}"><i class="glyphicon glyphicon-wrench"></i>修改密码</a></li>
+                                <li><a href="/Customer/"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
                             </ul>
                         </li>
                     </ul>
