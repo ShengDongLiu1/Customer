@@ -11,11 +11,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="bepaddress" column="bepaddress"/>
 		<result property="bepdate" column="bepdate"/>
 		<result property="beptype" column="beptype"/>
-		<result property="structure" column="structure"/>
-		<result property="testman" column="testman"/>
 		
-	
 	</resultMap>
+	
+	<resultMap type="Bespoke" id="BespokeResults">
+		<id property="bepid" column="bepid"/>
+		<result property="bepcom" column="bepcom"/>
+		<result property="bepman" column="bepman"/>
+		<result property="bepaddress" column="bepaddress"/>
+		<result property="bepdate" column="bepdate"/>
+		<result property="beptype" column="beptype"/>
+		
+		<association property="customer" javaType="com.ht.bean.Customer">
+			<id property="kid" column="kid" />
+			<result property="comname" column="comname" />
+			<result property="atype" column="atype" />
+			<result property="combackdrop" column="combackdrop" />
+			<result property="comaddress" column="comaddress" />
+			<result property="product" column="product" />
+			<result property="structure" column="structure" />
+			<result property="testman" column="testman" />
+			<result property="amessage" column="amessage" />
+			<result property="state" column="state" />
+			<result property="newdate" column="newdate" />
+			<result property="designated" column="designated" />
+		</association>
+	</resultMap>
+	
 	
 	<resultMap type="Customer" id="CustomerResult">
 		<id property="kid" column="kid" />
@@ -35,8 +57,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bespoke where bepid = #{bepid}
 	</select>
 
-	<select id="BespokeQueryAll" parameterType="Map" resultMap="BespokeResult">
-		select * from bespoke
+	<select id="BespokeQueryAll" parameterType="Map" resultMap="BespokeResults">
+		select * from bespoke b,Customer c  where b.bepcom=c.kid
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
 		</if>

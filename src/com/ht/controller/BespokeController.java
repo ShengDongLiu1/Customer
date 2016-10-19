@@ -28,6 +28,9 @@ public class BespokeController {
 	public String bespokeSelect(@RequestParam(value="bepid",required=false)Integer bepid,HttpServletResponse response,HttpServletRequest request)throws Exception{
 		try {	
 		Bespoke bes= bespokeService.BespokeSelect(Integer.valueOf(bepid));
+		List<Customer> listName=bespokeService.CustomerSelectName();
+		System.out.println(listName+"-----");
+		request.setAttribute("listNames", listName);
 		request.setAttribute("bes", bes);
 		return "updateBespoke";
 		} catch (Exception e) {
@@ -55,6 +58,9 @@ public class BespokeController {
 		try {			
 			Bespoke bespoke = bespokeService.BespokeSelect(Integer.valueOf(bepid));
 			request.setAttribute("bespoke", bespoke);
+			List<Customer> listName=bespokeService.CustomerSelectName();
+			System.out.println(listName+"-----");
+			request.setAttribute("listNames", listName);
 			return "updateBespoke";
 		} catch (Exception e) {
 			e.printStackTrace();

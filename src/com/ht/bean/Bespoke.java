@@ -13,7 +13,13 @@ public class Bespoke {
 	private String bepaddress;	//预约地址
 	private String bepdate;		//预约时间
 	private String beptype;		//预约类型
-	
+	private Customer customer;
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public Integer getBepid() {
 		return bepid;
 	}

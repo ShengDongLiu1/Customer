@@ -4,6 +4,7 @@
 <%
 	String path = request.getContextPath();
 %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 <body>
 	<div class="row-fluid">
 		<div class="span12" style="margin-top: 80px;">
-			<form class="form-horizontal" action="<%=path %>/bespoke/addqr.do" >
+			<form class="form-horizontal" action="<%=path %>/bespoke/updateqr.do" >
 				<div style='float: left;'>
 					<div class="control-group">
 						<label class="control-label"
@@ -42,8 +43,11 @@
 					<div class="control-group">
 						<label class="control-label">预约公司名称:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;"
-								name="bepcom" value="${bes.bepcom}" placeholder="公司名称" />
+							<select id="gsname" name="bepcom" style="height: 40px; width: 300px;">
+                                  <c:forEach var="list" items="${listNames}">
+                                 	 <option value="${list.kid}">${list.comname}</option>
+                                  </c:forEach>
+	                         </select>
 						</div>
 					</div>
 					<div class="control-group">

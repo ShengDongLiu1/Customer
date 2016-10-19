@@ -42,7 +42,7 @@
 					<c:forEach var="list" items="${beslist.rows}">
 						<tr class="success">
 							<td>${list.bepid}</td>
-							<td>${list.bepcom}</td>
+							<td>${list.customer.comname}</td>
 							<td>${list.bepman}</td>
 							<td>${list.bepaddress}</td>
 							<td>${list.bepdate}</td>
