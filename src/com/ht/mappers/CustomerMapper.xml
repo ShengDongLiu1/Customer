@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectState" parameterType="Map" resultMap="CustomerResult">
 		select * from customer where state=#{state}
 	</select>
-	<select id="queryCount" parameterType="int" resultMap="CustomerResult">
+	<select id="queryCount" resultType="int">
 		select count(*) from customer
 	</select>
 

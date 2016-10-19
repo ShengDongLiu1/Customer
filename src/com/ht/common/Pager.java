@@ -8,7 +8,7 @@ public class Pager<T> {
 	//每页多少
 	private int pageSize;
 	//总页数
-	private long total;
+	private int total;
 	//存放数据
 	private List<T> rows;
 	
@@ -32,11 +32,11 @@ public class Pager<T> {
 		this.pageSize = pageSize;
 	}
 
-	public long getTotal() {
+	public int getTotal() {
 		return total;
 	}
 
-	public void setTotal(long total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 

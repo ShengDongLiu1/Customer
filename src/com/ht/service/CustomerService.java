@@ -6,7 +6,7 @@ import java.util.Map;
 import com.ht.bean.Customer;
 
 public interface CustomerService {
-public void cadd(Customer customer);
+	public void cadd(Customer customer);
 	
 	public void csrdelete(int id);
 	

@@ -1,5 +1,10 @@
 package com.ht.bean;
 
+/**
+ * 预约信息
+ * @author LiuShengDong
+ *
+ */
 public class Bespoke {
 	
 	private Integer bepid;		//预约id

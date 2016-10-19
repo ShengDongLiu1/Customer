@@ -42,7 +42,16 @@ public class CustomerController {
 	public String list2(@RequestParam(value="page",required=false)int page,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
-		pager.setPageNo(page);
+		int count = customerService.queryCount();
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		pager.setTotal(total);
+		if(page >= 1 && page <= pager.getTotal()){
+			pager.setPageNo(page);
+		}else if(page < 1){
+			pager.setPageNo(1);
+		}else{
+			pager.setPageNo(pager.getTotal());
+		}
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
@@ -80,12 +89,14 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/update")
-	public String update(@RequestParam(value="kid",required=false)String kid ,HttpServletRequest request)throws Exception{
-		try {	
-			
+	public String update(@RequestParam(value="kid",required=false)String kid ,
+			@RequestParam(value="page",required=false)int page,HttpServletRequest request)throws Exception{
+		try {
 			kid = kid.replace(" ", "");
 		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
+
 			request.setAttribute("customer", customer);
+			request.setAttribute("page", page);
 			return "updatecustomer";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +109,8 @@ public class CustomerController {
 	public String update(Customer customer,HttpServletResponse response,HttpServletRequest request){
 		try {			
 			customerService.csrcupdate(customer);
-			response.sendRedirect("queryAll.do?page=1");
+			int page = Integer.valueOf(request.getParameter("page"));
+			response.sendRedirect("queryAll.do?page="+page);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -108,14 +120,14 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
+	public String delete(@RequestParam(value="page",required=false)int page,@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			kid = kid.replace(" ", "");
 			String []idsStr=kid.split(",");
 		 for(int i=0;i<idsStr.length;i++){
 			 customerService.csrdelete(Integer.parseInt(idsStr[i]));
 		 }
-		 response.sendRedirect("queryAll.do?page=1");
+		 response.sendRedirect("queryAll.do?page="+page);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());

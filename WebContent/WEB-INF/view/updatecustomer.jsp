@@ -122,6 +122,7 @@
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
 						<div class="controls">
+							<input type="hidden" id="page" name="page" value="${page }">
 							<button type="submit" class="btn" style="height: 40px; width: 150px;">确认</button>
 						</div>
 				</div>

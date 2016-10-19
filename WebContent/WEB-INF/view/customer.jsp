@@ -66,8 +66,8 @@
 							<td>${list.state}</td>
 							<td>${list.newdate}</td>
 							<td>${list.designated}</td>
-							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/customer/delete.do?kid=${list.kid}">删除</a></td>
+							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}">删除</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
