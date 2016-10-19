@@ -32,6 +32,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="queryAll" parameterType="Map" resultMap="CustomerResult">
 		select * from customer
+		<where>
+			<if test="comname!=null and comname!='' ">
+				and comname like #{comname}
+			</if>
+			<if test="atype!=null and atype!=''">
+				and atype like #{atype}
+			</if>
+			<if test="comaddress!=null and comaddress!='' ">
+				and comaddress like #{comaddress}
+			</if>
+			<if test="product!=null and product!='' ">
+				and product = #{product}
+			</if>
+			<if test="testman!=null and testman!=''">
+				and testman like #{testman}
+			</if>
+			<if test="state!=null and state!='' ">
+				and state like #{state}
+			</if>
+			<if test="designated!=null and designated!='' ">
+				and designated like #{designated}
+			</if>
+		</where>
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
 		</if>

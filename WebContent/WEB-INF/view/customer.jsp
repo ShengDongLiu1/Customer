@@ -15,6 +15,33 @@
 <body>
 	<div >
 		<div class="span12"  style="float: left; margin-top: 10px; ">
+			<div>
+			<form class="form-horizontal" action="<%=path %>/customer/queryAll.do?page=1" method="post">
+				<div>
+					公司名称:	<input type="text" style="height: 30px; width: 150px;"
+							name="comname" value="${customer.comname}" placeholder="公司名称" />
+					申请类型:	<input type="text" style="height: 30px; width: 150px;"
+							name="atype" value="${customer.atype}"  placeholder="申请类型" />
+					公司地址:	<input type="text" style="height: 30px; width: 150px;"
+							name="comaddress" value="${customer.comaddress}" placeholder="公司地址" />
+					主销产品:	<input type="text" style="height: 30px; width: 150px;"
+							name="product" value="${customer.product}" placeholder="主销产品" />
+				</div><br/>
+				<div> 
+					测试人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="testman" value="${customer.testman}" placeholder="测试人" />
+					客户状态:	<input type="text" style="height: 30px; width: 150px;"
+							name="state" value="${customer.state}" placeholder="客户状态" />
+				          指派人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="designated" value="${customer.designated}" placeholder="指派人" />
+						<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
+						value="查询" />
+				</div>
+			</form>
+			</div>
+		</div> 
+		
+		<div class="span12"  style="float: left; margin-top: 10px; ">
 			 <button class="btn btn-primary" type="button" onclick="add();">
 			 <span class="glyphicon glyphicon-plus-sign"></span>	 
 			   添加
@@ -28,7 +55,7 @@
 			  修改
 			 </button>
 		</div> 
-			<br /><br />
+		<p style="clear:both;"></p>
 	</div>
 	
 	<div class="row-fluid">

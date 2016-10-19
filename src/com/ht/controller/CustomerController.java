@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Customer;
 import com.ht.common.Pager;
+import com.ht.common.StringUtil;
 import com.ht.service.CustomerService;
 
 @Controller
@@ -53,6 +54,13 @@ public class CustomerController {
 			pager.setPageNo(pager.getTotal());
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("comname", StringUtil.formatLike(customer.getComname()));
+		map.put("atype", StringUtil.formatLike(customer.getAtype()));
+		map.put("comaddress", StringUtil.formatLike(customer.getComaddress()));
+		map.put("product", StringUtil.formatLike(customer.getProduct()));
+		map.put("testman", StringUtil.formatLike(customer.getTestman()));
+		map.put("state", StringUtil.formatLike(customer.getState()));
+		map.put("designated", StringUtil.formatLike(customer.getDesignated()));
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
 		List<Customer> userList=customerService.queryAll(map);
