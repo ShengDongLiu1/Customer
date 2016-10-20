@@ -448,7 +448,7 @@
 						"F_ParentId" : "3",
 						"F_FullName" : "管理联络",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/Customer/contact/contactQueryPager.do",
+						"F_UrlAddress" : "/Customer/contact/contactQueryPager.do?page=1",
 					},
 					{
 						"F_ModuleId" : "4",

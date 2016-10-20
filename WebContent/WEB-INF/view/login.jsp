@@ -27,9 +27,11 @@
 		<script type="text/javascript" src="js/login-js/tooltips.js"></script>
 		<script type="text/javascript" src="js/login-js/login.js"></script>
 		<script type=text/javascript>
+		$(function(){
 			if('${errorLogin}'!=''){
-				alert('${errorLogin}');
+				show_err_msg('${errorLogin}');
 			}
+		});
 		</script>
 	</head>
 	<body>

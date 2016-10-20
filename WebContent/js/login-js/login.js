@@ -18,7 +18,6 @@
 				var password = $("#password").val();
 				var captcha = $("#j_captcha").val();
 				var status = $("#status").val();
-				alert(status);
 				show_loading();
 				var myReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/; //邮件正则
 				if(email == ''){

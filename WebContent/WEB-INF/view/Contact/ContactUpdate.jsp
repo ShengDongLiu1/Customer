@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <%
 	String path = request.getContextPath();
 %>
@@ -22,96 +24,109 @@
 	font-weight: bold;
 }
 </style>
-
+<script type="text/javascript">
+	$(function(){
+		$("#customerstate").combobox("setValue",customer.atype);
+	})
+</script>
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12" style="margin-top: 80px;">
-			<form id="ContactAdd_form" class="form-horizontal" action="<%=path %>/contact/contactAddqr.do" action="post">
+			<form class="form-horizontal" action="<%=path %>/contact/contactUpdateqr.do" >
 				<div style='float: left;'>
+					<div class="control-group">
+						<div class="controls">
+							<input type="hidden" style="height: 40px; width: 300px;" name="manid"
+								 value="${contact.manid} " />
+						</div>
+					</div>
 					<div class="control-group">
 						<label class="control-label">客户公司:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;"
-								name="mancom" value="" />
+								name="mancom" value="${contact.mancom}"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户名称:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;" name="manname"/>
+							<input type="text" value="${contact.manname}" style="height: 40px; width: 300px;" name="manname"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户部门:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
-								name="mandep" />
+							<input type="text" value="${contact.mandep}" style="height: 40px; width: 300px;"
+								name="mandep"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户职位:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
-								name="manjob" />
+							<input type="text" value="${contact.manjob}" style="height: 40px; width: 300px;"
+								name="manjob"  />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户电话:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
-								name="mannumber" />
+							<input type="text" value="${contact.mannumber}" style="height: 40px; width: 300px;"
+								name="mannumber"/>
 						</div>
 					</div>
 				</div>
+				<br/>
 				<div style="float: left;">
 					<div class="control-group">
 						<label class="control-label">客户手机:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
+							<input type="text" value="${contact.manmobile}" style="height: 40px; width: 300px;"
 								name="manmobile" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户邮箱:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
-								name="manemail"/>
+							<input type="text" value="${contact.manemail}" style="height: 40px; width: 300px;"
+								name="manemail" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户QQ:</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;" name="manqq" />
+							<input type="text" value="${contact.manqq}" style="height: 40px; width: 300px;"
+								name="manqq" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户MSN：</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
-								name="manmsn"/>
+							<input type="text" value="${contact.manmsn}" style="height: 40px; width: 300px;"
+								name="manmsn" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">技术程度：</label>
 						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
+							<input type="text" value="${contact.manskill}" style="height: 40px; width: 300px;"
 								name="manskill"/>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">新增日期：</label>
+						<label class="control-label">创建时间：</label>
 						<div class="controls">
-							<input type="text" value="${datetimes }" style="height: 40px; width: 300px; border:0px;"
-								name="logdate" disabled="disabled"/>
+							<input type="text" value="${contact.logdate}" style="height: 40px; width: 300px;"
+								name="logdate" readonly="readonly"/>
 						</div>
 					</div>
 				</div>
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
-					<div class="controls">
-						<button type="submit" class="btn" style="height: 40px; width: 150px;">添加</button>
-					</div>
+						<div class="controls">
+							<input type="hidden" id="page" name="page" value="${page }">
+							<button type="submit" class="btn" style="height: 40px; width: 150px;">确认</button>
+						</div>
 				</div>
 			</form>
 		</div>

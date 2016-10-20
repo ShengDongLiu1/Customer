@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.dao.ContactDao">
 
-	<resultMap type="com.ht.bean.Contact" id="ContactResult">
+	<resultMap type="Contact" id="ContactResult">
 		<id property="manid" column="manid"/>
 		<result property="mancom" column="mancom"/>
 		<result property="manname" column="manname"/>
@@ -19,11 +19,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="logdate" column="logdate"/>
 	</resultMap>
 	
-	<insert id="contactAdd" parameterType="com.ht.bean.Contact">
+	<insert id="contactAdd" parameterType="Contact">
 		insert into contact 
 		values (null, #{mancom}, #{manname}, #{mandep},
 		  #{manjob}, #{mannumber}, #{manmobile}, #{manemail},
 		    #{manqq}, #{manmsn}, #{manskill}, #{logdate})
 	</insert>
+	
+	<select id="queryAll" parameterType="Map" resultMap="ContactResult">
+		select * from contact
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<delete id="contactDelete" parameterType="Integer">
+		delete from contact where manid=#{manid}
+	</delete>
+	
+	<update id="contactUpdate" parameterType="Contact">
+		update contact
+		<set>
+			<if test="mancom!=null and mancom!='' ">
+				mancom=#{mancom},
+			</if>
+			<if test="manname!=null and manname!='' ">
+				manname=#{manname},
+			</if>
+			<if test="mandep!=null and mandep!='' ">
+				mandep=#{mandep},
+			</if>
+			<if test="manjob!=null and manjob!='' ">
+				manjob=#{manjob},
+			</if>
+			<if test="mannumber!=null and mannumber!='' ">
+				mannumber=#{mannumber},
+			</if>
+			<if test="manmobile!=null and manmobile!='' ">
+				manmobile=#{manmobile},
+			</if>
+			<if test="manemail!=null and manemail!='' ">
+				manemail=#{manemail},
+			</if>
+			<if test="manqq!=null and manqq!='' ">
+				manqq=#{manqq},
+			</if>
+			<if test="manmsn!=null and manmsn!='' ">
+				manmsn=#{manmsn},
+			</if>
+			<if test="manskill!=null and manskill!='' ">
+				manskill=#{manskill},
+			</if>
+			<if test="logdate!=null and logdate!='' ">
+				logdate=#{logdate},
+			</if>
+		</set>
+		where manid=#{manid}
+	</update>
 		
+	<select id="contactById" parameterType="Integer" resultMap="ContactResult">
+		select * from contact where manid = #{manid}
+	</select>
 </mapper> 
