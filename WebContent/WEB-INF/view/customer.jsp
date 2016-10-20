@@ -19,21 +19,21 @@
 			<form class="form-horizontal" action="<%=path %>/customer/queryAll.do?page=1" method="post">
 				<div>
 					公司名称:	<input type="text" style="height: 30px; width: 150px;"
-							name="comname" value="${customer.comname}" placeholder="公司名称" />
+							name="comname" placeholder="公司名称" />
 					申请类型:	<input type="text" style="height: 30px; width: 150px;"
-							name="atype" value="${customer.atype}"  placeholder="申请类型" />
+							name="atype"   placeholder="申请类型" />
 					公司地址:	<input type="text" style="height: 30px; width: 150px;"
-							name="comaddress" value="${customer.comaddress}" placeholder="公司地址" />
+							name="comaddress" placeholder="公司地址" />
 					主销产品:	<input type="text" style="height: 30px; width: 150px;"
-							name="product" value="${customer.product}" placeholder="主销产品" />
+							name="product" placeholder="主销产品" />
 				</div><br/>
 				<div> 
 					测试人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
-							name="testman" value="${customer.testman}" placeholder="测试人" />
+							name="testman" placeholder="测试人" />
 					客户状态:	<input type="text" style="height: 30px; width: 150px;"
-							name="state" value="${customer.state}" placeholder="客户状态" />
+							name="state"  placeholder="客户状态" />
 				          指派人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
-							name="designated" value="${customer.designated}" placeholder="指派人" />
+							name="designated" placeholder="指派人" />
 						<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
 						value="查询" />
 				</div>
@@ -53,7 +53,37 @@
 			  <button class="btn btn-primary" type="button" onclick="update();">
 			 <span class="glyphicon glyphicon-wrench"></span>	 
 			  修改
-			 </button>
+			 </button>&nbsp;&nbsp;&nbsp;
+				 <c:if test="${requestScope.state == 1}">
+					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为正式客户
+				 	 </button>&nbsp;&nbsp;&nbsp;
+				 	  <button class="btn btn-primary" type="button" onclick="update();">
+				 	  <span class="glyphicon glyphicon-share-alt"></span>	 
+				              转为放弃客户
+				 	  </button>
+				 </c:if>
+				 <c:if test="${requestScope.state == 2}">
+					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为潜在客户
+					 </button>&nbsp;&nbsp;&nbsp;
+					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为放弃客户
+					 </button>
+				 </c:if>
+				 <c:if test="${requestScope.state == 3}">
+					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为潜在客户
+					 </button>&nbsp;&nbsp;&nbsp;
+					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为正式客户
+					 </button>
+				 </c:if>
 		</div> 
 		<p style="clear:both;"></p>
 	</div>
@@ -93,8 +123,8 @@
 							<td>${list.state}</td>
 							<td>${list.newdate}</td>
 							<td>${list.designated}</td>
-							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}">删除</a></td>
+							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}">删除 </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -104,8 +134,8 @@
 			<div class="span12">
 				<div class="pagination">
 					<ul>
-						<li><a href="<%=path %>/customer/queryAll.do?page=${lists.pageNo - 1}">上一页</a></li>
-						<li><a href="<%=path %>/customer/queryAll.do?page=${lists.pageNo + 1}">下一页</a></li>
+						<li><a href="<%=path %>/customer/queryState.do?page=${lists.pageNo - 1}&state=${requestScope.state}">上一页</a></li>
+						<li><a href="<%=path %>/customer/queryState.do?page=${lists.pageNo + 1}&state=${requestScope.state}">下一页</a></li>
 					</ul>
 				</div>
 			</div>
@@ -121,14 +151,15 @@
 <script src="<%=path %>/js/bootstrap.min.js"></script>
 <script src="<%=path %>/js/jquery-2.0.0.min.js"></script>
 <script src="<%=path %>/js/npm.js"></script>
-<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
-<script src="<%=path %>/js/jquery-ui.js"></script>
+<%-- <script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
+ --%><script src="<%=path %>/js/jquery-ui.js"></script>
 <script src="<%=path %>/js/jquery.htmlClean.js"></script>
 <script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
 <script src="<%=path %>/js/page.js"></script>
    <script>
+   $('#identifier').tooltip(options)
         function selectAll(){
             $("INPUT[type='checkbox']").each( function() {
                 $(this).attr('checked', true);
@@ -170,6 +201,6 @@
         		alert("请选中您要修改的那一行");
         	}
         }
-      
+        
     </script>
 </html>

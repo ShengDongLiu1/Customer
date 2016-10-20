@@ -427,7 +427,7 @@
 						"F_ParentId" : "2",
 						"F_FullName" : "管理客户",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/Customer/customer/queryAll.do?page=1",
+						"F_UrlAddress" : "/Customer/customer/queryState.do?page=1&state=5",
 					},
 					{
 						"F_ModuleId" : "3",

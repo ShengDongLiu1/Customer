@@ -24,16 +24,12 @@
 	font-weight: bold;
 }
 </style>
-<script type="text/javascript">
-	$(function(){
-		$("#customerstate").combobox("setValue",customer.atype);
-	})
-</script>
+
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12" style="margin-top: 80px;">
-			<form class="form-horizontal" action="<%=path %>/customer/updateqr.do" >
+			<form class="form-horizontal" action="<%=path %>/customer/updateqr.do" method="post">
 				<div style='float: left;'>
 					<div class="control-group">
 						<div class="controls">
@@ -49,17 +45,40 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<input type="hidden" id="atype1" name="atype1" value="${customer.atype }">
 						<label class="control-label">申请类型:</label>
 						<div class="controls">
-							<input type="text" value="${customer.atype}" style="height: 40px; width: 300px;" name="atype"
-								placeholder="申请类型" />
+							 <select id="atype" name="atype" style="height: 40px; width: 300px;">
+                             	 <option value="企业">企业</option>
+                             	 <option value="院校">院校</option>
+                             	 <option value="代理">代理</option>
+                             </select>
 						</div>
 					</div>
 					<div class="control-group">
+					 <input type="hidden" id="combackdrop1" name="combackdrop1" value="${customer.combackdrop }">
 						<label class="control-label">公司背景:</label>
 						<div class="controls">
-							<input type="text" value="${customer.combackdrop}" style="height: 40px; width: 300px;"
-								name="combackdrop" placeholder="公司背景" />
+							 <select id="combackdrop" name="combackdrop" style="height: 40px; width: 300px;">
+                                  <option value="机构组织">机构组织</option>
+                                  <option value="农林牧渔">农林牧渔</option>
+                                  <option value="医药卫生">医药卫生</option>
+                                  <option value="建筑建材">建筑建材</option>
+                                  <option value="冶金矿产">冶金矿产</option>
+                                  <option value="交通运输">交通运输</option>
+                                  <option value="信息产业">信息产业</option>
+                                  <option value="机械机电">机械机电</option>
+                                  <option value="轻工食品">轻工食品</option>
+                                  <option value="服装纺织">服装纺织</option>
+                                  <option value="专业服务">专业服务</option>
+                                  <option value="安全防护">安全防护</option>
+                                  <option value="家居用品">家居用品</option>
+                                  <option value="包装">包装</option>
+                                  <option value="体育">体育</option>
+                                  <option value="办公">办公</option>
+                                  <option value="物资">物资</option>
+                                  <option value="其它">其它</option>
+	                         </select>
 						</div>
 					</div>
 					<div class="control-group">
@@ -101,9 +120,10 @@
 						</div>
 					</div>
 					<div class="control-group">
+					<input type="hidden" id="customerstate1" name="customerstate1" value="${customer.state }">
 						<label class="control-label">客户状态:</label>
 						<div class="controls">
-							 <select id="customerstate" name="state" style="height: 40px; width: 300px;">
+							 <select id="state" name="state" style="height: 40px; width: 300px;">
                                   <option value="正式客户">正式客户</option>
                                   <option value="潜在客户">潜在客户</option>
                                   <option value="放弃客户">放弃客户</option>
@@ -123,7 +143,8 @@
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
 						<div class="controls">
 							<input type="hidden" id="page" name="page" value="${page }">
-							<button type="submit" class="btn" style="height: 40px; width: 150px;">确认</button>
+							<input type="hidden" id="state1" name="state1" value="${requestScope.state }">
+							<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="return updatecustomer();">确认</button>
 						</div>
 				</div>
 			</form>
@@ -152,4 +173,31 @@
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
 
+<script type="text/javascript">
+	$(function(){
+		var a = $("#atype1").val();
+		$("#atype").val(a); 
+		$("#combackdrop").val($("#combackdrop1").val());
+		$("#state").val($("#customerstate1").val());
+		//alert($("#atype").find("option:selected").text());得到当前选中的值
+	})
+	
+
+	
+	function updatecustomer() {
+		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
+		for (var i = 0; i < a.length; i++) {
+			if (a[i].value == "") {
+				alert("您有空白未填写！");
+				return false;
+				break;
+			}
+			if(a[i].value.length<1){
+				alert("至少输输两个字符！");
+				return false;
+				break;
+			}
+		}
+	}
+</script>
 </html>

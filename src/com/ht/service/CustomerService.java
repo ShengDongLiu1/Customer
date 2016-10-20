@@ -20,5 +20,5 @@ public interface CustomerService {
 	
 	public Integer queryCount();
 	
-	public List<Customer> selectState(String state);
+	public List<Customer> selectState(Map<String, Object> map);
 }

@@ -60,8 +60,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> selectState(String state) {
-		return customerDao.selectState(state);
+	public List<Customer> selectState(Map<String, Object> map) {
+		return customerDao.selectState(map);
 	}
+
+	
 	
 }

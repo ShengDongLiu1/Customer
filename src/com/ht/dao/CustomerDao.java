@@ -21,5 +21,5 @@ public interface CustomerDao {
 	
 	public int queryCount();
 	
-	public List<Customer> selectState(String state);
+	public List<Customer> selectState(Map<String,Object> map);
 }

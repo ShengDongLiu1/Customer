@@ -73,23 +73,47 @@ public class CustomerController {
 	//潜在客户
 	@RequestMapping("/queryState")
 	public String queryState(@RequestParam(value="page",required=false)int page,@RequestParam(value="state",required=false)int state,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
+		System.out.println("客户状态:"+state);
 		List<Customer> userList = null;
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
-		pager.setPageNo(page);
-		System.out.println(page);
+		int count = customerService.queryCount();
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		pager.setTotal(total);
+		if(page >= 1 && page <= pager.getTotal()){
+			pager.setPageNo(page);
+		}else if(page < 1){
+			pager.setPageNo(1);
+		}else{
+			pager.setPageNo(pager.getTotal());
+		}
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
 		if(state==1){
-			 userList=customerService.selectState("潜在客户");
+			 customer.setState("潜在客户");
+			 map.put("state", customer.getState());
+			 userList=customerService.selectState(map);
+			 request.setAttribute("state", state);
 		}else if(state==2){
-			 userList=customerService.selectState("正式客户");
+			 customer.setState("正式客户");
+			 map.put("state", customer.getState());
+			 userList=customerService.selectState(map);
+			 request.setAttribute("state", state);
 		}
 		else if(state==3){
-			 userList=customerService.selectState("放弃客户");
+			 customer.setState("放弃客户");
+			 map.put("state", customer.getState());
+			 userList=customerService.selectState(map);
+			 request.setAttribute("state", state);
+		}else if(state==4){
+			 customer.setState("签约客户");
+			 map.put("state", customer.getState());
+			 userList=customerService.selectState(map);
+			 request.setAttribute("state", state);
 		}else{
-			 userList=customerService.selectState("签约客户");
+			 userList = customerService.queryAll(map);
+			 request.setAttribute("state", state);
 		}
 		pager.setRows(userList);
 		request.setAttribute("lists", pager);
@@ -97,7 +121,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/update")
-	public String update(@RequestParam(value="kid",required=false)String kid ,
+	public String update(@RequestParam(value="kid",required=false)String kid ,@RequestParam(value="state",required=false)int state ,
 			@RequestParam(value="page",required=false)int page,HttpServletRequest request)throws Exception{
 		try {
 			kid = kid.replace(" ", "");
@@ -105,6 +129,7 @@ public class CustomerController {
 
 			request.setAttribute("customer", customer);
 			request.setAttribute("page", page);
+			request.setAttribute("state", state);
 			return "updatecustomer";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,9 +141,10 @@ public class CustomerController {
 	@RequestMapping("/updateqr")
 	public String update(Customer customer,HttpServletResponse response,HttpServletRequest request){
 		try {			
+			Integer state1 = Integer.valueOf(request.getParameter("state1"));
 			customerService.csrcupdate(customer);
 			int page = Integer.valueOf(request.getParameter("page"));
-			response.sendRedirect("queryAll.do?page="+page);
+			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -156,7 +182,7 @@ public class CustomerController {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss ");  
 			customer.setNewdate(sdf.format(new Date()));
 			customerService.cadd(customer);
-			response.sendRedirect("queryAll.do?page=1");
+			response.sendRedirect("queryState.do?page=1&state=5");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
