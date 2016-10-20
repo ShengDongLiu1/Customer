@@ -59,4 +59,9 @@ public class BespokeServiceImpl implements BespokeService{
 	public List<Customer> CustomerSelectName() {
 		return bespokeDao.CustomerSelectName();
 	}
+
+	@Override
+	public List<Bespoke> BespokeQueryAlls(Map<String, Object> map) {
+		return bespokeDao.BespokeQueryAlls(map);
+	}
 }

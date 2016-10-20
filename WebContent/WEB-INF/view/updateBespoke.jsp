@@ -44,7 +44,7 @@
 						<label class="control-label">预约公司名称:</label>
 						<div class="controls">
 							<select id="gsname" name="bepcom" style="height: 40px; width: 300px;">
-                                  <c:forEach var="list" items="${listNames}">
+                                  <c:forEach var="list" items="${listName}">
                                  	 <option value="${list.kid}">${list.comname}</option>
                                   </c:forEach>
 	                         </select>

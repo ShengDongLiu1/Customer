@@ -22,4 +22,6 @@ public interface BespokeDao {
 	public Integer BespokeQueryCount();
 	
 	public List<Customer> CustomerSelectName();
+
+	public List<Bespoke> BespokeQueryAlls(Map<String, Object> map);
 }

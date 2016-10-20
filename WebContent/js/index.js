@@ -490,7 +490,7 @@
 						"F_ParentId" : "5",
 						"F_FullName" : "管理预定",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/Customer/bespoke/bespokeQueryAll.do?page=1",
+						"F_UrlAddress" : "/Customer/bespoke/bespokeQueryAlls.do?page=1",
 					},
 					{
 						"F_ModuleId" : "6",

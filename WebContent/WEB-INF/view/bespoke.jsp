@@ -22,9 +22,49 @@
 <script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
+<script>
+function a(){
+	if(document.zhanghao.value==""){
+		alert(查询失败);
+	}
+alert("提示！")
+}
+</script>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+
+<div >
+		<div class="span12"  style="float: left; margin-top: 10px; ">
+			<div>
+			<form class="form-horizontal" action="<%=path %>/bespoke/bespokeQueryAll.do?page=1" method="post">
+				<div>
+					预约公司:<select id="bepcom" name="bepcom" style="height: 30px; width: 150px;">
+                                  
+                                  <option value="">未选择</option>
+                                  <c:forEach var="list" items="${listName}">
+                                 	 <option value="${list.kid}">${list.comname}</option>
+                                  </c:forEach>
+	                </select>
+					预约人:	<input type="text" style="height: 30px; width: 150px;"
+							name="bepman"  placeholder="预约人" />
+					 预约类型:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="beptype" placeholder="预约类型" />
+					预约地址:	<input type="text" style="height: 30px; width: 150px;"
+							name="bepaddress" placeholder="预约地址" />
+					<br/>
+
+						<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
+						value="查询" onClick="javascript:a();"/>
+				</div>
+			</form>
+			</div>
+		</div> 
+		<p style="clear:both;"></p>
+	</div>
+
 	<div class="row-fluid">
 		<div class="span12">
 			<table class="table">
@@ -40,7 +80,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="list" items="${beslist.rows}">
-						<tr class="success">
+						<tr class="success" id="zhanghao">
 							<td>${list.bepid}</td>
 							<td>${list.customer.comname}</td>
 							<td>${list.bepman}</td>

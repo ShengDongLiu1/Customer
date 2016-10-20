@@ -2,6 +2,8 @@ package com.ht.common;
 
 import java.util.List;
 
+import com.ht.bean.Bespoke;
+
 public class Pager<T> {
 	//当前页
 	private int pageNo;
@@ -47,5 +49,6 @@ public class Pager<T> {
 	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
+
 
 }

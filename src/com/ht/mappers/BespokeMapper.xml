@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bespoke where bepid = #{bepid}
 	</select>
 
-	<select id="BespokeQueryAll" parameterType="Map" resultMap="BespokeResults">
+	<select id="BespokeQueryAlls" parameterType="Map" resultMap="BespokeResults">
 		select * from bespoke b,Customer c  where b.bepcom=c.kid
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
@@ -98,5 +98,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="CustomerSelectName" parameterType="Customer" resultMap="CustomerResult">
 		select * from customer
+	</select>
+	
+	<select id="BespokeQueryCount" resultType="int">
+		select count(*) from bespoke
+	</select>
+	
+	<select id="BespokeQueryAll" parameterType="Map" resultMap="BespokeResults">
+		select * from bespoke  b,customer c
+		<where>
+			
+			<if test="bepman!=null and bepman!=''">
+				and b.bepman like #{bepman}
+			</if>
+			<if test="bepaddress!=null and bepaddress!='' ">
+				and b.bepaddress like #{bepaddress}
+			</if>
+			<if test="beptype!=null and beptype!='' ">
+				and b.beptype like #{beptype}
+			</if>
+			 and b.bepcom=c.kid
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
 	</select>
 </mapper>

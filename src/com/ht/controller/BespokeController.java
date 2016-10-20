@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ht.bean.Bespoke;
 import com.ht.bean.Customer;
 import com.ht.common.Pager;
+import com.ht.common.StringUtil;
 import com.ht.service.BespokeService;
 
 @Controller
@@ -29,8 +30,7 @@ public class BespokeController {
 		try {	
 		Bespoke bes= bespokeService.BespokeSelect(Integer.valueOf(bepid));
 		List<Customer> listName=bespokeService.CustomerSelectName();
-		System.out.println(listName+"-----");
-		request.setAttribute("listNames", listName);
+		request.setAttribute("listName", listName);
 		request.setAttribute("bes", bes);
 		return "updateBespoke";
 		} catch (Exception e) {
@@ -39,7 +39,7 @@ public class BespokeController {
 			return "result";
 		}
 	}
-	@RequestMapping("/bespokeQueryAll")
+	@RequestMapping("/bespokeQueryAlls")
 	public String bespokeQueryAll(@RequestParam(value="page",required=false)int page,Bespoke bespoke,HttpServletResponse response, HttpServletRequest request)throws Exception{
 		Pager<Bespoke> pager = new Pager<>();
 		pager.setPageSize(10);
@@ -47,9 +47,11 @@ public class BespokeController {
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
-		List<Bespoke> userList=bespokeService.BespokeQueryAll(map);
+		List<Bespoke> userList=bespokeService.BespokeQueryAlls(map);
 		pager.setRows(userList);
 		request.setAttribute("beslist", pager);
+		List<Customer> listName=bespokeService.CustomerSelectName();
+		request.setAttribute("listName", listName);
 		return "bespoke";
 	}
 	
@@ -60,7 +62,7 @@ public class BespokeController {
 			request.setAttribute("bespoke", bespoke);
 			List<Customer> listName=bespokeService.CustomerSelectName();
 			System.out.println(listName+"-----");
-			request.setAttribute("listNames", listName);
+			request.setAttribute("listName", listName);
 			return "updateBespoke";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class BespokeController {
 	public String update(Bespoke bespoke,HttpServletResponse response,HttpServletRequest request){
 		try {			
 			bespokeService.BespokeUpdate(bespoke);
-			response.sendRedirect("bespokeQueryAll.do?page=1");
+			response.sendRedirect("bespokeQueryAlls.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -86,7 +88,7 @@ public class BespokeController {
 	public String delete(@RequestParam(value="bepid",required=false)String bepid,HttpServletResponse response,HttpServletRequest request){
 		try {			
 			bespokeService.BespokeDelete(Integer.valueOf(bepid));
-			response.sendRedirect("bespokeQueryAll.do?page=1");
+			response.sendRedirect("bespokeQueryAlls.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -98,7 +100,7 @@ public class BespokeController {
 	public String add(Bespoke bespoke,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			bespokeService.BespokeAdd(bespoke);
-			response.sendRedirect("bespokeQueryAll.do?page=1");
+			response.sendRedirect("bespokeQueryAlls.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -112,6 +114,35 @@ public class BespokeController {
 		List<Customer> listName=bespokeService.CustomerSelectName();
 		request.setAttribute("listName", listName);
 		return "addBespoke";
+	}
+	
+	@RequestMapping("bespokeQueryAll")
+	public String queryAll(@RequestParam(value="page",required=false)int page,Bespoke bespoke,HttpServletResponse response, HttpServletRequest request)throws Exception{
+		Pager<Bespoke> pager = new Pager<>();
+		pager.setPageSize(10);
+		int count = bespokeService.BespokeQueryCount();
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		pager.setTotal(total);
+		if(page >= 1 && page <= pager.getTotal()){
+			pager.setPageNo(page);
+		}else if(page < 1){
+			pager.setPageNo(1);
+		}else{
+			pager.setPageNo(pager.getTotal());
+		}
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("bepcom", StringUtil.formatLike(bespoke.getBepcom()+""));
+		map.put("bepman", StringUtil.formatLike(bespoke.getBepman()));
+		map.put("bepaddress", StringUtil.formatLike(bespoke.getBepaddress()));
+		map.put("beptype", StringUtil.formatLike(bespoke.getBeptype()));
+		map.put("start", pager.getBeginIndex());
+		map.put("size", pager.getPageSize());
+		List<Bespoke> userList=bespokeService.BespokeQueryAll(map);
+		pager.setRows(userList);
+		List<Customer> listName=bespokeService.CustomerSelectName();
+		request.setAttribute("listName", listName);
+		request.setAttribute("beslist", pager);
+		return "bespoke";
 	}
 	
 }
