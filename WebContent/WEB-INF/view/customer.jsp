@@ -55,33 +55,59 @@
 			  修改
 			 </button>&nbsp;&nbsp;&nbsp;
 				 <c:if test="${requestScope.state == 1}">
-					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <button class="btn btn-primary" type="button" onclick="zhuanz();">
 					 <span class="glyphicon glyphicon-share-alt"></span>	 
 					  转为正式客户
 				 	 </button>&nbsp;&nbsp;&nbsp;
-				 	  <button class="btn btn-primary" type="button" onclick="update();">
+				 	  <button class="btn btn-primary" type="button" onclick="zhuanf();">
 				 	  <span class="glyphicon glyphicon-share-alt"></span>	 
 				              转为放弃客户
 				 	  </button>
+				 	  <button class="btn btn-primary" type="button" onclick="zhuanqy();">
+				 	  <span class="glyphicon glyphicon-share-alt"></span>	 
+				              转为签约客户
+				 	  </button>
 				 </c:if>
 				 <c:if test="${requestScope.state == 2}">
-					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <button class="btn btn-primary" type="button" onclick="zhuanq();">
 					 <span class="glyphicon glyphicon-share-alt"></span>	 
 					  转为潜在客户
 					 </button>&nbsp;&nbsp;&nbsp;
-					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <button class="btn btn-primary" type="button" onclick="zhuanf();">
 					 <span class="glyphicon glyphicon-share-alt"></span>	 
 					  转为放弃客户
+					 </button>&nbsp;&nbsp;&nbsp;
+					 <button class="btn btn-primary" type="button" onclick="zhuanqy();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为签约客户
 					 </button>
 				 </c:if>
 				 <c:if test="${requestScope.state == 3}">
-					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <button class="btn btn-primary" type="button" onclick="zhuanq();">
 					 <span class="glyphicon glyphicon-share-alt"></span>	 
 					  转为潜在客户
 					 </button>&nbsp;&nbsp;&nbsp;
-					 <button class="btn btn-primary" type="button" onclick="update();">
+					 <button class="btn btn-primary" type="button" onclick="zhuanz();">
 					 <span class="glyphicon glyphicon-share-alt"></span>	 
 					  转为正式客户
+					 </button>&nbsp;&nbsp;&nbsp;
+					 <button class="btn btn-primary" type="button" onclick="zhuanqy();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为签约客户
+					 </button>
+				 </c:if>
+				 	 <c:if test="${requestScope.state == 4}">
+					 <button class="btn btn-primary" type="button" onclick="zhuanq();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为潜在客户
+					 </button>&nbsp;&nbsp;&nbsp;
+					 <button class="btn btn-primary" type="button" onclick="zhuanz();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为正式客户
+					 </button>&nbsp;&nbsp;&nbsp;
+					 <button class="btn btn-primary" type="button" onclick="zhuanf();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					  转为放弃客户
 					 </button>
 				 </c:if>
 		</div> 
@@ -124,7 +150,7 @@
 							<td>${list.newdate}</td>
 							<td>${list.designated}</td>
 							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}">删除 </a></td>
+								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}">删除 </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -180,6 +206,7 @@
 	             $("[name='imgVo']:checked").each(function(){
 	              str+=$(this).val()+",";
 	             }) 
+	             alert(str)
 	            window.location.href='delete.do?kid='+str+'&page=${lists.pageNo}';
         	}else{
         		alert("至少选中一行！");
@@ -195,11 +222,76 @@
                   if(str.length>3){
                 	  alert("一次只能修改一个！");
                   }else{
-                	  window.location.href='update.do?kid='+str+'&page=${lists.pageNo}';  
+               	 window.location.href='update.do?kid='+str+'&page=${lists.pageNo}';  
                   }
         	}else{
         		alert("请选中您要修改的那一行");
         	}
+        }
+        
+        function zhuanz(){
+        	if($("[name='imgVo']").is(':checked')) {  
+        		var str=[];
+        		var ss = $("[name='imgVo']:checked").length;
+                $("[name='imgVo']:checked").each(function(index, item){
+                 str+=$(this).val()
+                 if(index != ss-1){
+                	  str = str+",";
+                 }
+                }) 
+            	window.location.href="updatestate.do?state=正式客户&kid="+str+"&state1="+${requestScope.state}+"&page=${lists.pageNo}"
+        	}else{
+           		alert("请选中您要修改的那一行");
+           	}
+        }
+        
+        function zhuanq(){
+        	if($("[name='imgVo']").is(':checked')) {  
+        		var str=[];
+        		var ss = $("[name='imgVo']:checked").length;
+                $("[name='imgVo']:checked").each(function(index, item){
+                 str+=$(this).val()
+                 if(index != ss-1){
+                	  str = str+",";
+                 }
+                }) 
+              	window.location.href="updatestate.do?state=潜在客户&kid="+str+"&state1="+${requestScope.state}+"&page=${lists.pageNo}"
+        	}else{
+           		alert("请选中您要修改的那一行");
+           	}
+        }
+        
+        function zhuanf(){
+        	if($("[name='imgVo']").is(':checked')) {  
+        		var str=[];
+        		var ss = $("[name='imgVo']:checked").length;
+                $("[name='imgVo']:checked").each(function(index, item){
+                 str+=$(this).val()
+                 if(index != ss-1){
+                	  str = str+",";
+                 }
+                }) 
+              	window.location.href="updatestate.do?state=放弃客户&kid="+str+"&state1="+${requestScope.state}+"&page=${lists.pageNo}"
+                  
+        	}else{
+           		alert("请选中您要修改的那一行");
+           	}
+        }
+        
+        function zhuanqy(){
+        	if($("[name='imgVo']").is(':checked')) {  
+        		var str=[];
+        		var ss = $("[name='imgVo']:checked").length;
+                $("[name='imgVo']:checked").each(function(index, item){
+                 str+=$(this).val()
+                 if(index != ss-1){
+                	  str = str+",";
+                 }
+                }) 
+              	window.location.href="updatestate.do?state=签约客户&kid="+str+"&state1="+${requestScope.state}+"&page=${lists.pageNo}"
+        	}else{
+           		alert("请选中您要修改的那一行");
+           	}
         }
         
     </script>

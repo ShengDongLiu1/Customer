@@ -126,7 +126,6 @@ public class CustomerController {
 		try {
 			kid = kid.replace(" ", "");
 		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
-
 			request.setAttribute("customer", customer);
 			request.setAttribute("page", page);
 			request.setAttribute("state", state);
@@ -140,9 +139,32 @@ public class CustomerController {
 	
 	@RequestMapping("/updateqr")
 	public String update(Customer customer,HttpServletResponse response,HttpServletRequest request){
-		try {			
+		try {	
 			Integer state1 = Integer.valueOf(request.getParameter("state1"));
 			customerService.csrcupdate(customer);
+			int page = Integer.valueOf(request.getParameter("page"));
+			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
+		return null;
+	}
+	
+	@RequestMapping("/updatestate")
+	public String updatestate(@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
+		try {	
+			Customer customer = new Customer();
+			String state = request.getParameter("state");
+			kid = kid.replace(" ", "");
+			String []idsStr=kid.split(",");
+			 for(int i=0;i<idsStr.length;i++){
+				 customer.setKid(Integer.valueOf(idsStr[i]));
+				 customer.setState(state);
+				 customerService.csrcupdate(customer);
+			 }
+			Integer state1 = Integer.valueOf(request.getParameter("state1"));
 			int page = Integer.valueOf(request.getParameter("page"));
 			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
 		} catch (Exception e) {
@@ -156,12 +178,13 @@ public class CustomerController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(value="page",required=false)int page,@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
 		try {	
-			kid = kid.replace(" ", "");
-			String []idsStr=kid.split(",");
+			kid = kid.replace(" ", "");//替换
+			String []idsStr=kid.split(",");//拆分
 		 for(int i=0;i<idsStr.length;i++){
 			 customerService.csrdelete(Integer.parseInt(idsStr[i]));
 		 }
-		 response.sendRedirect("queryAll.do?page="+page);
+		 Integer state1 = Integer.valueOf(request.getParameter("state1"));
+		 response.sendRedirect("queryState.do?page="+page+"&state="+state1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
