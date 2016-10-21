@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -30,11 +31,12 @@
 			<form id="ContactAdd_form" class="form-horizontal" action="<%=path %>/contact/contactAddqr.do" action="post">
 				<div style='float: left;'>
 					<div class="control-group">
-						<label class="control-label">客户公司:</label>
-						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;"
-								name="mancom" value="" />
-						</div>
+						<label class="control-label">客户公司:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<select id="mancom" name="mancom" style="height: 40px; width: 300px;">
+                            <c:forEach var="list" items="${listName}">
+                           	 <option value="${list.kid}">${list.comname}</option>
+                            </c:forEach>
+	                    </select>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户名称:</label>
@@ -93,19 +95,23 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">技术程度：</label>
-						<div class="controls">
-							<input type="text" value="" style="height: 40px; width: 300px;"
-								name="manskill"/>
-						</div>
+						<label class="control-label">技术程度：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<select style="height: 40px; width: 300px;" name="manskill">
+							<option>不懂</option>
+							<option>懂一点</option>
+							<option>懂部分</option>
+							<option>懂大部分</option>
+							<option>精通</option>
+						</select>
 					</div>
 					<div class="control-group">
-						<label class="control-label">新增日期：</label>
+						<label class="control-label">创建时间：</label>
 						<div class="controls">
-							<input type="text" value="${datetimes }" style="height: 40px; width: 300px; border:0px;"
-								name="logdate" disabled="disabled"/>
+							<input type="text" value="${datetimes}" style="height: 40px; width: 300px;"
+								name="logdate" readonly="readonly"/>
 						</div>
 					</div>
+					
 				</div>
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 

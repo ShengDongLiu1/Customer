@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ht.bean.Contact;
+import com.ht.bean.Customer;
 import com.ht.dao.ContactDao;
 import com.ht.service.ContactService;
 
@@ -39,5 +40,20 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public Contact contactById(int manid) {
 		return contactDao.contactById(manid);
+	}
+
+	@Override
+	public int contactQueryCount() {
+		return contactDao.contactQueryCount();
+	}
+
+	@Override
+	public List<Customer> customerSelect() {
+		return contactDao.customerSelect();
+	}
+
+	@Override
+	public List<Contact> queryAlls(Map<String, Object> map) {
+		return contactDao.queryAlls(map);
 	}
 }

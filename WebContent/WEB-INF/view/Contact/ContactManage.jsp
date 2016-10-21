@@ -15,17 +15,38 @@
 <body>
 	<div >
 		<div class="span12"  style="float: left; margin-top: 10px; ">
-			 <button class="btn btn-primary" type="button" onclick="add();">
-			 <span class="glyphicon glyphicon-plus-sign"></span>	 
-			   添加
-			 </button>&nbsp;&nbsp;&nbsp;
+			<div>
+			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPager.do?page=1" method="post">
+				<div>
+					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" style="height: 30px; width: 150px;">
+                            <c:forEach var="list" items="${listName}">
+                           	 <option value="${list.kid}">${list.comname}</option>
+                            </c:forEach>
+	                    </select>
+					客户名称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="manname" />
+					客户部门:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name=mandep />
+					客户职位:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="manjob" />
+				</div><br/>
+				<div> 
+					客户手机:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="manmobile" />
+					技术程度:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="manskill" />
+				    日志日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="logdate" />
+						    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
+						value="查询" />
+				</div>
+			</form>
+			</div>
+		</div> 
+		<div class="span12"  style="float: left; margin-top: 10px; ">
 			 <button class="btn btn-primary" type="button" onclick="delete1();">
 			 <span class="glyphicon glyphicon-trash"></span>	 
-			   删除
-			 </button>&nbsp;&nbsp;&nbsp;
-			  <button class="btn btn-primary" type="button" onclick="update();">
-			 <span class="glyphicon glyphicon-wrench"></span>	 
-			   修改
+			   批量删除
 			 </button>
 		</div> 
 			<br /><br />
@@ -55,7 +76,7 @@
 					<c:forEach var="list" items="${lists.rows}">
 						<tr class="success">
 							<td><span><input type="checkbox" name="imgVo" onclick="select1();" value="${list.manid} " /></span></td>
-							<td>${list.mancom}</td>
+							<td>${list.customers.comname}</td>
 							<td>${list.manname}</td>
 							<td>${list.mandep}</td>
 							<td>${list.manjob}</td>

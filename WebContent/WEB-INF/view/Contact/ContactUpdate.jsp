@@ -24,11 +24,6 @@
 	font-weight: bold;
 }
 </style>
-<script type="text/javascript">
-	$(function(){
-		$("#customerstate").combobox("setValue",customer.atype);
-	})
-</script>
 </head>
 <body>
 	<div class="row-fluid">

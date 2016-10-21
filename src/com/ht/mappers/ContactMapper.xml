@@ -19,6 +19,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="logdate" column="logdate"/>
 	</resultMap>
 	
+	<resultMap type="Contact" id="ContactResult1">
+		<id property="manid" column="manid"/>
+		<result property="mancom" column="mancom"/>
+		<result property="manname" column="manname"/>
+		<result property="mandep" column="mandep"/>
+		<result property="manjob" column="manjob"/>
+		<result property="mannumber" column="mannumber"/>
+		<result property="manmobile" column="manmobile"/>
+		<result property="manemail" column="manemail"/>
+		<result property="manqq" column="manqq"/>
+		<result property="manmsn" column="manmsn"/>
+		<result property="manskill" column="manskill"/>
+		<result property="logdate" column="logdate"/>
+		
+		<association property="customers" javaType="com.ht.bean.Customer">
+			<id property="kid" column="kid" />
+			<result property="comname" column="comname" />
+			<result property="atype" column="atype" />
+			<result property="combackdrop" column="combackdrop" />
+			<result property="comaddress" column="comaddress" />
+			<result property="product" column="product" />
+			<result property="structure" column="structure" />
+			<result property="testman" column="testman" />
+			<result property="amessage" column="amessage" />
+			<result property="state" column="state" />
+			<result property="newdate" column="newdate" />
+			<result property="designated" column="designated" />
+		</association>
+	</resultMap>
+	
+	<resultMap type="Customer" id="CustomerResult">
+		<id property="kid" column="kid" />
+		<result property="comname" column="comname" />
+		<result property="atype" column="atype" />
+		<result property="combackdrop" column="combackdrop" />
+		<result property="comaddress" column="comaddress" />
+		<result property="product" column="product" />
+		<result property="structure" column="structure" />
+		<result property="testman" column="testman" />
+		<result property="amessage" column="amessage" />
+		<result property="state" column="state" />
+		<result property="newdate" column="newdate" />
+		<result property="designated" column="designated" />
+	</resultMap>
+	
 	<insert id="contactAdd" parameterType="Contact">
 		insert into contact 
 		values (null, #{mancom}, #{manname}, #{mandep},
@@ -27,10 +72,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="queryAll" parameterType="Map" resultMap="ContactResult">
-		select * from contact
+		select * from contact con, customer cus
+		<where>
+			<if test="manname!=null and manname!=''">
+				and con.manname like #{manname}
+			</if>
+			<if test="mandep!=null and mandep!='' ">
+				and con.mandep like #{mandep}
+			</if>
+			<if test="manjob!=null and manjob!='' ">
+				and con.manjob like #{manjob}
+			</if>
+			<if test="manmobile!=null and manmobile!='' ">
+				and con.manmobile like #{manmobile}
+			</if>
+			<if test="manemail!=null and manemail!=''">
+				and con.manemail like #{manemail}
+			</if>
+			<if test="manskill!=null and manskill!='' ">
+				and con.manskill like #{manskill}
+			</if>
+			<if test="logdate!=null and logdate!='' ">
+				and con.logdate like #{logdate}
+			</if>
+			and con.mancom=cus.kid
+		</where>
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
 		</if>
+	</select>
+	
+	<select id="contactQueryCount" resultType="int">
+		select count(*) from contact
 	</select>
 	
 	<delete id="contactDelete" parameterType="Integer">
@@ -79,5 +152,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<select id="contactById" parameterType="Integer" resultMap="ContactResult">
 		select * from contact where manid = #{manid}
+	</select>
+	
+	<select id="customerSelect" parameterType="Customer" resultMap="CustomerResult">
+		select * from customer
+	</select>
+	
+	<select id="queryAlls" parameterType="Map" resultMap="ContactResult1">
+		select * from contact con,customer cus where con.mancom=cus.kid
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
 	</select>
 </mapper> 
