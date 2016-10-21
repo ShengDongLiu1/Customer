@@ -57,12 +57,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bespoke where bepid = #{bepid}
 	</select>
 
-	<select id="BespokeQueryAlls" parameterType="Map" resultMap="BespokeResults">
-		select * from bespoke b,Customer c  where b.bepcom=c.kid
-		<if test="start!=null and size!=null">
-			limit #{start},#{size}
-		</if>
-	</select>
 	
 	<update id="BespokeUpdate" parameterType="Bespoke">
 		update Bespoke
@@ -107,7 +101,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="BespokeQueryAll" parameterType="Map" resultMap="BespokeResults">
 		select * from bespoke  b,customer c
 		<where>
-			
+			<if test="bepcom!=null and bepcom !=''">
+				and b.bepcom like #{bepcom}
+			</if>
 			<if test="bepman!=null and bepman!=''">
 				and b.bepman like #{bepman}
 			</if>
@@ -115,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and b.bepaddress like #{bepaddress}
 			</if>
 			<if test="beptype!=null and beptype!='' ">
-				and b.beptype like #{beptype}
+				and b.beptype = #{beptype}
 			</if>
 			 and b.bepcom=c.kid
 		</where>
@@ -123,4 +119,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
+	
+	<select id="BespokeQueryAlls" parameterType="Map" resultMap="BespokeResults">
+		select * from bespoke b,Customer c
+		<where>
+			<if test="bepman!=null and bepman!=''">
+				and b.bepman like #{bepman}
+			</if>
+			<if test="bepaddress!=null and bepaddress!='' ">
+				and b.bepaddress like #{bepaddress}
+			</if>
+			<if test="beptype!=null and beptype!='' ">
+				and b.beptype = #{beptype}
+			</if>
+		   b.bepcom=c.kid
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
 </mapper>

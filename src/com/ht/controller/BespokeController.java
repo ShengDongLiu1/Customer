@@ -131,7 +131,13 @@ public class BespokeController {
 			pager.setPageNo(pager.getTotal());
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("bepcom", StringUtil.formatLike(bespoke.getBepcom()+""));
+		String i = bespoke.getBepcom().toString();
+		if(i != "0"){
+			map.put("bepcom", i);
+		}else{
+			map.put("bepcom", null);
+		}
+			
 		map.put("bepman", StringUtil.formatLike(bespoke.getBepman()));
 		map.put("bepaddress", StringUtil.formatLike(bespoke.getBepaddress()));
 		map.put("beptype", StringUtil.formatLike(bespoke.getBeptype()));

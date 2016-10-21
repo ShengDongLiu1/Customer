@@ -22,16 +22,6 @@
 <script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
-<script>
-function a(){
-	if(document.zhanghao.value==""){
-		alert(查询失败);
-	}
-alert("提示！")
-}
-</script>
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -43,7 +33,6 @@ alert("提示！")
 				<div>
 					预约公司:<select id="bepcom" name="bepcom" style="height: 30px; width: 150px;">
                                   
-                                  <option value="">未选择</option>
                                   <c:forEach var="list" items="${listName}">
                                  	 <option value="${list.kid}">${list.comname}</option>
                                   </c:forEach>
@@ -55,9 +44,8 @@ alert("提示！")
 					预约地址:	<input type="text" style="height: 30px; width: 150px;"
 							name="bepaddress" placeholder="预约地址" />
 					<br/>
-
 						<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
-						value="查询" onClick="javascript:a();"/>
+						value="查询" />
 				</div>
 			</form>
 			</div>
@@ -80,7 +68,7 @@ alert("提示！")
 				</thead>
 				<tbody>
 					<c:forEach var="list" items="${beslist.rows}">
-						<tr class="success" id="zhanghao">
+						<tr class="success">
 							<td>${list.bepid}</td>
 							<td>${list.customer.comname}</td>
 							<td>${list.bepman}</td>

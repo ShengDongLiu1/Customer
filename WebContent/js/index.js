@@ -506,6 +506,21 @@
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/SystemManage/DataItemDetail/genz",
 					},
+					{
+						"F_ModuleId" : "7",
+						"F_ParentId" : "0",
+						"F_FullName" : "用户管理",
+						"F_EnCode" : "BaseManage",
+						"F_Icon" : "fa fa-desktop",
+					},
+					{
+						"F_ModuleId" : "genz",
+						"F_ParentId" : "7",
+						"F_FullName" : "管理用户",
+						"F_Icon" : "fa fa-book",
+						"F_UrlAddress" : "/Customer/user/UserQueryAll.do?page=1",
+					},
+
 					 ];
 			var _html = "";
 			$
