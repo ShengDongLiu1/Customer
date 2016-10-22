@@ -16,7 +16,7 @@
 	<div >
 		<div class="span12"  style="float: left; margin-top: 10px; ">
 			<div>
-			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPager.do?page=1" method="post">
+			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPagers.do?page=1" method="post">
 				<div>
 					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" style="height: 30px; width: 150px;">
                             <c:forEach var="list" items="${listName}">
@@ -44,6 +44,10 @@
 			</div>
 		</div> 
 		<div class="span12"  style="float: left; margin-top: 10px; ">
+			 <button class="btn btn-primary" type="button" onclick="add();">
+			 <span class="glyphicon glyphicon-plus-sign"></span>	 
+			   添加
+			 </button>&nbsp;&nbsp;&nbsp;
 			 <button class="btn btn-primary" type="button" onclick="delete1();">
 			 <span class="glyphicon glyphicon-trash"></span>	 
 			   批量删除
@@ -98,8 +102,8 @@
 			<div class="span12">
 				<div class="pagination">
 					<ul>
-						<li><a href="<%=path %>/contact/contactQueryPager.do?page=${lists.pageNo - 1}">上一页</a></li>
-						<li><a href="<%=path %>/contact/contactQueryPager.do?page=${lists.pageNo + 1}">下一页</a></li>
+						<li><a href="<%=path %>/contact/contactQueryPagers.do?page=${lists.pageNo - 1}">上一页</a></li>
+						<li><a href="<%=path %>/contact/contactQueryPagers.do?page=${lists.pageNo + 1}">下一页</a></li>
 					</ul>
 				</div>
 			</div>

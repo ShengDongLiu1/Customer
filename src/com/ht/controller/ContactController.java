@@ -92,11 +92,11 @@ public class ContactController {
 		}
 		System.out.println(contact.getLogdate());
 		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("mancom", StringUtil.formatLike(contact.getMancom()+""));
 		map.put("manname", StringUtil.formatLike(contact.getManname()));
 		map.put("mandep", StringUtil.formatLike(contact.getMandep()));
 		map.put("manjob", StringUtil.formatLike(contact.getManjob()));
 		map.put("manmobile", StringUtil.formatLike(contact.getManmobile()));
-		map.put("manemail", StringUtil.formatLike(contact.getManemail()));
 		map.put("manskill", StringUtil.formatLike(contact.getManskill()));
 		map.put("logdate", StringUtil.formatLike(contact.getLogdate()));
 		map.put("start", pager.getBeginIndex());
@@ -150,6 +150,8 @@ public class ContactController {
 			System.out.println(123456);
 			req.setAttribute("contact", contact);
 			req.setAttribute("page", page);
+			List<Customer> listName=contactService.customerSelect();
+			req.setAttribute("listName", listName);
 			return "Contact/ContactUpdate";
 		} catch (Exception e) {
 			e.printStackTrace();

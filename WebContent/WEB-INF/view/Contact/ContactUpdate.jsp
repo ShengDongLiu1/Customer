@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -39,8 +39,11 @@
 					<div class="control-group">
 						<label class="control-label">客户公司:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;"
-								name="mancom" value="${contact.mancom}"/>
+							<select id="mancom" name="mancom" style="height: 40px; width: 300px;">
+	                            <c:forEach var="list" items="${listName}">
+	                           	 <option value="${list.kid}">${list.comname}</option>
+	                            </c:forEach>
+	                    	</select>
 						</div>
 					</div>
 					<div class="control-group">

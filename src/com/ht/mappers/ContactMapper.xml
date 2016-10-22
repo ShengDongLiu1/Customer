@@ -74,6 +74,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryAll" parameterType="Map" resultMap="ContactResult">
 		select * from contact con, customer cus
 		<where>
+			<if test="mancom!=null and mancom!=''">
+				and con.mancom like #{mancom}
+			</if>
 			<if test="manname!=null and manname!=''">
 				and con.manname like #{manname}
 			</if>
@@ -85,9 +88,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="manmobile!=null and manmobile!='' ">
 				and con.manmobile like #{manmobile}
-			</if>
-			<if test="manemail!=null and manemail!=''">
-				and con.manemail like #{manemail}
 			</if>
 			<if test="manskill!=null and manskill!='' ">
 				and con.manskill like #{manskill}
