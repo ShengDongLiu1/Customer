@@ -71,8 +71,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    #{manqq}, #{manmsn}, #{manskill}, #{logdate})
 	</insert>
 	
-	<select id="queryAll" parameterType="Map" resultMap="ContactResult">
+	<select id="queryAll" parameterType="Map" resultMap="ContactResult1">
 		select * from contact con, customer cus
+		<where>
+			<if test="mancom!=null and mancom!=''">
+				and con.mancom like #{mancom}
+			</if>
+			<if test="manname!=null and manname!=''">
+				and con.manname like #{manname}
+			</if>
+			<if test="mandep!=null and mandep!='' ">
+				and con.mandep like #{mandep}
+			</if>
+			<if test="manjob!=null and manjob!='' ">
+				and con.manjob like #{manjob}
+			</if>
+			<if test="manmobile!=null and manmobile!='' ">
+				and con.manmobile like #{manmobile}
+			</if>
+			<if test="manskill!=null and manskill!='' ">
+				and con.manskill like #{manskill}
+			</if>
+			<if test="logdate!=null and logdate!='' ">
+				and con.logdate like #{logdate}
+			</if>
+			and con.mancom=cus.kid
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="queryAlls" parameterType="Map" resultMap="ContactResult1">
+		select * from contact con,customer cus
 		<where>
 			<if test="mancom!=null and mancom!=''">
 				and con.mancom like #{mancom}
@@ -156,12 +187,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="customerSelect" parameterType="Customer" resultMap="CustomerResult">
 		select * from customer
-	</select>
-	
-	<select id="queryAlls" parameterType="Map" resultMap="ContactResult1">
-		select * from contact con,customer cus where con.mancom=cus.kid
-		<if test="start!=null and size!=null">
-			limit #{start},#{size}
-		</if>
 	</select>
 </mapper> 

@@ -33,6 +33,7 @@
 					<div class="control-group">
 						<label class="control-label">客户公司:</label>&nbsp;&nbsp;&nbsp;&nbsp;
 						<select id="mancom" name="mancom" style="height: 40px; width: 300px;">
+                            <option value="">请选择客户公司</option>
                             <c:forEach var="list" items="${listName}">
                            	 <option value="${list.kid}">${list.comname}</option>
                             </c:forEach>
@@ -97,11 +98,12 @@
 					<div class="control-group">
 						<label class="control-label">技术程度：</label>&nbsp;&nbsp;&nbsp;&nbsp;
 						<select style="height: 40px; width: 300px;" name="manskill">
-							<option>不懂</option>
-							<option>懂一点</option>
-							<option>懂部分</option>
-							<option>懂大部分</option>
-							<option>精通</option>
+							<option value="">请选择技术程度</option>
+							<option value="不懂">不懂</option>
+							<option value="懂一点">懂一点</option>
+							<option value="懂部分">懂部分</option>
+							<option value="懂大部分">懂大部分</option>
+							<option value="精通">精通</option>
 						</select>
 					</div>
 					<div class="control-group">

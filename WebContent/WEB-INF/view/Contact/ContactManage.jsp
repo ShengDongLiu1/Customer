@@ -19,8 +19,9 @@
 			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPagers.do?page=1" method="post">
 				<div>
 					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" style="height: 30px; width: 150px;">
+                            <option value="">请选择客户公司</option>
                             <c:forEach var="list" items="${listName}">
-                           	 <option value="${list.kid}">${list.comname}</option>
+                           		<option value="${list.kid}">${list.comname}</option>
                             </c:forEach>
 	                    </select>
 					客户名称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
@@ -33,8 +34,14 @@
 				<div> 
 					客户手机:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
 							name="manmobile" />
-					技术程度:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
-							name="manskill" />
+					技术程度:&nbsp;&nbsp;&nbsp;&nbsp;<select style="height: 30px; width: 150px;" name="manskill">
+							<option value="">请选择技术程度</option>
+							<option value="不懂">不懂</option>
+							<option value="懂一点">懂一点</option>
+							<option value="懂部分">懂部分</option>
+							<option value="懂大部分">懂大部分</option>
+							<option value="精通">精通</option>
+						</select>
 				    日志日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
 							name="logdate" />
 						    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
