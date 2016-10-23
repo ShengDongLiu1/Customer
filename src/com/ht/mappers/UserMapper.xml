@@ -19,4 +19,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from User
 	</select>
 	
+	<select id="UserSelect"  parameterType="Integer" resultMap="UserResult">
+		select * from User where userid=#{userid}
+	</select>
+	
+	<update id="UserUpdate" parameterType="User">
+		update User
+		<set>
+			<if test="status!=null and status!='' ">
+				status=#{status},
+			</if>
+			<if test="usex!=null and usex!='' ">
+				usex=#{usex},
+			</if>
+			<if test="unumber!=null and unumber!='' ">
+				unumber=#{unumber},
+			</if>
+			<if test="uage!=null and uage!='' ">
+				uage=#{uage},
+			</if>
+		</set>
+		where userid=#{userid}
+	</update>
+	
+	<delete id="UserDelete" parameterType="Integer">
+		delete from user where
+		userid=#{userid}
+	</delete>
 </mapper> 

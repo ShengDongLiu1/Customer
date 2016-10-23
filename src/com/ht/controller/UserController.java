@@ -1,5 +1,6 @@
 package com.ht.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,6 @@ public class UserController {
 	
 	@RequestMapping("/UserQueryAll")
 	public String UserQueryAll(@RequestParam(value="page",required=false)int page,User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
-		System.out.println("=============");
 		Pager<User> pager = new Pager<>();
 		pager.setPageSize(10);
 		pager.setPageNo(page);
@@ -36,6 +36,40 @@ public class UserController {
 		request.setAttribute("userList", pager);
 		return "user";
 	}
+	@RequestMapping("/userSelect")
+	public String UserSelect(@RequestParam(value="userid",required=false)String id,User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
+		User use=userService.UserSelect(Integer.valueOf(id));
+		List<Integer> age=new ArrayList<Integer>();
+		for (int i = 0; i < 120; i++) {
+			age.add(i);
+		}
+		request.setAttribute("uage", age);
+		request.setAttribute("uuser", use);
+		return "updateUser";
+	}
+	@RequestMapping("UserUpdate")
+	public String updateqr(User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
+	try {			
+		userService.UserUpdate(user);
+		response.sendRedirect("UserQueryAll.do?page=1");
+	} catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+		return "result";
+	}
+	return null;
+	}
 	
-	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam(value="userid",required=false)String id,HttpServletResponse response,HttpServletRequest request){
+		try {			
+			userService.UserDelete(Integer.valueOf(id));
+			response.sendRedirect("UserQueryAll.do?page=1");
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
+		return null;
+	}
 }
