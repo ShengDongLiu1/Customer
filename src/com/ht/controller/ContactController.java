@@ -91,12 +91,7 @@ public class ContactController {
 			pager.setPageNo(pager.getTotal());
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		String i = contact.getMancom().toString();
-		if(i != "0"){
-			map.put("mancom", i);
-		}else{
-			map.put("mancom", null);
-		}
+		map.put("mancom", StringUtil.formatLike(contact.getMancom()+""));
 		map.put("manname", StringUtil.formatLike(contact.getManname()));
 		map.put("mandep", StringUtil.formatLike(contact.getMandep()));
 		map.put("manjob", StringUtil.formatLike(contact.getManjob()));

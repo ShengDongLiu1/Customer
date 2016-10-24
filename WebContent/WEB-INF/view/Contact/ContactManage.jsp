@@ -8,6 +8,20 @@
 <html>
 <head>
 <script type="text/javascript">
+	//手机号码校验，长度为11位数字。
+	function checkMobile(str) {
+		var Str=document.getElementById(str).value;
+		//手机号长度为11位数字。
+		var RegularExp=/^[0-9]{11}$/
+		//匹配13，14，15，18开头的手机号码！
+		var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
+		if(MobileExp.test(Str)){
+			return true;
+		}else{
+			alert("手机号格式不正确~");
+			return false;
+		}
+	}
 	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +30,7 @@
 	<div >
 		<div class="span12"  style="float: left; margin-top: 10px; ">
 			<div>
-			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPagers.do?page=1" method="post">
+			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPager.do?page=1" method="post">
 				<div>
 					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" style="height: 30px; width: 150px;">
                             <option value="">请选择客户公司</option>
@@ -33,7 +47,7 @@
 				</div><br/>
 				<div> 
 					客户手机:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
-							name="manmobile" />
+							id="mobile" name="manmobile" onblur="checkMobile('mobile');"/>
 					技术程度:&nbsp;&nbsp;&nbsp;&nbsp;<select style="height: 30px; width: 150px;" name="manskill">
 							<option value="">请选择技术程度</option>
 							<option value="不懂">不懂</option>
@@ -42,10 +56,10 @@
 							<option value="懂大部分">懂大部分</option>
 							<option value="精通">精通</option>
 						</select>
-				    日志日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+				    日志日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" style="height: 30px; width: 150px;"
 							name="logdate" />
 						    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
-						value="查询" />
+						value="查询"/>
 				</div>
 			</form>
 			</div>

@@ -24,6 +24,63 @@
 	font-weight: bold;
 }
 </style>
+<script type="text/javascript">
+//电话号码校验,7位以上
+function checkTel(str){
+   var Str=document.getElementById(str).value;
+   RegularExp = /^((([0-9]{4}|[0-9]{3})-)|(([0-9]{4}|[0-9]{3})))*([0-9]{7}|[0-9]{8})$|^[0-9]{11}$/
+   if (RegularExp.test(Str))
+   {
+       return true;
+   }else{
+       alert("电话号码格式不对");
+       return false;
+   }
+}
+
+//手机号码校验，长度为11位数字。
+function checkMobile(str) {
+	var Str=document.getElementById(str).value;
+	//手机号长度为11位数字。
+	var RegularExp=/^[0-9]{11}$/
+	//匹配13，14，15，18开头的手机号码！
+	var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
+	if(MobileExp.test(Str)){
+		return true;
+	}else{
+		alert("手机号格式不正确~");
+		return false;
+	}
+}
+
+//电子邮件校验
+function checkMail(str){
+   var Str=document.getElementById(str).value;
+   RegularExp = /[a-z0-9]*@[a-z0-9]*\.[a-z0-9]+/gi
+   if (RegularExp.test(Str)){
+       return true;
+   }else{
+       alert("电子信箱格式不对！");
+       return false;
+   }
+}
+
+function contactupdate() {
+	var a = document.getElementsByTagName("input");//就可以调用所有input型数据
+	for (var i = 0; i < a.length; i++) {
+		if (a[i].value == "") {
+			alert("您有空白未填写！");
+			return false;
+			break;
+		}
+		if(a[i].value.length<1){
+			alert("至少输输两个字符！");
+			return false;
+			break;
+		}
+	}
+}
+</script>
 </head>
 <body>
 	<div class="row-fluid">
@@ -71,7 +128,7 @@
 						<label class="control-label">客户电话:</label>
 						<div class="controls">
 							<input type="text" value="${contact.mannumber}" style="height: 40px; width: 300px;"
-								name="mannumber"/>
+								id="tel" name="mannumber" onblur="checkTel('tel');"/>
 						</div>
 					</div>
 				</div>
@@ -81,14 +138,14 @@
 						<label class="control-label">客户手机:</label>
 						<div class="controls">
 							<input type="text" value="${contact.manmobile}" style="height: 40px; width: 300px;"
-								name="manmobile" />
+								id="mobile" name="manmobile" onblur="checkMobile('mobile');"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户邮箱:</label>
 						<div class="controls">
 							<input type="text" value="${contact.manemail}" style="height: 40px; width: 300px;"
-								name="manemail" />
+								id="mail" name="manemail" onblur="checkMail('mail');"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -130,7 +187,7 @@
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
 						<div class="controls">
 							<input type="hidden" id="page" name="page" value="${page }">
-							<button type="submit" class="btn" style="height: 40px; width: 150px;">确认</button>
+							<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="contactupdate();">确认</button>
 						</div>
 				</div>
 			</form>
