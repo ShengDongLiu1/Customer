@@ -56,4 +56,10 @@ public class UserServiceImpl implements UserService{
 		return userDao.UserNameQueryAll();
 	}
 
+	@Override
+	public void UserAdd(User user) {
+		userDao.UserAdd(user);
+		
+	}
+
 }

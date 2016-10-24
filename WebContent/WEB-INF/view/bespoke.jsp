@@ -41,11 +41,10 @@
 							name="bepman"  placeholder="预约人" />
 					 预约类型:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
 							name="beptype" placeholder="预约类型" />
+							
 					预约地址:	<input type="text" style="height: 30px; width: 150px;"
 							name="bepaddress" placeholder="预约地址" />
-					<br/>
-						<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
-						value="查询" />
+							<input type="submit" style="height: 30px; width: 70px;" value="查询" />
 				</div>
 			</form>
 			</div>

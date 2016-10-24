@@ -6,6 +6,8 @@ import java.util.Map;
 import com.ht.bean.User;
 
 public interface UserService {
+
+	public void UserAdd(User user);
 	
 	public void UserDelete(int id);
 	

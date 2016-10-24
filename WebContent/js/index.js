@@ -520,7 +520,13 @@
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/user/UserQueryAll.do?page=1",
 					},
-
+					{
+						"F_ModuleId" : "gezx",
+						"F_ParentId" : "7",
+						"F_FullName" : "新增用户",
+						"F_Icon" : "fa fa-book",
+						"F_UrlAddress" : "/Customer/user/addUser.do",
+					},
 					 ];
 			var _html = "";
 			$

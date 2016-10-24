@@ -30,58 +30,72 @@
 <body>
 	<div class="row-fluid">
 		<div class="span12" style="margin-top: 80px;">
-			<form class="form-horizontal" action="<%=path %>/bespoke/updateqr.do" >
+			<form class="form-horizontal" action="<%=path %>/user/addqr.do" >
 				<div style='float: left;'>
-				
-							<input type=hidden name="bepid"
-								placeholder="编号" value="${bes.bepid} "/>
-						
 					<div class="control-group">
-						<label class="control-label">预约公司名称:</label>
+						<label class="control-label"
+							style="font-size: 18px; font-weight: bold;">Email及账号:</label>
 						<div class="controls">
-							<select id="gsname" name="bepcom" style="height: 40px; width: 300px;">
-                                  <c:forEach var="list" items="${listName}">
-                                 	 <option value="${list.kid}">${list.comname}</option>
-                                  </c:forEach>
+							<input type="text" style="height: 40px; width: 300px;" id="email" name="email"
+								placeholder="Email" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">用户密码:</label>
+						<div class="controls">
+							<input type="text" style="height: 40px; width: 300px;" name="password"
+								placeholder="用户密码"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">用户状态:</label>
+						<div class="controls">
+							<input type="text" style="height: 40px; width: 300px;" name="status"
+								placeholder="用户状态" />
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">用户名:</label>
+						<div class="controls">
+							<input type="text" style="height: 40px; width: 300px;" name="uname"
+								placeholder="用户名" />
+						</div>
+					</div>
+					
+				</div>
+				<div style="float: left;">
+					<div class="control-group">
+						<label class="control-label">性别:</label>
+						<div class="controls">
+						<select id="usex" name="usex" style="height: 40px; width: 300px;">
+                                 	 <option value="男">男</option>
+                                 	 <option value="女">女</option>
 	                         </select>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">预约人:</label>
+						<label class="control-label">联系电话:</label>
 						<div class="controls">
-							<input type="text" value="${bes.bepman}" style="height: 40px; width: 300px;" name="bepman"
-								placeholder="预约人" />
+							<input type="text" style="height: 40px; width: 300px;"
+								name="unumber" placeholder="联系电话" />
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">预约地址:</label>
+						<label class="control-label">年龄:</label>
 						<div class="controls">
-							<input type="text" value="${bes.bepaddress}" style="height: 40px; width: 300px;"
-								name="bepaddress" placeholder="预约地址" />
-						</div>
-					</div>
-				</div>
-				<div style="float: left;">
-					
-					<div class="control-group">
-						<label class="control-label">预约时间:</label>
-						<div class="controls">
-							<input type="date" value="${bes.bepdate}" style="height: 40px; width: 300px;"
-								name="bepdate" placeholder="预约时间" />
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label">预约类型:</label>
-						<div class="controls">
-							<input type="text" value="${bes.beptype}" style="height: 40px; width: 300px;"
-								name="beptype" placeholder="预约类型" />
+						<select  id="uage" name="uage" style="height: 40px; width: 300px;">
+                                 <c:forEach var="age" items="${uage}">
+                                 	 <option value="${age}">${age}岁</option>
+                            	</c:forEach>
+	                         </select>
 						</div>
 					</div>
 				</div>
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
 						<div class="controls">
-							<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="return updateBespoke();">确认</button>
+							<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="return addUser();">确认</button>
 						</div>
 				</div>
 			</form>
@@ -110,7 +124,8 @@
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
 <script type="text/javascript">
-	function updateBespoke() {
+	function addUser() {
+		var email = $("#email").val();
 		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {
@@ -125,5 +140,5 @@
 			}
 		}
 	}
-</script>
+	</script>
 </html>

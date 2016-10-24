@@ -34,17 +34,19 @@
 				<div style='float: left;'>
 					<div class="control-group">
 						<label class="control-label"
-							style="font-size: 18px; font-weight: bold;">用户编号:</label>
+							style="font-size: 18px; font-weight: bold;">用户名:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;" name="userid"
-								placeholder="用户编号" value="${uuser.userid} " />
+						
+							<input type=hidden name="userid" value="${uuser.userid}" />
+							<input type="text" style="height: 40px; width: 300px;" name="uname"
+								placeholder="用户名" value="${uuser.uname} " />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">用户账号:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;" name="email"
-								placeholder="用户账号" value="${uuser.email}"/>
+								placeholder="用户账号"  value="${uuser.email}" disabled="true"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -87,7 +89,7 @@
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
 						<div class="controls">
-							<button type="submit" class="btn" style="height: 40px; width: 150px;">确认</button>
+							<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="return updateUser();">确认</button>
 						</div>
 				</div>
 			</form>
@@ -115,4 +117,21 @@
 <script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
+<script type="text/javascript">
+	function updatecustomer() {
+		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
+		for (var i = 0; i < a.length; i++) {
+			if (a[i].value == "") {
+				alert("您有空白未填写！");
+				return false;
+				break;
+			}
+			if(a[i].value.length<1){
+				alert("至少输输两个字符！");
+				return false;
+				break;
+			}
+		}
+	}
+</script>
 </html>

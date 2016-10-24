@@ -26,6 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="UserUpdate" parameterType="User">
 		update User
 		<set>
+			<if test="uname!=null and uname!='' ">
+				uname=#{uname},
+			</if>
 			<if test="status!=null and status!='' ">
 				status=#{status},
 			</if>
@@ -50,4 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="UserNameQueryAll" parameterType="List" resultMap="UserResult">
 		select userid,status from User where status!='系统管理员'
 	</select>
+	
+	<insert id="UserAdd" parameterType="User">
+		insert into User
+		values(null,#{email},#{password},#{status},#{uname},#{usex},#{unumber},#{uage})
+	</insert>
 </mapper> 
