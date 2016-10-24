@@ -52,8 +52,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into track
 		values(null,#{kid},#{uid},#{measure},#{recordtime})
 	</insert>
-		delete from track where
-		kid=#{kid}
+	
+	<update id="takcupdate" parameterType="Track">
+		update track
+		<set>
+			<if test="measure!=null and measure!='' ">
+				measure=#{measure},
+			</if>
+			<if test="recordtime!=null and recordtime!='' ">
+				recordtime=#{recordtime},
+			</if>
+		</set>
+		where tid=#{tid}
+	</update>
+	
+	<delete id="takdelete" parameterType="int">
+		delete from track where tid=#{tid}
 	</delete>
+	
+	
+	<select id="trackQueryCount" resultType="int">
+		select count(*) from track
+	</select>
+	
+	<select id="queryAlls" parameterType="Map" resultMap="TrackResult">
+		select * from track tra,customer cus,user us where tra.kid=cus.kid and tra.uid=us.userid
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="queryAllss" parameterType="Map" resultMap="TrackResult">
+		select * from track tra, customer cus
+		<where>
+			<if test="measure!=null and measure!=''">
+				and tra.measure like #{measure}
+			</if>
+			<if test="recordtime!=null and recordtime!=''">
+				and tra.recordtime like #{recordtime}
+			</if>
+			<if test="mandep!=null and mandep!='' ">
+				and con.mandep like #{mandep}
+			</if>
+			and tra.kid=cus.kid
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
 
 </mapper> 
