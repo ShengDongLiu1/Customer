@@ -55,6 +55,10 @@
 			 <span class="glyphicon glyphicon-wrench"></span>	 
 			  修改
 			 </button>&nbsp;&nbsp;&nbsp;
+			 <button class="btn btn-primary" type="button" onclick="daochu();">
+			 <span class="glyphicon glyphicon-share-alt"></span>	 
+			  导出数据
+			 </button>&nbsp;&nbsp;&nbsp;
 				 <c:if test="${requestScope.state == 1}">
 					 <button class="btn btn-primary" type="button" onclick="zhuanz();">
 					 <span class="glyphicon glyphicon-share-alt"></span>	 
@@ -298,6 +302,12 @@
         	}else{
            		alert("请选中您要修改的那一行");
            	}
+        }
+        
+        
+        function daochu(){ 
+        	window.location.href='daochu.do?state=${requestScope.state}'+'&page=${lists.pageNo}';
+        	alert('导出成功');
         }
         
     </script>
