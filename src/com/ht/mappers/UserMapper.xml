@@ -17,6 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="UserQueryAll" parameterType="Map" resultMap="UserResult">
 		select * from User
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
 	</select>
 	
 	<select id="UserSelect"  parameterType="Integer" resultMap="UserResult">
@@ -58,4 +61,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into User
 		values(null,#{email},#{password},#{status},#{uname},#{usex},#{unumber},#{uage})
 	</insert>
+	
+	<select id="UserQueryCount" resultType="int">
+		select count(*) from user
+	</select>
 </mapper> 

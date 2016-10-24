@@ -44,6 +44,17 @@ public class BespokeController {
 		Pager<Bespoke> pager = new Pager<>();
 		pager.setPageSize(10);
 		pager.setPageNo(page);
+		int count = bespokeService.BespokeQueryCount();
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		pager.setTotal(total);
+		if(page >= 1 && page <= pager.getTotal()){
+			pager.setPageNo(page);
+		}else if(page < 1){
+			pager.setPageNo(1);
+		}else{
+			pager.setPageNo(pager.getTotal());
+		}
+		
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());

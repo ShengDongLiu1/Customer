@@ -7,7 +7,7 @@ public class User {
 	private String status;
 	private String uname;
 	private String usex;
-	private int unumber;
+	private String unumber;
 	private int uage;
 	public int getUserid() {
 		return userid;
@@ -45,10 +45,10 @@ public class User {
 	public void setUsex(String usex) {
 		this.usex = usex;
 	}
-	public int getUnumber() {
+	public String getUnumber() {
 		return unumber;
 	}
-	public void setUnumber(int unumber) {
+	public void setUnumber(String unumber) {
 		this.unumber = unumber;
 	}
 	public int getUage() {

@@ -78,7 +78,7 @@
 						<label class="control-label">联系电话:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;"
-								name="unumber" placeholder="联系电话" />
+								id="unumber" name="unumber" placeholder="联系电话" />
 						</div>
 					</div>
 					<div class="control-group">
@@ -126,6 +126,20 @@
 <script type="text/javascript">
 	function addUser() {
 		var email = $("#email").val();
+		var myReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/; //邮件正则
+		if(!myReg.test($('#email').val())){
+			alert('您的邮箱格式错咯！');
+			return false;
+		}
+		var number=$("#unumber").val();
+		 RegularExp=/^[0-9]{11}$/
+			 if (RegularExp.test(number)) {
+				  return true;
+				 }
+				 else {
+				  alert("手机号格式不正确！应该为11位长度的数字！");
+				  return false;
+				 }
 		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {

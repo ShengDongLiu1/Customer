@@ -122,6 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="BespokeQueryAlls" parameterType="Map" resultMap="BespokeResults">
 		select * from bespoke b,Customer c
+		
 		<where>
 			<if test="bepman!=null and bepman!=''">
 				and b.bepman like #{bepman}

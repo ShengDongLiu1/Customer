@@ -13,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ht.bean.Bespoke;
-import com.ht.bean.Customer;
 import com.ht.bean.User;
 import com.ht.common.Pager;
 import com.ht.service.UserService;
@@ -30,6 +28,17 @@ public class UserController {
 		Pager<User> pager = new Pager<>();
 		pager.setPageSize(10);
 		pager.setPageNo(page);
+		int count = userService.UserQueryCount();
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		pager.setTotal(total);
+		if(page >= 1 && page <= pager.getTotal()){
+			pager.setPageNo(page);
+		}else if(page < 1){
+			pager.setPageNo(1);
+		}else{
+			pager.setPageNo(pager.getTotal());
+		}
+		
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
