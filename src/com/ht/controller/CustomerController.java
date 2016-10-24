@@ -39,6 +39,22 @@ public class CustomerController {
 	
 	@Resource
 	private UserService userService;
+	
+	
+		
+	//记录
+	@RequestMapping("/skip")
+	public String skip(String kid ,HttpServletRequest request)throws Exception{
+		try {
+		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
+			request.setAttribute("customer", customer);
+			return "Trace/traceAdd";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "信息载入失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
+	}
 
 	@RequestMapping("/crsselect")
 	public String crsselect(@RequestParam(value="kid",required=false)Integer kid,HttpServletResponse response,HttpServletRequest request)throws Exception{
@@ -83,10 +99,10 @@ public class CustomerController {
 	}
 	
 	
-	//潜在客户
+	//娼滃湪瀹㈡埛
 	@RequestMapping("/queryState")
 	public String queryState(@RequestParam(value="page",required=false)int page,@RequestParam(value="state",required=false)int state,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
-		System.out.println("客户状态:"+state);
+		System.out.println("瀹㈡埛鐘舵��:"+state);
 		List<Customer> userList = null;
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
@@ -104,23 +120,23 @@ public class CustomerController {
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
 		if(state==1){
-			 customer.setState("潜在客户");
+			 customer.setState("娼滃湪瀹㈡埛");
 			 map.put("state", customer.getState());
 			 userList=customerService.selectState(map);
 			 request.setAttribute("state", state);
 		}else if(state==2){
-			 customer.setState("正式客户");
+			 customer.setState("姝ｅ紡瀹㈡埛");
 			 map.put("state", customer.getState());
 			 userList=customerService.selectState(map);
 			 request.setAttribute("state", state);
 		}
 		else if(state==3){
-			 customer.setState("放弃客户");
+			 customer.setState("鏀惧純瀹㈡埛");
 			 map.put("state", customer.getState());
 			 userList=customerService.selectState(map);
 			 request.setAttribute("state", state);
 		}else if(state==4){
-			 customer.setState("签约客户");
+			 customer.setState("绛剧害瀹㈡埛");
 			 map.put("state", customer.getState());
 			 userList=customerService.selectState(map);
 			 request.setAttribute("state", state);
@@ -147,7 +163,7 @@ public class CustomerController {
 			return "updatecustomer";
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("InfoMessage", "信息载入失败！具体异常信息：" + e.getMessage());
+			request.setAttribute("InfoMessage", "淇℃伅杞藉叆澶辫触锛佸叿浣撳紓甯镐俊鎭細" + e.getMessage());
 			return "result";
 		}
 	}
@@ -161,7 +177,7 @@ public class CustomerController {
 			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			request.setAttribute("InfoMessage", "鏇存柊淇℃伅澶辫触锛佸叿浣撳紓甯镐俊鎭細" + e.getMessage());
 			return "result";
 		}
 		return null;
@@ -184,7 +200,7 @@ public class CustomerController {
 			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			request.setAttribute("InfoMessage", "鏇存柊淇℃伅澶辫触锛佸叿浣撳紓甯镐俊鎭細" + e.getMessage());
 			return "result";
 		}
 		return null;
@@ -193,8 +209,8 @@ public class CustomerController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(value="page",required=false)int page,@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
 		try {	
-			kid = kid.replace(" ", "");//替换
-			String []idsStr=kid.split(",");//拆分
+			kid = kid.replace(" ", "");//鏇挎崲
+			String []idsStr=kid.split(",");//鎷嗗垎
 		 for(int i=0;i<idsStr.length;i++){
 			 customerService.csrdelete(Integer.parseInt(idsStr[i]));
 		 }
@@ -202,7 +218,7 @@ public class CustomerController {
 		 response.sendRedirect("queryState.do?page="+page+"&state="+state1);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			request.setAttribute("InfoMessage", "鏇存柊淇℃伅澶辫触锛佸叿浣撳紓甯镐俊鎭細" + e.getMessage());
 			return "result";
 		}
 		return null;
@@ -225,7 +241,7 @@ public class CustomerController {
 			response.sendRedirect("queryState.do?page=1&state=5");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			request.setAttribute("InfoMessage", "鏇存柊淇℃伅澶辫触锛佸叿浣撳紓甯镐俊鎭細" + e.getMessage());
 			return "result";
 		}
 		return null;
@@ -234,51 +250,51 @@ public class CustomerController {
 	
 	@RequestMapping("/daochu")
 	public String daochu(Customer customer,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		// 声明一个工作薄
+		// 澹版槑涓�涓伐浣滆杽
        HSSFWorkbook hwb = new HSSFWorkbook();
-       //声明一个单子并命名
-       HSSFSheet sheet = hwb.createSheet("客户表");
-       //给单子名称一个长度
+       //澹版槑涓�涓崟瀛愬苟鍛藉悕
+       HSSFSheet sheet = hwb.createSheet("瀹㈡埛琛�");
+       //缁欏崟瀛愬悕绉颁竴涓暱搴�
        sheet.setDefaultColumnWidth((int)15);
-       // 生成一个样式  
+       // 鐢熸垚涓�涓牱寮�  
        HSSFCellStyle style = hwb.createCellStyle();
-       //创建第一行（也可以称为表头）
+       //鍒涘缓绗竴琛岋紙涔熷彲浠ョО涓鸿〃澶达級
        HSSFRow row = sheet.createRow(0);
-       //样式字体居中
+       //鏍峰紡瀛椾綋灞呬腑
        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-       //给表头第一行一次创建单元格
+       //缁欒〃澶寸涓�琛屼竴娆″垱寤哄崟鍏冩牸
        HSSFCell cell = row.createCell((int) 0);
-       cell.setCellValue("编号");
+       cell.setCellValue("缂栧彿");
        cell.setCellStyle(style); 
        cell = row.createCell((int) 1);
-       cell.setCellValue("公司名称");
+       cell.setCellValue("鍏徃鍚嶇О");
        cell.setCellStyle(style);
        cell = row.createCell((int) 2);
-       cell.setCellValue("申请类型");
+       cell.setCellValue("鐢宠绫诲瀷");
        cell.setCellStyle(style);
        cell = row.createCell((int) 3);
-       cell.setCellValue("公司背景");
+       cell.setCellValue("鍏徃鑳屾櫙");
        cell.setCellStyle(style);
        cell = row.createCell((int) 4);
-       cell.setCellValue("公司地址");
+       cell.setCellValue("鍏徃鍦板潃");
        cell.setCellStyle(style);
        cell = row.createCell((int) 5);
-       cell.setCellValue("主营产品");
+       cell.setCellValue("涓昏惀浜у搧");
        cell.setCellStyle(style);
        cell = row.createCell((int) 6);
-       cell.setCellValue("测试人");
+       cell.setCellValue("娴嬭瘯浜�");
        cell.setCellStyle(style);
        cell = row.createCell((int) 7);
-       cell.setCellValue("申请信息");
+       cell.setCellValue("鐢宠淇℃伅");
        cell.setCellStyle(style);
        cell = row.createCell((int) 8);
-       cell.setCellValue("客户状态");
+       cell.setCellValue("瀹㈡埛鐘舵��");
        cell.setCellStyle(style);
        cell = row.createCell((int) 9);
-       cell.setCellValue("新建时间");
+       cell.setCellValue("鏂板缓鏃堕棿");
        cell.setCellStyle(style);
        cell = row.createCell((int) 10);
-       cell.setCellValue("指派人");
+       cell.setCellValue("鎸囨淳浜�");
        cell.setCellStyle(style);
        Pager<Customer> pager = new Pager<>();
 		pager.setPageNo(1);
@@ -289,27 +305,27 @@ public class CustomerController {
 		List<Customer> list = null;
 	  	Integer state = Integer.valueOf(request.getParameter("state"));
 		if(state==1){
-			 customer.setState("潜在客户");
+			 customer.setState("娼滃湪瀹㈡埛");
 			 map.put("state", customer.getState());
 			 list=customerService.selectState(map);
 		}else if(state==2){
-			 customer.setState("正式客户");
+			 customer.setState("姝ｅ紡瀹㈡埛");
 			 map.put("state", customer.getState());
 			 list=customerService.selectState(map);
 		}
 		else if(state==3){
-			 customer.setState("放弃客户");
+			 customer.setState("鏀惧純瀹㈡埛");
 			 map.put("state", customer.getState());
 			 list=customerService.selectState(map);
 		}else if(state==4){
-			 customer.setState("签约客户");
+			 customer.setState("绛剧害瀹㈡埛");
 			 map.put("state", customer.getState());
 			 list=customerService.selectState(map);
 		}else{
 			 list = customerService.queryAll(map);
 		}
         try{
-	          //向单元格里填充数据
+	          //鍚戝崟鍏冩牸閲屽～鍏呮暟鎹�
 			for (short i = 0; i < list.size(); i++) {
 				row = sheet.createRow(i + 1);
 				row.createCell(0).setCellValue(list.get(i).getKid());
@@ -329,12 +345,12 @@ public class CustomerController {
         }
          
        try {  
-    	   File file = new File("D:/导出文件");
+    	   File file = new File("D:/瀵煎嚭鏂囦欢");
     	   if(file.exists() == false){
     		   file.mkdir();
     	   }
-    	   /*导出的数据放在d盘的 导出文件 的文件夹里*/
-           FileOutputStream out = new FileOutputStream("D:/导出文件/客户信息-"+customer.getState()+".xls");
+    	   /*瀵煎嚭鐨勬暟鎹斁鍦╠鐩樼殑 瀵煎嚭鏂囦欢 鐨勬枃浠跺す閲�*/
+           FileOutputStream out = new FileOutputStream("D:/瀵煎嚭鏂囦欢/瀹㈡埛淇℃伅-"+customer.getState()+".xls");
            hwb.write(out);
            out.flush();
            out.close();

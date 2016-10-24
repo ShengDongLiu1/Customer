@@ -1,11 +1,14 @@
 package com.ht.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.ht.bean.Customer;
+import com.ht.bean.Login;
 import com.ht.bean.Track;
 import com.ht.dao.TrackDao;
 import com.ht.service.TrackService;
@@ -36,8 +39,32 @@ public class TrackServiceImpl implements TrackService {
 	}
 
 	@Override
-	public List<Track> takselectall() {
-		return trackDao.takselectall();
+	public List<Track> queryAlls(Map<String, Object> map) {
+		return trackDao.queryAlls(map);
+	}
+
+
+	@Override
+	public int trackQueryCount() {
+		return trackDao.trackQueryCount();
+	}
+
+	@Override
+	public List<Login> LoginSelect() {
+		
+		return trackDao.LoginSelect();
+	}
+
+	@Override
+	public List<Customer> CustomerSelect() {
+		
+		return trackDao.CustomerSelect();
+	}
+
+	@Override
+	public List<Track> queryAllss(Map<String, Object> map) {
+		
+		return trackDao.queryAllss(map);
 	}
 	
 

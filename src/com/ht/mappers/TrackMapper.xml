@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="Track" id="TrackResult">
 		<id property="tid" column="tid" />
 		<result property="measure" column="measure" />
+		<result property="recordtime" column="recordtime" />
 		<association property="customer" javaType="Customer">
 			<id property="kid" column="kid" />
 			<result property="comname" column="comname" />
@@ -21,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result property="newdate" column="newdate" />
 			<result property="designated" column="designated" />
 		</association>
-		<association property="Login" javaType="Login">
+		<association property="login" javaType="com.ht.bean.Login">
 			<id property="userid" column="userid"/>
 			<result property="email" column="email"/>
 			<result property="password" column="password"/>
@@ -29,13 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap>
 
-	<select id="takselect" parameterType="int" resultMap="TrackResult">
-		select *
-		from track where tid = #{tid}
-	</select>
-
-	<select id="takselectall" resultType="List">
-		select * from track
+	<select id="takselect" parameterType="int" resultType="Track">
+		select * from track where tid = #{tid}
 	</select>
 
 	<select id="queryAll" parameterType="Map" resultMap="TrackResult">
@@ -54,9 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="takadd" parameterType="Track">
 		insert into track
-		values(null,#{kid},#{uid},#{measure})
+		values(null,#{kid},#{uid},#{measure},#{recordtime})
 	</insert>
-	<delete id="takdelete" parameterType="Integer">
 		delete from track where
 		kid=#{kid}
 	</delete>

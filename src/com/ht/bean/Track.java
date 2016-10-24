@@ -5,7 +5,10 @@ public class Track {
 	private Integer uid;
 	private Integer kid;
 	private String measure;
+	private String recordtime;
 	private Login login;
+	private Customer customer;
+	//gggg
 	
 	public Integer getTid() {
 		return tid;
@@ -31,11 +34,23 @@ public class Track {
 	public void setMeasure(String measure) {
 		this.measure = measure;
 	}
+	public String getRecordtime() {
+		return recordtime;
+	}
+	public void setRecordtime(String recordtime) {
+		this.recordtime = recordtime;
+	}
 	public Login getLogin() {
 		return login;
 	}
 	public void setLogin(Login login) {
 		this.login = login;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	

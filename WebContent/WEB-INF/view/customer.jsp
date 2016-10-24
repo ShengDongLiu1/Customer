@@ -115,6 +115,11 @@
 					  转为放弃客户
 					 </button>
 				 </c:if>
+				  <button class="btn btn-primary" type="button" onclick="record();">
+					 <span class="glyphicon glyphicon-share-alt"></span>	 
+					 记录
+				 	</button>&nbsp;&nbsp;&nbsp;
+				 
 		</div> 
 		<p style="clear:both;"></p>
 	</div>
@@ -155,7 +160,8 @@
 							<td>${list.newdate}</td>
 							<td>${list.designated}</td>
 							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}" onclick="return delete2();">删除 </a></td>
+								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}" onclick="return delete2();">删除 </a>
+								<a href="<%=path %>/track/skip.do?kid=${list.kid}">记录 </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -308,6 +314,23 @@
         function daochu(){ 
         	window.location.href='daochu.do?state=${requestScope.state}'+'&page=${lists.pageNo}';
         	alert('导出成功');
+        }
+        
+        
+        function record(){
+        	if($("[name='imgVo']").is(':checked')) {  
+        		var str=[];
+        		var ss = $("[name='imgVo']:checked").length;
+                $("[name='imgVo']:checked").each(function(index, item){
+                 str+=$(this).val()
+                 if(index != ss-1){
+                	  str = str+",";
+                 }
+                }) 
+              	window.location.href="skip.do?kid="+str+""
+        	}else{
+           		alert("请选中您要记录的那一行");
+           	}
         }
         
     </script>

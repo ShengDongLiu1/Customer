@@ -504,7 +504,7 @@
 						"F_ParentId" : "6",
 						"F_FullName" : "跟踪记录",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/genz",
+						"F_UrlAddress" : "/Customer/track/trackQueryPagers.do?page=1",
 					},
 					{
 						"F_ModuleId" : "7",

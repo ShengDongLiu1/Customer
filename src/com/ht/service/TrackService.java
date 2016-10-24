@@ -1,7 +1,10 @@
 package com.ht.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.ht.bean.Customer;
+import com.ht.bean.Login;
 import com.ht.bean.Track;
 
 public interface TrackService {
@@ -14,5 +17,13 @@ public interface TrackService {
 	
 	public Track takselect(int id);
 	
-	public List<Track> takselectall();
+	public int trackQueryCount();
+	
+	public List<Login> LoginSelect();
+	
+	public List<Customer> CustomerSelect();
+	
+	public List<Track> queryAlls(Map<String,Object> map);
+	
+	public List<Track> queryAllss(Map<String,Object> map);
 }
