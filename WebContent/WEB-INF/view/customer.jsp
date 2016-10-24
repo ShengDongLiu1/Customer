@@ -14,6 +14,7 @@
 </head>
 <body>
 	<div >
+	
 		<div class="span12"  style="float: left; margin-top: 10px; ">
 			<div>
 			<form class="form-horizontal" action="<%=path %>/customer/queryAll.do?page=1" method="post">
@@ -46,7 +47,7 @@
 			 <span class="glyphicon glyphicon-plus-sign"></span>	 
 			   添加
 			 </button>&nbsp;&nbsp;&nbsp;
-			 <button class="btn btn-primary" type="button" onclick="delete1();">
+			 <button class="btn btn-primary" type="button" onclick="return delete1();">
 			 <span class="glyphicon glyphicon-trash"></span>	 
 			   删除
 			 </button>&nbsp;&nbsp;&nbsp;
@@ -150,7 +151,7 @@
 							<td>${list.newdate}</td>
 							<td>${list.designated}</td>
 							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}">删除 </a></td>
+								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}" onclick="return delete2();">删除 </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -168,30 +169,35 @@
 		</div>
 	</div>
 </body>
+
+<link rel="stylesheet" href="<%=path %>/js/toastr/toastr.css">
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-combined.min.css"> 
-<script src="<%=path %>/js/bootstrap.js"></script>
-<script src="<%=path %>/js/bootstrap.min.js"></script>
-<script src="<%=path %>/js/jquery-2.0.0.min.js"></script>
-<script src="<%=path %>/js/npm.js"></script>
-<%-- <script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
- --%><script src="<%=path %>/js/jquery-ui.js"></script>
-<script src="<%=path %>/js/jquery.htmlClean.js"></script>
-<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<%=path %>/js/scripts.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-combined.min.css">
 <script src="<%=path %>/js/zh-cn.js"></script>
-<script src="<%=path %>/js/page.js"></script>
+<script src="<%=path %>/js/bootstrap.js"></script>
+<script src="<%=path %>/js/jquery-ui.js"></script>
+<script src="<%=path %>/js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<%=path %>/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<script src="<%=path %>/js/toastr/toastr.min.js"></script>
+<script src="<%=path %>/js/deletejs.js"></script>
    <script>
    $('#identifier').tooltip(options)
         function selectAll(){
             $("INPUT[type='checkbox']").each( function() {
-                $(this).attr('checked', true);
-                $(this).parents('.checkbox').find('span').addClass('checked');
+            	if($("#checkAll").attr("checked")!=true){
+            		 $(this).attr('checked', true);
+            		 $(this).parents('.checkbox').find('span').addClass('checked');
+            	}else{
+            		$(this).attr('checked', false);
+            		$(this).parents('.checkbox').find('span').removeClass('checked');
+            	}
             });
-        }
+        } 
+   
        /*  function select1(){
         	$('input[name="imgVo"]:checked').each(function(){ 
        			alert($(this).val()); 
@@ -200,14 +206,14 @@
         function add(){
     		window.location.href="add.do";
     	}
+        
         function delete1(){
         	if($("[name='imgVo']").is(':checked')) {  
 	             var str=[];
 	             $("[name='imgVo']:checked").each(function(){
 	              str+=$(this).val()+",";
 	             }) 
-	             alert(str)
-	            window.location.href='delete.do?kid='+str+'&page=${lists.pageNo}';
+   	             window.location.href='delete.do?kid='+str+'&page=${lists.pageNo}&state1=${requestScope.state}';
         	}else{
         		alert("至少选中一行！");
         	}

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Customer;
+import com.ht.bean.User;
 import com.ht.common.Pager;
 import com.ht.common.StringUtil;
 import com.ht.service.CustomerService;
+import com.ht.service.UserService;
 
 @Controller
 @RequestMapping("/customer")
@@ -26,6 +28,9 @@ public class CustomerController {
 
 	@Resource
 	private CustomerService customerService;
+	
+	@Resource
+	private UserService userService;
 
 	@RequestMapping("/crsselect")
 	public String crsselect(@RequestParam(value="kid",required=false)Integer kid,HttpServletResponse response,HttpServletRequest request)throws Exception{
@@ -129,6 +134,8 @@ public class CustomerController {
 			request.setAttribute("customer", customer);
 			request.setAttribute("page", page);
 			request.setAttribute("state", state);
+			List<User> userName = userService.UserNameQueryAll();
+			request.setAttribute("userName", userName);
 			return "updatecustomer";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -194,7 +201,9 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/add")
-	public String add(){
+	public String add(HttpServletRequest req){
+		List<User> userName = userService.UserNameQueryAll();
+		req.setAttribute("userName", userName);
 		return "addcustomer";
 	}
 	

@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.UserQueryCount();
 	}
 
+	@Override
+	public List<User> UserNameQueryAll() {
+		return userDao.UserNameQueryAll();
+	}
+
 }

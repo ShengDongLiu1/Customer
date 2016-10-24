@@ -514,7 +514,7 @@
 						"F_Icon" : "fa fa-desktop",
 					},
 					{
-						"F_ModuleId" : "genz",
+						"F_ModuleId" : "genzgg",
 						"F_ParentId" : "7",
 						"F_FullName" : "管理用户",
 						"F_Icon" : "fa fa-book",

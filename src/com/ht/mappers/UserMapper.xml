@@ -46,4 +46,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from user where
 		userid=#{userid}
 	</delete>
+	
+	<select id="UserNameQueryAll" parameterType="List" resultMap="UserResult">
+		select userid,status from User where status!='系统管理员'
+	</select>
 </mapper> 

@@ -17,4 +17,8 @@ public interface UserDao {
 	public List<User> UserQueryAll(Map<String,Object> map);
 
 	public Integer UserQueryCount();
+	
+	public List<User> UserNameQueryAll();
+	
+	
 }

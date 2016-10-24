@@ -19,4 +19,6 @@ public interface UserService {
 	
 	public Integer UserQueryCount();
 	
+	public List<User> UserNameQueryAll();
+	
 }

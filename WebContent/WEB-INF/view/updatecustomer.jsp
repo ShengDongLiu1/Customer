@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -107,9 +107,13 @@
 					</div>
 					<div class="control-group">
 						<label class="control-label">测试人:</label>
+						<input type="hidden" id="testman1" name="testman1" value="${customer.testman }">
 						<div class="controls">
-							<input type="text" value="${customer.testman}" style="height: 40px; width: 300px;"
-								name="testman" placeholder="测试人" />
+							<select id="testman" name="testman" style="height: 40px; width: 300px;">
+	                            <c:forEach var="list" items="${userName}">
+	                           	 <option value="${list.status}">${list.status}</option>
+	                            </c:forEach>
+	                    	</select>
 						</div>
 					</div>
 					<div class="control-group">
@@ -133,9 +137,13 @@
 					</div>
 					<div class="control-group">
 						<label class="control-label">指派人：</label>
+						<input type="hidden" id="designated1" name="designated1" value="${customer.designated }">
 						<div class="controls">
-							<input type="text" value="${customer.designated}" style="height: 40px; width: 300px;"
-								name="designated" placeholder="指派人" />
+							<select id="designated" name="designated" style="height: 40px; width: 300px;">
+	                            <c:forEach var="list" items="${userName}">
+	                           	   <option value="${list.status}">${list.status}</option>
+	                            </c:forEach>
+	                    	</select>
 						</div>
 					</div>
 				</div>
@@ -179,10 +187,11 @@
 		$("#atype").val(a); 
 		$("#combackdrop").val($("#combackdrop1").val());
 		$("#state").val($("#customerstate1").val());
+		var b = $("#testman1").val();
+		$("#testman").val(b);
+		$("#designated").val($("#designated1").val());
 		//alert($("#atype").find("option:selected").text());得到当前选中的值
 	})
-	
-
 	
 	function updatecustomer() {
 		var a = document.getElementsByTagName("input");//就可以调用所有input型数据

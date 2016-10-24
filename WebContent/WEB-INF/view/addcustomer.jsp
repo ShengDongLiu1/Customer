@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
 	String path = request.getContextPath();
@@ -122,8 +123,11 @@
 					<div class="control-group">
 						<label class="control-label">测试人:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;"
-								name="testman" placeholder="测试人" />
+							<select name="testman" style="height: 40px; width: 300px;">
+	                            <c:forEach var="list" items="${userName}">
+	                           	 <option value="${list.status}">${list.status}</option>
+	                            </c:forEach>
+	                    	</select>
 						</div>
 					</div>
 					<div class="control-group">
@@ -146,8 +150,11 @@
 					<div class="control-group">
 						<label class="control-label">指派人：</label>
 						<div class="controls">
-							<input type="text" value="${customer.designated}" style="height: 40px; width: 300px;"
-								name="designated" placeholder="指派人" />
+							<select name="designated" style="height: 40px; width: 300px;">
+	                            <c:forEach var="list" items="${userName}">
+	                           	 <option value="${list.status}">${list.status}</option>
+	                            </c:forEach>
+	                    	</select>
 						</div>
 					</div>
 				</div>
