@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.ProductDao">
+
+	<resultMap type="Product" id="ProductResult">
+		<id property="manid" column="manid"/>
+		<result property="pname" column="pname"/>
+		<result property="pnumber" column="pnumber"/>
+		<result property="pstock" column="pstock"/>
+		<result property="pprice" column="pprice"/>
+		<result property="ptype" column="ptype"/>
+	</resultMap>
+	
+	<select id="pselect" parameterType="int" resultMap="ProductResult">
+		select *
+		from product where pid = #{pid}
+	</select>
+	
+	<select id="prselectall" resultType="List">
+		select * from product
+	</select>
+	
+	<select id="queryAll" parameterType="Map" resultMap="ProductResult">
+		select * from product
+		<where>
+			<if test="pname!=null and pname!='' ">
+				and pname like #{pname}
+			</if>
+			<if test="ptype!=null and ptype!=''">
+				and ptype like #{ptype}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="queryCount" resultType="int">
+		select count(*) from product
+	</select>
+	
+	<insert id="padd" parameterType="Product">
+		insert into product 
+		values (null, #{pname}, #{pnumber}, #{pstock},
+		  #{pprice}, #{ptype})
+	</insert>
+	
+	<!-- 根据状态查询 -->
+	<select id="selectState" parameterType="Map" resultMap="ProductResult">
+		select * from product where state=#{state}
+	</select>
+	
+	<update id="pupdate" parameterType="Product">
+		update product
+		<set>
+			<if test="pname!=null and pname!='' ">
+				pname=#{pname},
+			</if>
+			<if test="pnumber!=null and pnumber!='' ">
+				pnumber=#{pnumber},
+			</if>
+			<if test="pstock!=null and pstock!='' ">
+				pstock=#{pstock},
+			</if>
+			<if test="pprice!=null and pprice!='' ">
+				pprice=#{pprice},
+			</if>
+			<if test="ptype!=null and ptype!='' ">
+				ptype=#{ptype},
+			</if>
+		</set>
+		where pid=#{pid}
+	</update>
+	
+	<delete id="pdelect" parameterType="Integer">
+		delete from product where
+		pid=#{pid}
+	</delete>	
+</mapper> 
