@@ -25,48 +25,11 @@
 </style>
 
 <script type="text/javascript">
-	//电话号码校验,7位以上
-	function checkTel(str){
-	   var Str=document.getElementById(str).value;
-	   RegularExp = /^((([0-9]{4}|[0-9]{3})-)|(([0-9]{4}|[0-9]{3})))*([0-9]{7}|[0-9]{8})$|^[0-9]{11}$/
-	   if (RegularExp.test(Str))
-	   {
-	       return true;
-	   }else{
-	       alert("电话号码格式不对");
-	       return false;
-	   }
-	}
-	
-	//手机号码校验，长度为11位数字。
-	function checkMobile(str) {
-		var Str=document.getElementById(str).value;
-		//手机号长度为11位数字。
-		var RegularExp=/^[0-9]{11}$/
-		//匹配13，14，15，18开头的手机号码！
-		var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
-		if(MobileExp.test(Str)){
-			return true;
-		}else{
-			alert("手机号格式不正确~");
-			return false;
-		}
-	}
-	
-	//电子邮件校验
-	function checkMail(str){
-	   var Str=document.getElementById(str).value;
-	   RegularExp = /[a-z0-9]*@[a-z0-9]*\.[a-z0-9]+/gi
-	   if (RegularExp.test(Str)){
-	       return true;
-	   }else{
-	       alert("电子信箱格式不对！");
-	       return false;
-	   }
-	}
-	
 	function contactadd() {
 		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
+		var mannumber = document.getElementById("tel");
+		var manmobile = document.getElementById("mobile");
+		var manemail = document.getElementById("mail");
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {
 				alert("您有空白未填写！");
@@ -78,6 +41,30 @@
 				return false;
 				break;
 			}
+		}
+		
+		NumberExp = /^((([0-9]{4}|[0-9]{3})-)|(([0-9]{4}|[0-9]{3})))*([0-9]{7}|[0-9]{8})$|^[0-9]{11}$/
+		if (NumberExp.test(mannumber)){
+		    return true;
+		}else{
+		    alert("电话号码格式不对");
+		    return false;
+		}
+		
+		var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
+		if(MobileExp.test(manmobile)){
+			return true;
+		}else{
+			alert("手机号格式不正确~");
+			return false;
+		}
+		
+		EmailExp = /[a-z0-9]*@[a-z0-9]*\.[a-z0-9]+/gi
+		if (EmailExp.test(manemail)){
+		    return true;
+		}else{
+		    alert("电子信箱格式不对！");
+		    return false;
 		}
 	}
 </script>
@@ -91,7 +78,7 @@
 					<div class="control-group">
 						<label class="control-label">客户公司:</label>&nbsp;&nbsp;&nbsp;&nbsp;
 						<select id="mancom" name="mancom" style="height: 40px; width: 300px;">
-                            <option value="">请选择客户公司</option>
+                            <optgroup label="请选择客户公司"></optgroup>
                             <c:forEach var="list" items="${listName}">
                            	 <option value="${list.kid}">${list.comname}</option>
                             </c:forEach>
@@ -121,7 +108,7 @@
 						<label class="control-label">客户电话:</label>
 						<div class="controls">
 							<input type="text" value="" style="height: 40px; width: 300px;"
-								id="tel" name="mannumber" onblur="checkTel('tel');"/>
+								id="tel" name="mannumber"/>
 						</div>
 					</div>
 				</div>
@@ -130,14 +117,14 @@
 						<label class="control-label">客户手机:</label>
 						<div class="controls">
 							<input type="text" value="" style="height: 40px; width: 300px;"
-								id="mobile" name="manmobile" onblur="checkMobile('mobile');"/>
+								id="mobile" name="manmobile"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">客户邮箱:</label>
 						<div class="controls">
 							<input type="text" value="" style="height: 40px; width: 300px;"
-								id="mail" name="manemail" onblur="checkMail('mail');"/>
+								id="mail" name="manemail"/>
 						</div>
 					</div>
 					<div class="control-group">

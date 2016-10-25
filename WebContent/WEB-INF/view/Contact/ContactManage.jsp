@@ -16,7 +16,7 @@
 			<form class="form-horizontal" action="<%=path %>/contact/contactQueryPager.do?page=1" method="post">
 				<div>
 					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" style="height: 30px; width: 150px;">
-                            <option value="">请选择客户公司</option>
+                            <optgroup label="请选择客户公司"></optgroup>
                             <c:forEach var="list" items="${listName}">
                            		<option value="${list.kid}">${list.comname}</option>
                             </c:forEach>
@@ -39,7 +39,7 @@
 							<option value="懂大部分">懂大部分</option>
 							<option value="精通">精通</option>
 						</select>
-				    日志日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" style="height: 30px; width: 150px;"
+				    日志日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
 							name="logdate" />
 						    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" style="height: 30px; width: 150px; margin-left: 65px;" 
 						value="查询"/>

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ht.bean.Bespoke;
 import com.ht.bean.Contact;
 import com.ht.bean.Customer;
 import com.ht.common.Pager;
@@ -91,7 +90,14 @@ public class ContactController {
 			pager.setPageNo(pager.getTotal());
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("mancom", StringUtil.formatLike(contact.getMancom()+""));
+		String i = contact.getMancom().toString();
+		if(i != "0"){
+			map.put("mancom", i);
+		}else{
+			map.put("mancom", null);
+		}
+		/*Map<String,Object> map=new HashMap<String,Object>();*/
+		/*map.put("mancom", StringUtil.formatLike(contact.getMancom()+""));*/
 		map.put("manname", StringUtil.formatLike(contact.getManname()));
 		map.put("mandep", StringUtil.formatLike(contact.getMandep()));
 		map.put("manjob", StringUtil.formatLike(contact.getManjob()));
