@@ -1,5 +1,4 @@
 package com.ht.controller;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -10,6 +9,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import com.ht.bean.Customer;
 import com.ht.bean.Track;
 import com.ht.common.Pager;
 import com.ht.common.StringUtil;
+import com.ht.service.ContactService;
 import com.ht.service.CustomerService;
 import com.ht.service.TrackService;
 
@@ -28,6 +30,9 @@ public class TrackController {
 	
 	@Resource
 	private CustomerService customerService;
+	
+	@Resource
+	private ContactService contactService;
 	
 	
 	@RequestMapping("/skip")
@@ -45,18 +50,16 @@ public class TrackController {
 	
 	@RequestMapping("/add")
 	public String Track_add(Track track,String recordtime,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-		recordtime = df.format(new Date());
-		track.setRecordtime(recordtime);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		track.setRecordtime(df.format(new Date()));
 		trackService.takadd(track);
 		response.sendRedirect("/Customer/track/trackQueryPagers.do?page=1");
-		/*request.getRequestDispatcher("trackQueryPagers.do?page=1").forward(request, response);*/
 		return null;
 	}
 
 	
 	@RequestMapping("/tackQueryPager")
-	public String contactQueryPager(@RequestParam(value="page",required=false)int page,Track track,HttpServletResponse response, HttpServletRequest request){
+	public String contactQueryPager(@RequestParam(value="page",required=false)int page,Track track,HttpServletResponse response, HttpServletRequest request,HttpSession session){
 		Pager<Track> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = trackService.trackQueryCount(); 
@@ -70,20 +73,29 @@ public class TrackController {
 			pager.setPageNo(pager.getTotal());
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("kid", StringUtil.formatLike(track.getKid()+""));
+		String i = track.getKid().toString();
+		if(i != "0"){
+			map.put("kid", i);
+		}else{
+			map.put("kid", null);
+		}
+		/*Map<String,Object> map=new HashMap<String,Object>();
+		map.put("kid",StringUtil.formatLike(track.getKid()+""));*/
 		map.put("measure", StringUtil.formatLike(track.getMeasure()));
-		map.put("recordtime", StringUtil.formatLike(track.getRecordtime()));
+		map.put("recordtime",StringUtil.formatLike(track.getRecordtime()));
 		map.put("start", pager.getBeginIndex()); 
 		map.put("size", pager.getPageSize());
 		List<Track> userList=trackService.queryAllss(map);
 		pager.setRows(userList);
 		request.setAttribute("lists", pager);
+		List<Customer> listName=contactService.customerSelect();
+		request.setAttribute("listName", listName);
 		return "Trace/pagingSelect";
 	}
 	
 	
 	@RequestMapping("/trackQueryPagers")
-	public String bespokeQueryAll(@RequestParam(value="page",required=false)int page, Track track,HttpServletResponse response, HttpServletRequest request)throws Exception{
+	public String bespokeQueryAll(@RequestParam(value="page",required=false)int page, Track track,HttpServletResponse response, HttpServletRequest request,HttpSession session)throws Exception{
 		Pager<Track> pager = new Pager<>();
 		pager.setPageSize(10);
 		pager.setPageNo(page);
@@ -93,13 +105,15 @@ public class TrackController {
 		List<Track> userList=trackService.queryAlls(map);
 		pager.setRows(userList);
 		request.setAttribute("lists", pager);
+		List<Customer> listName=contactService.customerSelect();
+		request.setAttribute("listName", listName);
 		return "Trace/pagingSelect";
 	}
 	
 	@RequestMapping("/trackUpdate")
 	public String trackUpdate(Track track,HttpServletRequest request,HttpServletResponse response){
 		try {
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 			String recordtime = df.format(new Date());
 			track.setRecordtime(recordtime);
 			trackService.takcupdate(track);

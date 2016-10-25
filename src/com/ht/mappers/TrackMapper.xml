@@ -33,6 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="takselect" parameterType="int" resultType="Track">
 		select * from track where tid = #{tid}
 	</select>
+	
+	<select id="kidselect" parameterType="int" resultType="Track">
+		select * from track where tid = #{tid}
+	</select>
 
 	<select id="queryAll" parameterType="Map" resultMap="TrackResult">
 		select * from track
@@ -85,16 +89,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryAllss" parameterType="Map" resultMap="TrackResult">
 		select * from track tra, customer cus
 		<where>
+			<if test="kid!=null and kid!=''">
+				and tra.kid like #{kid}
+			</if>
 			<if test="measure!=null and measure!=''">
 				and tra.measure like #{measure}
 			</if>
 			<if test="recordtime!=null and recordtime!=''">
 				and tra.recordtime like #{recordtime}
 			</if>
-			<if test="mandep!=null and mandep!='' ">
-				and con.mandep like #{mandep}
-			</if>
-			and tra.kid=cus.kid
+			and tra.kid = cus.kid
 		</where>
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}

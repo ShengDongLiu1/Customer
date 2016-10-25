@@ -44,14 +44,14 @@
 						</div>
 					</div>
 					<div class="control-group" style="margin-left: 150px; margin-top: 30px;">
-						<label class="control-label">公司名称:</label>
+						<label class="control-label">客户公司:</label>
 						<div class="controls">
 							<input type="text" style="height: 40px; width: 300px;"
 								name="comname" value="${customer.comname}"  readonly="readonly"/>
 						</div>
 					</div>
 					<div class="control-group" style="margin-left: 150px; margin-top: 30px;">
-						<label class="control-label">测试人:</label>
+						<label class="control-label">客户名称:</label>
 						<div class="controls">
 							<input type="text" value="${customer.testman}" style="height: 40px; width: 300px;"
 								name="testman" readonly="readonly"/>

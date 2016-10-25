@@ -18,9 +18,10 @@
 			<div>
 			<form class="form-horizontal" action="<%=path %>/track/tackQueryPager.do?page=1" method="post">
 				<div>
-					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select id="kid" name="kid" style="height: 30px; width: 150px;">
-                            <c:forEach var="list" items="${lists.rows}">
-                           	 <option value="${list.kid}">${list.customer.comname}</option>
+					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select name="kid" style="height: 30px; width: 150px;">
+                            <optgroup label="请选择客户公司"></optgroup>
+                            <c:forEach var="list" items="${listName}">
+                           		<option value="${list.kid}">${list.comname}</option>
                             </c:forEach>
 	                    </select>
 	                    &nbsp;&nbsp;&nbsp;&nbsp;

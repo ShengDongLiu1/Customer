@@ -1,3 +1,4 @@
+
 jQuery(function($){
 
     $.supersized({
@@ -23,8 +24,8 @@ jQuery(function($){
                                  {image : 'img/login-img/backgrounds/0.jpg'},
                                  {image : 'img/login-img/backgrounds/1.jpg'},
                                  {image : 'img/login-img/backgrounds/2.jpg'}
-								 /*{image : 'img/login-img/backgrounds/3.jpg'}*/
-                       ]
+						
+                             ]
 
     });
 

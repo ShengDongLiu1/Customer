@@ -15,22 +15,26 @@ import com.ht.service.LoginService;
 @RequestMapping("/")
 public class LoginController {
 	
+	/**
+	 * 登录
+	 * @param userid
+	 * @param login
+	 * @param req
+	 * @return
+	 */
 	@Resource
 	private LoginService loginService;
 	
 	@RequestMapping("/login")
-	public String userLogin(Login login, HttpServletRequest req){
-		System.out.println("**********login="+login);
-		Login userLogin = loginService.login(login);
-		if(userLogin == null){
-			req.setAttribute("user", userLogin);
-			req.setAttribute("errorLogin", "用户名或密码有误。。。。。");
-			return "login";
-		}else{
-			HttpSession session = req.getSession();
+	public String userLogin(Login login,String code, HttpServletRequest req,HttpSession session){
+		System.out.println("++++++++++++++++++++++++++++++++++++验证码:"+code);
+		if(code.equals(session.getAttribute("code"))){
+			Login userLogin = loginService.login(login);
 			session.setAttribute("user", userLogin);
 			return "index";
-		}
+		}else{
+			return "login";
+		}	
 	}	
 	
 	/**

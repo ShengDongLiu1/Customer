@@ -12,26 +12,45 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>客户登录</title>
-		<!-- CSS -->
+		<title>登录</title>
 		
 		<link rel="stylesheet" href="css/login-css/supersized.css">
 		<link rel="stylesheet" href="css/login-css/login.css">
 		<link href="css/login-css/bootstrap.min.css" rel="stylesheet">
-		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-		<!--[if lt IE 9]>
-			<script src="js/html5.js"></script>
-		<![endif]-->
-		<script src="js/login-js/jquery-1.8.2.min.js"></script>
-		<script type="text/javascript" src="js/login-js/jquery.form.js"></script>
-		<script type="text/javascript" src="js/login-js/tooltips.js"></script>
-		<script type="text/javascript" src="js/login-js/login.js"></script>
+	
+		<script type="text/javascript" src="<%=path %>/js/login-js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="<%=path %>/js/login-js/jquery.form.js"></script>
+		<script type="text/javascript" src="<%=path %>/js/login-js/tooltips.js"></script>
+		<script type="text/javascript" src="<%=path %>/js/login-js/login.js"></script>
+		<script  src="<%=path %>/js/login-js/supersized.3.2.7.min.js"></script>
+		<script  src="<%=path %>/js/login-js/supersized-init.js"></script>
+		<script  src="<%=path %>/js/login-js/scripts.js"></script>
+		
+		
 		<script type=text/javascript>
+		
 		$(function(){
 			if('${errorLogin}'!=''){
 				show_err_msg('${errorLogin}');
 			}
 		});
+		
+		 
+		 function chgUrl(url) {   
+	            var timestamp = (new Date()).valueOf();   
+	            if ((url.indexOf("&") >= 0)) {   
+	                url = url + "×tamp=" + timestamp;   
+	            } else {   
+	                url = url + "?timestamp=" + timestamp;   
+	            }   
+	            return url;   
+	        }   
+		
+		 function changeImg() {   
+	            var imgSrc = $("#codeimg");  
+	            imgSrc.attr("src", chgUrl("<%=path %>/yzm/code.do"));   
+	        }   
+	     
 		</script>
 	</head>
 	<body>
@@ -56,8 +75,8 @@
 							</div>
 							<div class="form-group">
 								<label for="j_captcha" class="t">验证码：</label>
-								<input id="j_captcha" name="j_captcha" type="text" class="form-control x164 in">
-								<img id="imgObj" alt="" src="DrawImage" onclick="changeImg()"/>
+								<input id="code" name="code" type="text" class="form-control x164 in"/>
+								<img id="codeimg" src="<%=path %>/yzm/code.do" onclick="changeImg()" />
 							</div>
 							<div class="form-group">
 								<label class="t"></label>
@@ -79,13 +98,5 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- Javascript -->
-		
-		<script src="js/login-js/supersized.3.2.7.min.js"></script>
-		<script src="js/login-js/supersized-init.js"></script>
-		<script src="js/login-js/scripts.js"></script>
-		<script type="text/javascript" src="js/yzm/jQuery.js"></script>
-   		<script type="text/javascript" src="js/yzm/verifyCode.js"></script>
 	</body>
 </html>

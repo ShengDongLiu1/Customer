@@ -43,13 +43,13 @@
 							<textarea style="height: 100px; width: 300px;" name="measure" >${track.measure}</textarea>
 						</div>
 					</div>
-					<div class="control-group" style="margin-left: 150px; margin-top: 30px;">
+					<%-- <div class="control-group" style="margin-left: 150px; margin-top: 30px;">
 						<label class="control-label">记录时间:</label>
 						<div class="controls">
 							<input type="datetime"  style="height: 40px; width: 300px;"
 								name="recordtime" value="${track.recordtime}" placeholder="记录时间" />
 						</div>
-					</div>
+					</div> --%>
 					
 				</div>
 				<p style="clear: both;"></p>

@@ -16,7 +16,7 @@
 			$('#submit_btn').click(function(){
 				var email = $("#email").val();
 				var password = $("#password").val();
-				var captcha = $("#j_captcha").val();
+				var code = $("#code").val();
 				var status = $("#status").val();
 				show_loading();
 				var myReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/; //邮件正则
@@ -29,9 +29,9 @@
 				}else if(password == ''){
 					show_err_msg('密码还没填呢！');
 					$('#password').focus();
-				}else if($('#j_captcha').val() == ''){
+				}else if($('#code').val() == ''){
 					show_err_msg('验证码还没填呢！');
-					$('#j_captcha').focus();
+					$('#code').focus();
 				}else if($('#status').val() == ''){
 					show_err_msg('用户类型还没选呢！');
 					$('#status').focus();
