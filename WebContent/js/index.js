@@ -548,6 +548,21 @@
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/product/queryAll.do?page=1",
 					},
+
+					{
+						"F_ModuleId" : "10",
+						"F_ParentId" : "0",
+						"F_FullName" : "客户分析",
+						"F_EnCode" : "BaseManage",
+						"F_Icon" : "fa fa-desktop",
+					},
+					{
+						"F_ModuleId" : "khzxt",
+						"F_ParentId" : "10",
+						"F_FullName" : "客户管理分析图",
+						"F_Icon" : "fa fa-book",
+						"F_UrlAddress" : "/Customer/customer/khgcfx.do",
+						},
 					 ];
 			var _html = "";
 			$

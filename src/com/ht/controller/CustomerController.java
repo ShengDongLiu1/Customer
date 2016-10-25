@@ -24,11 +24,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Customer;
+import com.ht.bean.CustomerGc;
 import com.ht.bean.User;
 import com.ht.common.Pager;
+import com.ht.common.ResponseUtil;
 import com.ht.common.StringUtil;
 import com.ht.service.CustomerService;
 import com.ht.service.UserService;
+
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/customer")
@@ -360,6 +364,20 @@ public class CustomerController {
      
         response.sendRedirect("queryState.do?page="+1+"&state="+state);
 		return null;
+	}
+	
+	
+	@RequestMapping("/findCustomerGc")
+	public String findCustomerGc(HttpServletResponse response)throws Exception{
+		List<CustomerGc> customerGcList=customerService.findCustomerGc();
+		JSONArray jsonArray=JSONArray.fromObject(customerGcList);
+		ResponseUtil.write(response, jsonArray);
+		return null;
+	}
+	
+	@RequestMapping("/khgcfx")
+	public String khgcfx(HttpServletResponse response,HttpServletRequest request){
+		return "khgcfx";
 	}
 	
 }

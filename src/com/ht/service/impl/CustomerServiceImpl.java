@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.stereotype.Service;
 
 import com.ht.bean.Customer;
+import com.ht.bean.CustomerGc;
 import com.ht.dao.CustomerDao;
 import com.ht.service.CustomerService;
 
@@ -64,6 +65,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.selectState(map);
 	}
 
-	
+	@Override
+	public List<CustomerGc> findCustomerGc() {
+		return customerDao.findCustomerGc();
+	}
+
 	
 }

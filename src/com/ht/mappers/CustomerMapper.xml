@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</resultMap>
 
+	<resultMap type="CustomerGc" id="CustomerGcResult">
+		<result property="customerLevel" column="customerLevel"/>
+		<result property="customerNum" column="customerNum"/>
+	</resultMap>
 	<select id="csrselect" parameterType="int" resultMap="CustomerResult">
 		select *
 		from customer where kid = #{kid}
@@ -123,4 +127,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		kid=#{kid}
 	</delete>
 
+	<select id="findCustomerGc" resultMap="CustomerGcResult">
+		SELECT state AS customerLevel ,COUNT(state) AS customerNum FROM customer GROUP BY state;
+	</select>
+	
 </mapper> 

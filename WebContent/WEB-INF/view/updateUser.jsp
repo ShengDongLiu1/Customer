@@ -118,7 +118,18 @@
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
 <script type="text/javascript">
-	function updatecustomer() {
+	function updateUser() {
+		
+		var number=$("#unumber").val();
+		 RegularExp=/^[0-9]{11}$/
+			 if (RegularExp.test(number)) {
+				  return true;
+				 }
+				 else {
+				  alert("手机号格式不正确！应该为11位长度的数字！");
+				  return false;
+				 }
+		
 		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {

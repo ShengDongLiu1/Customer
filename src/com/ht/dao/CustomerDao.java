@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ht.bean.Customer;
+import com.ht.bean.CustomerGc;
 
 public interface CustomerDao {
 	
@@ -22,4 +23,6 @@ public interface CustomerDao {
 	public int queryCount();
 	
 	public List<Customer> selectState(Map<String,Object> map);
+
+	public List<CustomerGc> findCustomerGc();
 }

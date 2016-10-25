@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ht.bean.Customer;
+import com.ht.bean.CustomerGc;
 
 public interface CustomerService {
 	public void cadd(Customer customer);
@@ -21,4 +22,6 @@ public interface CustomerService {
 	public Integer queryCount();
 	
 	public List<Customer> selectState(Map<String, Object> map);
+	
+	public List<CustomerGc> findCustomerGc();
 }
