@@ -9,6 +9,7 @@ public class User {
 	private String usex;
 	private String unumber;
 	private int uage;
+	
 	public int getUserid() {
 		return userid;
 	}

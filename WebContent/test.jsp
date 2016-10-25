@@ -19,6 +19,11 @@
     <script src="js/deletejs.js"></script>
 	<link href="js/toastr/toastr.css" rel="stylesheet" />
 	<script src="js/toastr/toastr.min.js"></script>
+	<style type="text/css">
+		.form-group{
+			margin-bottom: 2px
+		}
+	</style>
 </head>
 <body>
 	<div class="modal fade" style="height:auto; width: auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -31,21 +36,21 @@
 	        </div>
 	        <div class="modal-body">
 				<div style="float: left;">
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom: 3px">
 						<label class="control-label">公司名称:</label>
-						<input type="text" class="form-control" style="height: 40px; width: 300px;" name="comname" placeholder="公司名称" />
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="comname" placeholder="公司名称" />
+					</div>
+					<div class="form-group" style="margin-bottom: 3px">
+						<label class="control-label">公司地址:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="comaddress" placeholder="公司地址" />
 					</div>
 					<div class="form-group">
-						<label class="control-label">申请类型:</label>
-						<select id="atype" class="form-control" name="atype" style="height: 40px; width: 300px;">
-							<option value="企业">企业</option>
-							<option value="院校">院校</option>
-							<option value="代理">代理</option>
-						</select>
+						<label class="control-label">主营产品:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="product" placeholder="主营产品" />
 					</div>
 					<div class="form-group">
 						<label class="control-label">公司背景:</label>
-						<select id="usertype" class="form-control" name="combackdrop" style="height: 40px; width: 300px;">
+						<select id="usertype" class="form-control" name="combackdrop" style="height: 35px; width: 280px;">
 							<option value="机构组织">机构组织</option>
 							<option value="农林牧渔">农林牧渔</option>
 							<option value="医药卫生">医药卫生</option>
@@ -66,39 +71,39 @@
 							<option value="其它">其它</option>
 						</select>
 					</div>
-					<div class="form-group">
-						<label class="control-label">公司地址:</label>
-						<input type="text" class="form-control" style="height: 40px; width: 300px;" name="comaddress" placeholder="公司地址" />
-					</div>
-					<div class="form-group">
-						<label class="control-label">主营产品:</label>
-						<input type="text" class="form-control" style="height: 40px; width: 300px;" name="product" placeholder="主营产品" />
+					<div class="form-group" style="margin-bottom: 0px">
+						<label class="control-label">申请类型:</label>
+						<select id="atype" class="form-control" name="atype" style="height: 35px; width: 280px;">
+							<option value="企业">企业</option>
+							<option value="院校">院校</option>
+							<option value="代理">代理</option>
+						</select>
 					</div>
 				</div>
 				<div style="float: left; margin-left: 20px">
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom: 3px">
 						<label class="control-label">组织结构:</label>
-						<input type="text" class="form-control" style="height: 40px; width: 300px;" name="structure" placeholder="组织结构" />
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="structure" placeholder="组织结构" />
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom: 2px">
 						<label class="control-label">测试人: </label>
-						<input type="text" class="form-control" class="form-control" style="height: 40px; width: 300px;" name="testman" placeholder="测试人" />
+						<input type="text" class="form-control" class="form-control" style="height: 35px; width: 280px;" name="testman" placeholder="测试人" />
 					</div>
 					<div class="form-group">
 						<label class="control-label">申请信息:</label>
-						<input type="text" class="form-control" style="height: 40px; width: 300px;" name="amessage" placeholder="申请信息" />
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="amessage" placeholder="申请信息" />
 					</div>
 					<div class="form-group">
 						<label class="control-label">客户状态:</label>
-						<select id="usertype" class="form-control" name="state" style="height: 40px; width: 300px;">
+						<select id="usertype" class="form-control" name="state" style="height: 35px; width: 280px;">
 							<option value="正式客户">正式客户</option>
 							<option value="潜在客户">潜在客户</option>
 							<option value="签约客户">签约客户</option>
                         </select>
 					</div>
-					<div class="control-group">
+					<div class="control-group" style="margin-bottom: 0px">
 						<label class="control-label">指派人：</label>
-						<input type="text" class="form-control" value="${customer.designated}" style="height: 40px; width: 300px;" name="designated" placeholder="指派人" />
+						<input type="text" class="form-control" value="${customer.designated}" style="height: 35px; width: 280px;" name="designated" placeholder="指派人" />
 					</div>
 				</div>
 	        </div>
@@ -114,8 +119,8 @@
 	  </div>
 	  <input type="button" onclick="add()" value="新增">
 	  <input type="button" onclick="dele()" value="删除">
+	  
   <script type="text/javascript">
-  
   	 function add() {
   		$("#myModalLabel").text("新增");
 	     $('#myModal').modal();

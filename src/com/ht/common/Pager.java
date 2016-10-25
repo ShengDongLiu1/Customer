@@ -2,8 +2,6 @@ package com.ht.common;
 
 import java.util.List;
 
-import com.ht.bean.Bespoke;
-
 public class Pager<T> {
 	//当前页
 	private int pageNo;

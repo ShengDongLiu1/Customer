@@ -7,9 +7,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript">
-	
-</script>
+	<style type="text/css">
+		.form-group{
+			margin-bottom: 2px
+		}
+	</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -178,6 +180,98 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" style="height:auto; width: auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content" style="width: 670px;">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span></button>
+	          <h4 class="modal-title" id="myModalLabel">新增</h4>
+	        </div>
+	        <div class="modal-body">
+				<div style="float: left;">
+					<div class="form-group" style="margin-bottom: 3px">
+						<label class="control-label">公司名称:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="comname" placeholder="公司名称" />
+					</div>
+					<div class="form-group" style="margin-bottom: 3px">
+						<label class="control-label">公司地址:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="comaddress" placeholder="公司地址" />
+					</div>
+					<div class="form-group">
+						<label class="control-label">主营产品:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="product" placeholder="主营产品" />
+					</div>
+					<div class="form-group">
+						<label class="control-label">公司背景:</label>
+						<select id="usertype" class="form-control" name="combackdrop" style="height: 35px; width: 280px;">
+							<option value="机构组织">机构组织</option>
+							<option value="农林牧渔">农林牧渔</option>
+							<option value="医药卫生">医药卫生</option>
+							<option value="建筑建材">建筑建材</option>
+							<option value="冶金矿产">冶金矿产</option>
+							<option value="交通运输">交通运输</option>
+							<option value="信息产业">信息产业</option>
+							<option value="机械机电">机械机电</option>
+							<option value="轻工食品">轻工食品</option>
+							<option value="服装纺织">服装纺织</option>
+							<option value="专业服务">专业服务</option>
+							<option value="安全防护">安全防护</option>
+							<option value="家居用品">家居用品</option>
+							<option value="包装">包装</option>
+							<option value="体育">体育</option>
+							<option value="办公">办公</option>
+							<option value="物资">物资</option>
+							<option value="其它">其它</option>
+						</select>
+					</div>
+					<div class="form-group" style="margin-bottom: 0px">
+						<label class="control-label">申请类型:</label>
+						<select id="atype" class="form-control" name="atype" style="height: 35px; width: 280px;">
+							<option value="企业">企业</option>
+							<option value="院校">院校</option>
+							<option value="代理">代理</option>
+						</select>
+					</div>
+				</div>
+				<div style="float: left; margin-left: 20px">
+					<div class="form-group" style="margin-bottom: 3px">
+						<label class="control-label">组织结构:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="structure" placeholder="组织结构" />
+					</div>
+					<div class="form-group" style="margin-bottom: 2px">
+						<label class="control-label">测试人: </label>
+						<input type="text" class="form-control" class="form-control" style="height: 35px; width: 280px;" name="testman" placeholder="测试人" />
+					</div>
+					<div class="form-group">
+						<label class="control-label">申请信息:</label>
+						<input type="text" class="form-control" style="height: 35px; width: 280px;" name="amessage" placeholder="申请信息" />
+					</div>
+					<div class="form-group">
+						<label class="control-label">客户状态:</label>
+						<select id="usertype" class="form-control" name="state" style="height: 34px; width: 280px;">
+							<option value="正式客户">正式客户</option>
+							<option value="潜在客户">潜在客户</option>
+							<option value="签约客户">签约客户</option>
+                        </select>
+					</div>
+					<div class="control-group" style="margin-bottom: 0px">
+						<label class="control-label">指派人：</label>
+						<input type="text" class="form-control" value="${customer.designated}" style="height: 35px; width: 280px;" name="designated" placeholder="指派人" />
+					</div>
+				</div>
+	        </div>
+	        
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">
+	          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+	          <button type="button" id="btn_submit" class="btn btn-primary" onclick="addk()" data-dismiss="modal">
+	          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	
 </body>
 
 <link rel="stylesheet" href="<%=path %>/js/toastr/toastr.css">
@@ -213,9 +307,14 @@
        			alert($(this).val()); 
        		}); 
         } */
-        function add(){
-    		window.location.href="add.do";
-    	}
+        
+     	 function add() {
+     		$("#myModalLabel").text("新增");
+   	    	$('#myModal').modal();
+     	 }
+        function addk(){
+        	
+        }
         
         function delete1(){
         	if($("[name='imgVo']").is(':checked')) {  
@@ -223,9 +322,10 @@
 	             $("[name='imgVo']:checked").each(function(){
 	              str+=$(this).val()+",";
 	             }) 
-   	             window.location.href='delete.do?kid='+str+'&page=${lists.pageNo}&state1=${requestScope.state}';
+   	            window.location.href='delete.do?kid='+str+'&page=${lists.pageNo}&state1=${requestScope.state}';
+				toastr.success("删除成功");
         	}else{
-        		alert("至少选中一行！");
+        		toastr.warning('至少选中一行！');
         	}
         }
         
@@ -236,12 +336,12 @@
                    str+=$(this).val();
                   }) 
                   if(str.length>3){
-                	  alert("一次只能修改一个！");
+                	  toastr.warning("一次只能修改一个！");
                   }else{
                	 window.location.href='update.do?kid='+str+'&page=${lists.pageNo}';  
                   }
         	}else{
-        		alert("请选中您要修改的那一行");
+        		toastr.warning("请选中您要修改的那一行");
         	}
         }
         

@@ -26,6 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from User where userid=#{userid}
 	</select>
 	
+	<select id="UserSelectall" resultMap="UserResult">
+		select * from User
+	</select>
+	
 	<update id="UserUpdate" parameterType="User">
 		update User
 		<set>

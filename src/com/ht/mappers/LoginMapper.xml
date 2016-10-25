@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="email" column="email"/>
 		<result property="password" column="password"/>
 		<result property="status" column="status"/>
+		<result property="uname" column="uname"/>
+		<result property="usex" column="usex"/>
+		<result property="unumber" column="unumber"/>
+		<result property="uage" column="uage"/>
 	</resultMap>
 	
 	<select id="login" resultMap="LoginResult">
