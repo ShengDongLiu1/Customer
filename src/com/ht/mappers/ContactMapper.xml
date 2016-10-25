@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and con.manmobile like #{manmobile}
 			</if>
 			<if test="manskill!=null and manskill!='' ">
-				and con.manskill like #{manskill}
+				and con.manskill = #{manskill}
 			</if>
 			<if test="logdate!=null and logdate!='' ">
 				and con.logdate like #{logdate}
@@ -106,7 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from contact con,customer cus
 		<where>
 			<if test="mancom!=null and mancom!=''">
-				and con.mancom like #{mancom}
+				and con.mancom = #{mancom}
 			</if>
 			<if test="manname!=null and manname!=''">
 				and con.manname like #{manname}
