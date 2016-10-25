@@ -1,7 +1,7 @@
 (function ($) {
  
   window.Ewin = function () {
-    var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
+    var html = '<div style="background: #333333;height:250px;" id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
                '<div class="modal-dialog modal-sm">' +
                  '<div class="modal-content">' +
                    '<div class="modal-header">' +
@@ -39,7 +39,7 @@
     }
     var init = function (options) {
       options = $.extend({}, {
-        title: "操作提示",
+        title: "删除提示",
         message: "提示内容",
         btnok: "确定",
         btncl: "取消",
