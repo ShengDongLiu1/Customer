@@ -1,4 +1,7 @@
 package com.ht.controller;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -11,9 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ht.bean.Contact;
 import com.ht.bean.Customer;
 import com.ht.bean.Track;
 import com.ht.common.Pager;
@@ -149,5 +159,79 @@ public class TrackController {
 		}
 		response.sendRedirect("/Customer/track/trackQueryPagers.do?page=1");
 		return null;
-	}	
+	}
+	
+	
+	//数据导出
+	@RequestMapping("/daochu")
+	public String daochu(Track track, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 声明一个工作薄
+		HSSFWorkbook hwb = new HSSFWorkbook();
+		// 声明一个单子并命名
+		HSSFSheet sheet = hwb.createSheet("联络表");
+		// 给单子名称一个长度
+		sheet.setDefaultColumnWidth((int) 15);
+		// 生成一个样式
+		HSSFCellStyle style = hwb.createCellStyle();
+		// 创建第一行（也可以称为表头）
+		HSSFRow row = sheet.createRow(0);
+		// 样式字体居中
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		// 给表头第一行一次创建单元格
+		HSSFCell cell = row.createCell((int) 0);
+		cell.setCellValue("编号");
+		cell.setCellStyle(style);
+		cell = row.createCell((int) 1);
+		cell.setCellValue("客户公司");
+		cell.setCellStyle(style);
+		cell = row.createCell((int) 2);
+		cell.setCellValue("记录语句");
+		cell.setCellStyle(style);
+		cell = row.createCell((int) 3);
+		cell.setCellValue("记录人员");
+		cell.setCellStyle(style);
+		cell = row.createCell((int) 4);
+		cell.setCellValue("记录时间");
+		cell.setCellStyle(style);
+		cell = row.createCell((int) 5);
+		
+		Pager<Track> pager = new Pager<>();
+		pager.setPageNo(1);
+		pager.setPageSize(100);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", pager.getBeginIndex());
+		map.put("size", pager.getPageSize());
+		List<Track> list = null;
+		list = trackService.queryAlls(map);
+		try {
+			// 向单元格里填充数据
+			for (short i = 0; i < list.size(); i++) {
+				row = sheet.createRow(i + 1);
+				row.createCell(0).setCellValue(list.get(i).getTid());
+				row.createCell(1).setCellValue(list.get(i).getCustomer().getComname());
+				row.createCell(2).setCellValue(list.get(i).getMeasure());
+				row.createCell(3).setCellValue(list.get(i).getCustomer().getTestman());
+				row.createCell(4).setCellValue(list.get(i).getRecordtime());
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			File file = new File("D:/导出文件");
+			if (file.exists() == false) {
+				file.mkdir();
+			}
+			/* 导出的数据放在d盘的 导出文件 的文件夹里 */
+			FileOutputStream out = new FileOutputStream("D:/导出文件/跟踪记录信息.xls");
+			hwb.write(out);
+			out.flush();
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		response.sendRedirect("/Customer/track/trackQueryPagers.do?page=1");
+		return null;
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Login;
+import com.ht.common.AES;
 import com.ht.service.LoginService;
 
 @Controller
@@ -26,8 +27,9 @@ public class LoginController {
 	private LoginService loginService;
 	
 	@RequestMapping("/login")
-	public String userLogin(Login login,String code, HttpServletRequest req,HttpSession session){
+	public String userLogin(Login login,String code, HttpServletRequest req,HttpSession session) throws Exception{
 		if(code.equals(session.getAttribute("code"))){
+			login.setPassword(AES.getInstance().encrypt(login.getPassword()));
 			Login user = loginService.login(login);
 			try{
 				if(user.getEmail()!=null && user.getPassword()!=null && user.getStatus()!=null){

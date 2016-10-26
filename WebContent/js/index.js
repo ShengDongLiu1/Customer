@@ -565,8 +565,7 @@
 						},
 					 ];
 			var _html = "";
-			$
-					.each(
+			$.each(
 							data,
 							function(i) {
 								var row = data[i];

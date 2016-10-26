@@ -82,16 +82,17 @@
 								<label class="t"></label>
 								<label for="j_customer" class="m"></label>
 								<select id="status" name="status" class="input" style="margin-top: 15px;height: 24px">
-									<option value="">请选择用户类型...</option>
+									<option value="">请选择用户类型</option>
 									<option value="系统管理员">系统管理员</option>
 									<option value="客户经理">客户经理</option>
 									<option value="销售">销售</option>
 								</select>
 							</div>
-							<div class="form-group space">
+							<div class="form-group">
 								<label class="t"></label>　　　
 								<button type="button" id="submit_btn" class="btn btn-primary btn-lg">&nbsp;登&nbsp;录&nbsp </button>
-								<input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input  type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
 							</div>
 						</form>
 					</div>

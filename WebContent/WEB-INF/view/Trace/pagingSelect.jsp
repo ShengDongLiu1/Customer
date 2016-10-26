@@ -49,6 +49,11 @@
 			 	<span class="glyphicon glyphicon-trash"></span>	 
 			   批量删除
 			 </button>
+			 
+			 <button class="btn btn-primary" type="button" onclick="daochu();">
+			 	<span class="glyphicon glyphicon-trash"></span>	 
+			  导出数据
+			 </button>
 
 		</div> 
 			<br /><br />
@@ -148,6 +153,12 @@
         	}else{
         		alert("请选中您要修改的那一行");
         	}
+        }
+        
+        
+        function daochu(){ 
+        	window.location.href='daochu.do?&page=${lists.pageNo}';
+        	alert('导出成功');
         }
       
     </script>
