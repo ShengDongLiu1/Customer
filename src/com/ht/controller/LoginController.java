@@ -74,7 +74,7 @@ public class LoginController {
 		try{
 			Login login1 = new Login();
 			login1.setUserid(Integer.valueOf(userid));
-			login1.setPassword(newpassword);
+			login1.setPassword(AES.getInstance().encrypt(newpassword));
 			loginService.updatemima(login1);
 			return "login";
 		}catch(Exception e){

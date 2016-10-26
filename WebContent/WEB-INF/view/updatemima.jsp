@@ -75,8 +75,8 @@
 							</div>
 							<div class="form-group">
 								<label for="j_password" class="t"><font size="5px" color="bred">原 密 码:</font></label> 
-								<input id="password"  value="${selectmima.password}" name="password" type="text" 
-								class="password form-control x319 in">
+								<input type="password" id="password"  value="${selectmima.password}" name="password" type="text" 
+								class="password form-control x319 in" readonly="readonly">
 							</div>
 							<!-- 新密码 -->
 							<div class="form-group">
