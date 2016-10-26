@@ -18,13 +18,13 @@
 			<div>
 			<form class="form-horizontal" action="<%=path %>/track/tackQueryPager.do?page=1" method="post">
 				<div>
-					客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select name="kid" style="height: 30px; width: 150px;">
+					<%-- 客户公司:&nbsp;&nbsp;&nbsp;&nbsp;<select name="kid" style="height: 30px; width: 150px;">
                             <optgroup label="请选择客户公司"></optgroup>
                             <c:forEach var="list" items="${listName}">
                            		<option value="${list.kid}">${list.comname}</option>
                             </c:forEach>
 	                    </select>
-	                    &nbsp;&nbsp;&nbsp;&nbsp;
+	                    &nbsp;&nbsp;&nbsp;&nbsp;  --%>
 					 记录时间:&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="date"  style="height: 30px; width: 150px;" name="recordtime"/>
 						&nbsp;&nbsp;&nbsp;&nbsp;

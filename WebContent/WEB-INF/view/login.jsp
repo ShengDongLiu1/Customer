@@ -30,8 +30,8 @@
 		<script type=text/javascript>
 		
 		$(function(){
-			if('${errorLogin}'!=''){
-				show_err_msg('${errorLogin}');
+			if('${LoginError}'!=''){
+				show_err_msg('${LoginError}');
 			}
 		});
 		

@@ -64,10 +64,10 @@
 						</div>
 					</div>
 					<div class="control-group" style="margin-left: 150px; margin-top: 30px;">
-						<label class="control-label">记录时间:</label>
+						<label class="control-label"></label>
 						<div class="controls">
-							<input type="date"  style="height: 40px; width: 300px;"
-								name="recordtime" placeholder="记录时间" />
+							<input style="visibility:hidden" type="date"  style="height: 40px; width: 300px;"
+								name="recordtime"/>
 						</div>
 					</div>
 					

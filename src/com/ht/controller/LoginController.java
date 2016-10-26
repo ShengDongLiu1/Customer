@@ -27,14 +27,21 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public String userLogin(Login login,String code, HttpServletRequest req,HttpSession session){
-		System.out.println("++++++++++++++++++++++++++++++++++++验证码:"+code);
 		if(code.equals(session.getAttribute("code"))){
-			Login userLogin = loginService.login(login);
-			session.setAttribute("user", userLogin);
-			return "index";
-		}else{
-			return "login";
-		}	
+			Login user = loginService.login(login);
+			try{
+				if(user.getEmail()!=null && user.getPassword()!=null && user.getStatus()!=null){
+					session.setAttribute("user", user);
+					return "index";
+				}
+			}
+			catch(Exception e){
+				session.setAttribute("LoginError", "账号或密码有误~");
+				return "login";
+			}
+		}
+		session.setAttribute("LoginError", "验证码有误~");
+		return "login";
 	}	
 	
 	/**

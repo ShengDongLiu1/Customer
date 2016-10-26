@@ -73,12 +73,12 @@ public class TrackController {
 			pager.setPageNo(pager.getTotal());
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		String i = track.getKid().toString();
+		/*String i = track.getKid().toString();
 		if(i != "0"){
 			map.put("kid", i);
 		}else{
 			map.put("kid", null);
-		}
+		}*/
 		/*Map<String,Object> map=new HashMap<String,Object>();
 		map.put("kid",StringUtil.formatLike(track.getKid()+""));*/
 		map.put("measure", StringUtil.formatLike(track.getMeasure()));
