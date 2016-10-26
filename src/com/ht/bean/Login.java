@@ -5,6 +5,10 @@ public class Login {
 	private String email;
 	private String password;
 	private String status;
+	private String uname;
+	private String usex;
+	private String unumber;
+	private int uage;
 
 	public int getUserid() {
 		return userid;
@@ -38,11 +42,36 @@ public class Login {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", email=" + email + ", password=" + password + ", status=" + status + "]";
+	public String getUname() {
+		return uname;
 	}
 
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
 
+	public String getUsex() {
+		return usex;
+	}
+
+	public void setUsex(String usex) {
+		this.usex = usex;
+	}
+
+	public String getUnumber() {
+		return unumber;
+	}
+
+	public void setUnumber(String unumber) {
+		this.unumber = unumber;
+	}
+
+	public int getUage() {
+		return uage;
+	}
+
+	public void setUage(int uage) {
+		this.uage = uage;
+	}
 
 }
