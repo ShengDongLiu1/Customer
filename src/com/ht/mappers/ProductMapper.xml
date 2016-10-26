@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ht.dao.ProductDao">
 
 	<resultMap type="Product" id="ProductResult">
-		<id property="manid" column="manid"/>
+		<id property="pid" column="pid"/>
 		<result property="pname" column="pname"/>
 		<result property="pnumber" column="pnumber"/>
 		<result property="pstock" column="pstock"/>
