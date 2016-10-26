@@ -21,6 +21,7 @@ public interface UserDao {
 	public Integer UserQueryCount();
 	
 	public List<User> UserNameQueryAll();
-	
+
+	public List<User> UserSelects(Map<String, Object> map);
 	
 }

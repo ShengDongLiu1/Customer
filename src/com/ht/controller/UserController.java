@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.User;
+import com.ht.common.AES;
 import com.ht.common.Pager;
+import com.ht.common.StringUtil;
 import com.ht.service.UserService;
 
 @Controller
@@ -51,7 +53,7 @@ public class UserController {
 	public String UserSelect(@RequestParam(value="userid",required=false)String id,User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
 		User use=userService.UserSelect(Integer.valueOf(id));
 		List<Integer> age=new ArrayList<Integer>();
-		for (int i = 1; i < 150; i++) {
+		for (int i = 18; i < 50; i++) {
 			age.add(i);
 		}
 		request.setAttribute("uage", age);
@@ -87,7 +89,7 @@ public class UserController {
 	@RequestMapping("/addUser")
 	public String add(HttpServletResponse response,HttpServletRequest request){	
 		List<Integer> age=new ArrayList<Integer>();
-		for (int i = 1; i < 150; i++) {
+		for (int i = 18; i < 50; i++) {
 			age.add(i);
 		}
 		request.setAttribute("uage", age);
@@ -97,6 +99,7 @@ public class UserController {
 	@RequestMapping("/addqr")
 	public String add(User user,HttpServletResponse response,HttpServletRequest request){
 		try {	
+			user.setPassword(AES.getInstance().encrypt(user.getPassword()));
 			userService.UserAdd(user);
 			response.sendRedirect("UserQueryAll.do?page=1");
 		} catch (Exception e) {
@@ -105,5 +108,40 @@ public class UserController {
 			return "result";
 		}
 		return null;
+	}
+	
+	@RequestMapping("/userSelects")
+	public String UserSelects(@RequestParam(value="page",required=false)int page,User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
+		Pager<User> pager = new Pager<>();
+		pager.setPageSize(10);
+		
+		int count = userService.UserQueryCount();
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		pager.setTotal(total);
+		if(page >= 1 && page <= pager.getTotal()){
+			pager.setPageNo(page);
+		}else if(page < 1){
+			pager.setPageNo(1);
+		}else{
+			pager.setPageNo(pager.getTotal());
+		}
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("email", StringUtil.formatLike(user.getEmail()));
+		map.put("status", StringUtil.formatLike(user.getStatus()));
+		map.put("uname", StringUtil.formatLike(user.getUname()));
+		map.put("usex", StringUtil.formatLike(user.getUsex()));
+		map.put("unumber", StringUtil.formatLike(user.getUnumber()));
+		map.put("uage", user.getUage());
+		map.put("start", pager.getBeginIndex());
+		map.put("size", pager.getPageSize());
+		List<Integer> age=new ArrayList<Integer>();
+		for (int i = 18; i < 50; i++) {
+			age.add(i);
+		}
+		request.setAttribute("uage", age);
+		List<User> userList=userService.UserSelects(map);
+		pager.setRows(userList);
+		request.setAttribute("userList", pager);
+		return "user";
 	}
 }

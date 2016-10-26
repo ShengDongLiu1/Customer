@@ -85,8 +85,8 @@
 			<div class="span12">
 				<div class="pagination">
 					<ul>
-						<li><a href="<%=path %>/bespoke/bespokeQueryAll.do?page=${lists.pageNo - 1}">上一页</a></li>
-						<li><a href="<%=path %>/bespoke/bespokeQueryAll.do?page=${lists.pageNo + 1}">下一页</a></li>
+						<li><a href="<%=path %>/bespoke/bespokeQueryAlls.do?page=${beslist.pageNo - 1}">上一页</a></li>
+						<li><a href="<%=path %>/bespoke/bespokeQueryAlls.do?page=${beslist.pageNo + 1}">下一页</a></li>
 					</ul>
 				</div>
 			</div>

@@ -23,4 +23,5 @@ public interface UserService {
 	
 	public List<User> UserNameQueryAll();
 	
+	public List<User> UserSelects(Map<String, Object> map);
 }

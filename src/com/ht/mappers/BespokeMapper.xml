@@ -111,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and b.bepaddress like #{bepaddress}
 			</if>
 			<if test="beptype!=null and beptype!='' ">
-				and b.beptype = #{beptype}
+				and b.beptype like #{beptype}
 			</if>
 			 and b.bepcom=c.kid
 		</where>
@@ -131,7 +131,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and b.bepaddress like #{bepaddress}
 			</if>
 			<if test="beptype!=null and beptype!='' ">
-				and b.beptype = #{beptype}
+				and b.beptype like #{beptype}
 			</if>
 		   b.bepcom=c.kid
 		</where>

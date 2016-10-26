@@ -69,4 +69,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="UserQueryCount" resultType="int">
 		select count(*) from user
 	</select>
+	
+	<select id="UserSelects" parameterType="Map" resultMap="UserResult">
+		select * from user
+		<where>
+			<if test="email!=null and email!=''">
+				and email like #{email}
+			</if>
+			<if test="status!=null and status!=''">
+				and status like #{status}
+			</if>
+			<if test="uname!=null and uname!='' ">
+				and uname like #{uname}
+			</if>
+			<if test="usex!=null and usex!='' ">
+				and usex like #{usex}
+			</if>
+			<if test="unumber!=null and unumber!='' ">
+				and unumber like #{unumber}
+			</if>
+			<if test="uage!=null and uage!='' ">
+				and uage = #{uage}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
 </mapper> 

@@ -61,5 +61,11 @@ public class UserServiceImpl implements UserService{
 		userDao.UserAdd(user);
 		
 	}
-
+	
+	@Override
+	public List<User> UserSelects(Map<String, Object> map) {
+		return userDao.UserSelects(map);
+	}
+	
+	
 }

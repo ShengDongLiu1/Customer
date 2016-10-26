@@ -26,7 +26,37 @@
 </head>
 <body>
 
-
+<div >
+		<div class="span12"  style="float: left; margin-top: 10px; ">
+			<div>
+			<form class="form-horizontal" action="<%=path %>/user/userSelects.do?page=1" method="post">
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					账号:<input type="text" style="height: 30px; width: 150px;"
+							name="email"  placeholder="账号" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					用户状态:	<input type="text" style="height: 30px; width: 150px;"
+							name="status"  placeholder="用户状态" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					 用户名:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 30px; width: 150px;"
+							name="uname" placeholder="用户名" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							
+					性别:	<select id="usex" name="usex" style="height: 30px; width: 150px;">
+                                 	 <option value="男">男</option>
+                                 	 <option value="女">女</option>
+	                         </select>
+	                         	<br/>
+	            	 联系电话：<input type="text" style="height: 30px; width: 150px;"
+								name="unumber" placeholder="联系电话" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					年龄：	<select  id="uage" name="uage" style="height: 30px; width: 150px;">
+                                 <c:forEach var="age" items="${uage}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 	 <option value="${age}">${age}岁</option>
+                            	</c:forEach>
+	                         </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="submit" style="height: 30px; width: 70px;" value="查询" />
+				</div>
+			</form>
+			</div>
+		</div> 
+		<p style="clear:both;"></p>
+	</div>
 
 	<div class="row-fluid">
 		<div class="span12">
