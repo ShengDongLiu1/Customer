@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.MarketingDao">
+
+	<resultMap type="Marketing" id="MarketingResult">
+		<result property="id" column="id"/>
+		<result property="chanceSource" column="chanceSource"/>
+		<result property="customerName" column="customerName"/>
+		<result property="cgjl" column="cgjl"/>
+		<result property="overView" column="overView"/>
+		<result property="linkMan" column="linkMan"/>
+		<result property="linkPhone" column="linkPhone"/>
+		<result property="description" column="description"/>
+		<result property="createMan" column="createMan"/>
+		<result property="createTime" column="createTime"/>
+		<result property="assignMan" column="assignMan"/>
+		<result property="assignTime" column="assignTime"/>
+		<result property="state" column="state"/>
+		<result property="devResult" column="devResult"/>
+		<association property="customers" javaType="com.ht.bean.Customer">
+			<id property="kid" column="kid" />
+			<result property="comname" column="comname" />
+			<result property="atype" column="atype" />
+			<result property="combackdrop" column="combackdrop" />
+			<result property="comaddress" column="comaddress" />
+			<result property="product" column="product" />
+			<result property="structure" column="structure" />
+			<result property="testman" column="testman" />
+			<result property="amessage" column="amessage" />
+			<result property="state" column="state" />
+			<result property="newdate" column="newdate" />
+			<result property="designated" column="designated" />
+		</association>
+		<association property="users" javaType="User">
+			<id property="userid" column="userid"/>
+			<result property="email" column="email"/>
+			<result property="password" column="password"/>
+			<result property="status" column="status"/>
+			<result property="uname" column="uname"/>
+			<result property="usex" column="usex"/>
+			<result property="unumber" column="unumber"/>
+			<result property="uage" column="uage"/>
+		</association>
+	</resultMap>
+	<resultMap type="User" id="UserResult">
+		<id property="userid" column="userid"/>
+		<result property="email" column="email"/>
+		<result property="password" column="password"/>
+		<result property="status" column="status"/>
+		<result property="uname" column="uname"/>
+		<result property="usex" column="usex"/>
+		<result property="unumber" column="unumber"/>
+		<result property="uage" column="uage"/>
+	</resultMap>
+	
+	<resultMap type="Customer" id="CustomerResult">
+		<id property="kid" column="kid" />
+			<result property="comname" column="comname" />
+			<result property="atype" column="atype" />
+			<result property="combackdrop" column="combackdrop" />
+			<result property="comaddress" column="comaddress" />
+			<result property="product" column="product" />
+			<result property="structure" column="structure" />
+			<result property="testman" column="testman" />
+			<result property="amessage" column="amessage" />
+			<result property="state" column="state" />
+			<result property="newdate" column="newdate" />
+			<result property="designated" column="designated" />
+	</resultMap>
+	
+	<select id="selectCustomerName" parameterType="List" resultMap="CustomerResult">
+		select kid,comname from Customer
+	</select>
+	
+	<select id="selectUserName" parameterType="List" resultMap="UserResult">
+		select userid,uname from User where status!='系统管理员'
+	</select>
+	
+	<select id="find" parameterType="Map" resultMap="MarketingResult">
+		select * from Marketing,Customer,User
+		<where>
+			<if test="customerName!=null and customerName!='' ">
+				and customerName like #{customerName}
+			</if>
+			<if test="linkMan!=null and linkMan!=''">
+				and linkMan like #{linkMan}
+			</if>
+			<if test="overView!=null and overView!='' ">
+				and overView like #{overView}
+			</if>
+			<if test="createMan!=null and createMan!='' ">
+				and createMan like #{createMan}
+			</if>
+			<if test="assignMan!=null and assignMan!='' ">
+				and assignMan like #{assignMan}
+			</if>
+			<if test="state!=null ">
+				and state = #{state}
+			</if>
+			<if test="devResult!=null ">
+				and devResult = #{devResult}
+			</if>
+			and Marketing.customerName=Customer.kid
+			and Marketing.assignMan=User.userid
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from marketing
+	</select>
+	
+	<insert id="add" parameterType="Marketing">
+		insert into marketing values(null,#{chanceSource},#{customerName},#{cgjl},#{overView},#{linkMan},#{linkPhone},#{description},#{createMan},#{createTime},#{assignMan},#{assignTime},#{state},#{devResult})
+	</insert>
+	
+	<update id="update" parameterType="Marketing">
+		update marketing
+		<set>
+			<if test="chanceSource!=null and chanceSource!='' ">
+				chanceSource = #{chanceSource},
+			</if>
+			<if test="customerName!=null and customerName!='' ">
+				customerName = #{customerName},
+			</if>
+			<if test="cgjl!=0">
+				cgjl = #{cgjl},
+			</if>
+			<if test="overView!=null and overView!='' ">
+				overView = #{overView},
+			</if>
+			<if test="linkMan!=null and linkMan!='' ">
+				linkMan = #{linkMan},
+			</if>
+			<if test="linkPhone!=null and linkPhone!='' ">
+				linkPhone = #{linkPhone},
+			</if>
+			<if test="description!=null and description!='' ">
+				description = #{description},
+			</if>
+			<if test="createMan!=null and createMan!='' ">
+				createMan = #{createMan},
+			</if>
+			<if test="createTime!=null">
+				createTime = #{createTime},
+			</if>
+			<if test="assignMan!=null and assignMan!='' ">
+				assignMan = #{assignMan},
+			</if>
+			<if test="assignTime!=null">
+				assignTime = #{assignTime},
+			</if>
+			<if test="state!=null">
+				state = #{state},
+			</if>
+			<if test="devResult!=null">
+				devResult = #{devResult},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from marketing where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="Integer" resultMap="MarketingResult">
+		select * from marketing where id=#{id}
+	</select>
+</mapper> 
