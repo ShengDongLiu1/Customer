@@ -360,27 +360,6 @@
 		loadMenu : function() {
 			var data = [
 					{
-						"F_ModuleId" : "1",
-						"F_ParentId" : "0",
-						"F_FullName" : "系统首页",
-						"F_Icon" : "fa fa-desktop",
-		
-					},
-					{
-						"F_ModuleId" : "4efd37bf-e3ef-4ced-8248-58eba046d78bq",
-						"F_ParentId" : "1",
-						"F_FullName" : "修改密码",
-						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/xiugai",
-					},
-					{
-						"F_ModuleId" : "4efd37bf-e3ef-4ced-8248-58eba046d78bq2",
-						"F_ParentId" : "1",
-						"F_FullName" : "退出系统",
-						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/CRM/login2.jsp",
-					},
-					{
 						"F_ModuleId" : "2",
 						"F_ParentId" : "0",
 						"F_EnCode" : "BaseManage",
@@ -449,27 +428,6 @@
 						"F_FullName" : "管理联络",
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/contact/contactQueryPagers.do?page=1",
-					},
-					{
-						"F_ModuleId" : "4",
-						"F_ParentId" : "0",
-						"F_EnCode" : "BaseManage",
-						"F_FullName" : "文档管理",
-						"F_Icon" : "fa fa-area-chart",
-					},
-					{
-						"F_ModuleId" : "xinw",
-						"F_ParentId" : "4",
-						"F_FullName" : "新增文档",
-						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/xinz",
-					},
-					{
-						"F_ModuleId" : "guanliwen",
-						"F_ParentId" : "4",
-						"F_FullName" : "管理文档",
-						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/SystemManage/DataItemDetail/guanliwen",
 					},
 					{
 						"F_ModuleId" : "5",

@@ -52,11 +52,13 @@ public class LoginController {
 	 * @param login
 	 * @param req
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping("/selectmima")
-	public String selectmima(@RequestParam(value="userid",required=false)Integer userid,Login login, HttpServletRequest req){
+	public String selectmima(@RequestParam(value="userid",required=false)Integer userid,Login login, HttpServletRequest req) throws Exception{
 		login.setUserid(userid);
 		Login selectmima = loginService.selectmima(login);
+			selectmima.setPassword(AES.getInstance().decrypt(selectmima.getPassword()));
 			req.setAttribute("selectmima", selectmima);
 			return "updatemima";
 		

@@ -31,9 +31,6 @@
     <script src="js/index.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="overflow:hidden;">
-    <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
-        <img src="img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
-    </div>
     <div class="wrapper">
         <!--头部信息-->
         <header class="main-header">
@@ -68,7 +65,8 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">欢迎    ${user.email} 登录</span>
+                                <span class="hidden-xs">欢迎 :&nbsp;<font size="5px" color="black"><b>${user.uname}</b></font>
+                                </span>
                             </a>
                             <ul class="dropdown-menu pull-right">
                                 <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
@@ -85,7 +83,7 @@
         <!--左边导航-->
         <div class="main-sidebar">
             <div class="sidebar">
-                <div class="user-panel">
+               <!--  <div class="user-panel">
                     <div class="pull-left image">
                         <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
@@ -93,7 +91,7 @@
                         <p>administrator</p>
                         <a><i class="fa fa-circle text-success"></i>在线</a>
                     </div>
-                </div>
+                </div> -->
                <ul class="sidebar-menu" id="sidebar-menu">
                     <li class="header">导航菜单</li>
                 </ul>
