@@ -162,7 +162,7 @@ public class ProductController {
 	public String productAdd(Product product,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			System.out.println("**********product="+product);
-	        product.setPnumber(UUID.randomUUID().toString());
+	        product.setPnumber(UUID.randomUUID().toString().substring(0,6));
 			productService.padd(product);
 			response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {

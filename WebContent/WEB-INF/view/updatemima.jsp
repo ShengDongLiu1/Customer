@@ -32,41 +32,24 @@
 				var newPassword=$("#newPassword").val();
 				var newPassword2=$("#newPassword2").val();
 				
-				if(Password!="${selectmima.password}"){
-					$("#msg").text("输入的原密码不正确,请重新输入!!");
-					return false;
-					
-					
-				}
 				if(Password=='' || Password==null){
-					$("#msg").text("系统提示,用户原密码不能为空！");
+					alert("系统提示,用户原密码不能为空！");
 					return false;
-				
 				}
 				if(newPassword=='' || newPassword==null){
-					$("#msg1").text("系统提示,新密码不能为空！");
+					alert("系统提示,新密码不能为空！");
 					return false;
-				
-					
 				}
 				if(newPassword2=='' || newPassword2==null){
-					$("#msg2").text("系统提示,确认密码不能为空！");
+					alert("系统提示,确认密码不能为空！");
 					return false;
-					
-					
 				}
 				if(newPassword!=newPassword2){
-					$("#msg2").text("系统提示,两次密码不一致！");
+					alert("系统提示,两次密码不一致！");
 					return false;
-				
-				}
-				if(newPassword && newPassword2=="${selectmima.password}"){
-					$("#msg2").textalert("新密码不能和原密码一样");
-					return false;
-					
 				}
 				if(newPassword==newPassword2){
-					$("#msg2").text("系统提示,修改密码成功，下次登录有效。。。。");
+					alert("系统提示,修改密码成功，下次登录有效。。。。");
 					$("#update_form").submit();
 					return false;
 				}
@@ -80,42 +63,36 @@
 			<div class="main_box">
 				<div class="login_box">
 					<div class="login_logo">
-						<font size="7px" >修改密码</font>
+						<font size="8px" color="bred">修改密码</font>
 					</div>
-				<%-- value="${selectmima.password}" --%>
+				
 					<div class="login_form">
-						<form  id="sx" action="${pageContext.request.contextPath}/updatamima.do?userid=${selectmima.userid}" id="update_form"  method="post">
+						<form action="${pageContext.request.contextPath}/updatamima.do?userid=${selectmima.userid}" id="update_form"  method="post">
 							<div class="form-group">
-								<label for="j_username" class="t"><font size="5px" >用 户 名:</font></label> 
+								<label for="j_username" class="t"><font size="5px" color="bred">用 户 名:</font></label> 
 								<input id="email" value="${selectmima.email}" name="email" readonly="readonly" type="text" class="form-control x319 in" 
 								/>
 							</div>
 							<div class="form-group">
-								<label for="j_password" class="t"><font size="5px" >原 密 码:</font></label> 
-								<input type="password" id="password"   name="password" type="text" class="password form-control x319 in">
-									&nbsp;&nbsp;
-								 <div style="height:10px; font-size:18px ; text-align:center"><font id="msg"  color="red"></font></div><br />
-								
+								<label for="j_password" class="t"><font size="5px" color="bred">原 密 码:</font></label> 
+								<input type="password" id="password"   name="password" type="text" 
+								class="password form-control x319 in" >
 							</div>
 							<!-- 新密码 -->
 							<div class="form-group">
-								<label for="j_password" class="t"><font size="5px" >新 密 码:</font></label> 
-								<input id="newPassword" value="" name="newpassword" type="password" class="password form-control x319 in">
-								
-								 	&nbsp;&nbsp;
-								 <div style="height:10px; font-size:18px ; text-align:center"><font id="msg1"  color="red"></font></div><br />
+								<label for="j_password" class="t"><font size="5px" color="bred">新 密 码:</font></label> 
+								<input id="newPassword" value="" name="newpassword" type="password" 
+								class="password form-control x319 in">
 							</div>
 							<div class="form-group">
-								<label for="j_password" class="t"><font size="5px" >确认密码:</font></label> 
-								<input id="newPassword2" value="" name="newPassword2" type="password" class="password form-control x319 in">
-								
-									&nbsp;&nbsp;
-								 <div style="height:10px; font-size:18px ; text-align:center"><font id="msg2"  color="red"></font></div><br />
+								<label for="j_password" class="t"><font size="5px" color="bred">确认密码:</font></label> 
+								<input id="newPassword2" value="" name="newPassword2" type="password" 
+								class="password form-control x319 in">
 							</div>
-							<div class="form-group">
+							<div class="form-group space">
 								<label class="t"></label>　　　
 								<button type="submit" id="updatemm_btn" class="btn btn-success" onclick="return updatamima();">确认修改</button>
-								<input type="reset" id="cz" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-warning">
+								<input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-warning">
 							</div>
 						</form>
 					</div>
@@ -124,7 +101,6 @@
 		</div>
 		
 		<!-- Javascript -->
-		
 		<script src="js/login-js/supersized.3.2.7.min.js"></script>
 		<script src="js/login-js/supersized-init.js"></script>
 		<script src="js/login-js/scripts.js"></script>
