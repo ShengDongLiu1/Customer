@@ -72,7 +72,7 @@
 						<label class="control-label">联系电话:</label>
 						<div class="controls">
 							<input type="text" value="${uuser.unumber}" style="height: 40px; width: 300px;"
-								name="unumber" placeholder="联系电话" />
+								id="unumber" name="unumber" placeholder="联系电话" />
 						</div>
 					</div>
 					<div class="control-group">
