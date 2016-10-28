@@ -30,6 +30,7 @@ public class LoginController {
 	public String userLogin(Login login,String code, HttpServletRequest req,HttpSession session) throws Exception{
 		if(code.equals(session.getAttribute("code"))){
 			login.setPassword(AES.getInstance().encrypt(login.getPassword()));
+			System.out.println(login.getPassword());
 			Login user = loginService.login(login);
 			try{
 				if(user.getEmail()!=null && user.getPassword()!=null && user.getStatus()!=null){

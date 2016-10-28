@@ -23,7 +23,7 @@
 	<bean id="dataSource" 
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/crm"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/crm?useSSL=false"/>
 		<property name="username" value="root"/>
 		<property name="password" value="123456"/>
 	</bean>
@@ -53,6 +53,7 @@
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  
         <!-- 定义事务传播属性 -->  
         <tx:attributes>  
+        
             <tx:method name="insert*" propagation="REQUIRED" />  
             <tx:method name="update*" propagation="REQUIRED" />  
             <tx:method name="edit*" propagation="REQUIRED" />  

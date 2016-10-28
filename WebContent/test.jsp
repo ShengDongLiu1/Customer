@@ -27,8 +27,8 @@
 </head>
 <body>
 	<div class="modal fade" style="height:auto; width: auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	    <div class="modal-dialog" role="document">
-	      <div class="modal-content" style="width: 670px;">
+	    <div class="p" role="document" style="width:auto">
+	      <div class="modal-content" style="margin-left:-2%;">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">×</span></button>
