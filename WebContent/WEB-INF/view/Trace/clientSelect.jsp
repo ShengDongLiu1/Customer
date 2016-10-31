@@ -44,8 +44,12 @@
 		
 		<div class="span12"  style="float: left; margin-top: 10px; ">
 			<button class="btn btn-primary" type="button" onclick="record();">
+				<span class="glyphicon glyphicon-plus-sign"></span>	 
+				新增记录
+				</button>&nbsp;&nbsp;&nbsp;
+			<button class="btn btn-primary" type="button" onclick="returnhome();">
 				<span class="glyphicon glyphicon-share-alt"></span>	 
-				 记录
+				返回上一级
 				</button>&nbsp;&nbsp;&nbsp;
 				 
 		</div> 
@@ -144,6 +148,10 @@
         	}else{
            		alert("请选中您要记录的那一行");
            	}
+        }
+        
+        function returnhome(){ 
+        	window.location.href='trackQueryPagers.do?page=1';
         }
         
     </script>
