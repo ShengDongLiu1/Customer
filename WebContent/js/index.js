@@ -481,7 +481,7 @@
 					{
 						"F_ModuleId" : "genz",
 						"F_ParentId" : "6",
-						"F_FullName" : "跟踪记录",
+						"F_FullName" : "记录管理",
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/track/trackQueryPagers.do?page=1",
 					},

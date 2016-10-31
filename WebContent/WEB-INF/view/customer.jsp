@@ -117,11 +117,6 @@
 					  转为放弃客户
 					 </button>
 				 </c:if>
-				  <button class="btn btn-primary" type="button" onclick="record();">
-					 <span class="glyphicon glyphicon-share-alt"></span>	 
-					 记录
-				 	</button>&nbsp;&nbsp;&nbsp;
-				 
 		</div> 
 		<p style="clear:both;"></p>
 	</div>
@@ -163,7 +158,6 @@
 							<td>${list.designated}</td>
 							<td><a href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
 								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}" onclick="return delete2();">删除 </a>
-								<a href="<%=path %>/track/skip.do?kid=${list.kid}">记录 </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
