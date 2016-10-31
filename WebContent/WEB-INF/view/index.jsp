@@ -74,7 +74,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">欢迎 :&nbsp;<font size="5px" color="black"><b>${user.uname}</b></font>
+                                <span class="hidden-xs"><font size="5px" color="black"><b>欢迎:${user.email}</b>登录</font>
                                 </span>
                             </a>
                             <ul class="dropdown-menu pull-right">
