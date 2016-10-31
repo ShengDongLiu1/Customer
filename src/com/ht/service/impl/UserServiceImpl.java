@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.ht.bean.Bespoke;
 import com.ht.bean.User;
 import com.ht.dao.UserDao;
 import com.ht.service.UserService;
@@ -65,6 +66,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> UserSelects(Map<String, Object> map) {
 		return userDao.UserSelects(map);
+	}
+
+	@Override
+	public List<User> find(Map<String, Object> map) {
+		return userDao.find(map);
 	}
 	
 	

@@ -25,4 +25,6 @@ public void BespokeAdd(Bespoke bespoke);
 
 	public List<Bespoke> BespokeQueryAlls(Map<String, Object> map);
 
+	public List<Bespoke> find(Map<String, Object> map);
+
 }

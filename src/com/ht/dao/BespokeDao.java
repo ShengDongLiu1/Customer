@@ -24,4 +24,6 @@ public interface BespokeDao {
 	public List<Customer> CustomerSelectName();
 
 	public List<Bespoke> BespokeQueryAlls(Map<String, Object> map);
+
+	public List<Bespoke> find(Map<String, Object> map);
 }

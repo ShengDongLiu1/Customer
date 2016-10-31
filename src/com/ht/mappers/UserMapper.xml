@@ -16,18 +16,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="UserQueryAll" parameterType="Map" resultMap="UserResult">
-		select * from User
+		select * from User order by userid desc
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
 		</if>
 	</select>
 	
 	<select id="UserSelect"  parameterType="Integer" resultMap="UserResult">
-		select * from User where userid=#{userid}
+		select * from User where userid=#{userid} order by userid desc
 	</select>
 	
 	<select id="UserSelectall" resultMap="UserResult">
-		select * from User
+		select * from User order by userid desc
 	</select>
 	
 	<update id="UserUpdate" parameterType="User">
@@ -71,6 +71,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="UserSelects" parameterType="Map" resultMap="UserResult">
+		select * from user
+		<where>
+			<if test="email!=null and email!=''">
+				and email like #{email}
+			</if>
+			<if test="status!=null and status!=''">
+				and status like #{status}
+			</if>
+			<if test="uname!=null and uname!='' ">
+				and uname like #{uname}
+			</if>
+			<if test="usex!=null and usex!='' ">
+				and usex like #{usex}
+			</if>
+			<if test="unumber!=null and unumber!='' ">
+				and unumber like #{unumber}
+			</if>
+			<if test="uage!=null and uage!='' ">
+				and uage = #{uage}
+			</if>
+		</where>
+		order by userid desc
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	<select id="find" parameterType="Map" resultMap="UserResult">
 		select * from user
 		<where>
 			<if test="email!=null and email!=''">

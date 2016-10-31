@@ -115,12 +115,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			 and b.bepcom=c.kid
 		</where>
+		order by b.bepid desc
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
 		</if>
+		
 	</select>
 	
 	<select id="BespokeQueryAlls" parameterType="Map" resultMap="BespokeResults">
+		select * from bespoke b,Customer c
+		
+		<where>
+			<if test="bepman!=null and bepman!=''">
+				and b.bepman like #{bepman}
+			</if>
+			<if test="bepaddress!=null and bepaddress!='' ">
+				and b.bepaddress like #{bepaddress}
+			</if>
+			<if test="beptype!=null and beptype!='' ">
+				and b.beptype like #{beptype}
+			</if>
+		   b.bepcom=c.kid
+		</where>
+		order by b.bepid desc
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+		
+	</select>
+	<select id="find" parameterType="Map" resultMap="BespokeResults">
 		select * from bespoke b,Customer c
 		
 		<where>
@@ -139,5 +162,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
-	
 </mapper>

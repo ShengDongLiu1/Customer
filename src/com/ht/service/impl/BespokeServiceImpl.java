@@ -64,4 +64,9 @@ public class BespokeServiceImpl implements BespokeService{
 	public List<Bespoke> BespokeQueryAlls(Map<String, Object> map) {
 		return bespokeDao.BespokeQueryAlls(map);
 	}
+
+	@Override
+	public List<Bespoke> find(Map<String, Object> map) {
+		return bespokeDao.find(map);
+	}
 }

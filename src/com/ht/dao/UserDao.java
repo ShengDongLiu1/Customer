@@ -3,6 +3,7 @@ package com.ht.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.ht.bean.Bespoke;
 import com.ht.bean.User;
 
 public interface UserDao {
@@ -23,5 +24,7 @@ public interface UserDao {
 	public List<User> UserNameQueryAll();
 
 	public List<User> UserSelects(Map<String, Object> map);
+
+	public List<User> find(Map<String, Object> map);
 	
 }
