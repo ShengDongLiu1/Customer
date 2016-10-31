@@ -52,6 +52,10 @@
 			 <span class="glyphicon glyphicon-plus-sign"></span>	 
 			   添加
 			 </button>&nbsp;&nbsp;&nbsp;
+			 <button class="btn btn-primary" type="button" onclick="update();">
+			 <span class="glyphicon glyphicon-plus-sign"></span>	 
+			   修改
+			 </button>&nbsp;&nbsp;&nbsp;
 			 <button class="btn btn-primary" type="button" onclick="delete1();">
 			 <span class="glyphicon glyphicon-trash"></span>	 
 			   批量删除
@@ -81,7 +85,7 @@
 						<th>客户MSN</th>
 						<th>技术程度</th>
 						<th>日志日期</th>
-						<th>操作</th>
+						<!-- <th>操作</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -99,8 +103,8 @@
 							<td>${list.manmsn}</td>
 							<td>${list.manskill}</td>
 							<td>${list.logdate}</td>
-							<td><a href="<%=path %>/contact/contactUpdate.do?manid=${list.manid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/contact/contactDelete.do?manid=${list.manid}&page=${lists.pageNo}">删除</a></td>
+							<%-- <td><a href="<%=path %>/contact/contactUpdate.do?manid=${list.manid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+								href="<%=path %>/contact/contactDelete.do?manid=${list.manid}&page=${lists.pageNo}">删除</a></td> --%>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -117,23 +121,102 @@
 			</div>
 		</div>
 	</div>
+	
+	<form action="<%=path%>/contact/contactAddqr.do" method="post">
+		<div class="modal fade" style="height:auto; width: auto;" id="ContactModal" tabindex="-1" role="dialog" aria-labelledby="ContactModalLabel">
+		    <div class="modal-dialog" role="document">
+		      <div class="modal-content" style="width: 670px;">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">×</span></button>
+		          <h4 class="modal-title" id="ContactModalLabel">新增</h4>
+		        </div>
+		        <div class="modal-body">
+					<div style="float: left;">
+						<div class="form-group" style="margin-bottom: 3px">
+							<label class="control-label">客户公司:</label>&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" class="form-control" style="height: 35px; width: 280px;">
+	                            <optgroup label="请选择客户公司"></optgroup>
+	                            <c:forEach var="list" items="${listName}">
+	                           		<option value="${list.kid}">${list.comname}</option>
+	                            </c:forEach>
+		                    </select>
+						</div>
+						<div class="form-group">
+							<label class="control-label">客户名称:</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="manname" name="manname" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">客户部门:</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="mandep" name="mandep" />
+						</div>
+						<div class="form-group" style="margin-bottom: 0px">
+							<label class="control-label">客户职位:</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="manjob" name="manjob" />
+						</div>
+						<div class="form-group" style="margin-bottom: 3px">
+							<label class="control-label">客户电话:</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="mannumber" name="mannumber" />
+						</div>
+					</div>
+					<div style="float: left; margin-left: 20px">
+						<div class="form-group" style="margin-bottom: 2px">
+							<label class="control-label">客户手机: </label>
+							<input type="text" class="form-control" class="form-control" style="height: 35px; width: 280px;" id="manmobile" name="manmobile" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">客户邮箱:</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="manemail" name="manemail" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">客户QQ:</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="manqq" name="manqq" />
+						</div>
+						<div class="control-group" style="margin-bottom: 0px">
+							<label class="control-label">客户MSN：</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="manmsn" name="manmsn" />
+						</div>
+						<div class="form-group" style="margin-bottom: 3px">
+							<label class="control-label">技术程度:</label>
+							<select id="manskill" class="form-control" name="manskill" style="height: 35px; width: 280px;">
+								<optgroup label="请选择技术程度"></optgroup>
+								<option value="不懂">不懂</option>
+								<option value="懂一点">懂一点</option>
+								<option value="懂部分">懂部分</option>
+								<option value="懂大部分">懂大部分</option>
+								<option value="精通">精通</option>
+							</select>
+						</div>
+						<div class="control-group" style="margin-bottom: 0px">
+							<label class="control-label">日志日期：</label>
+							<input type="text" class="form-control" style="height: 35px; width: 280px;" id="logdate" name="logdate" value="${datetimes}" readonly="readonly"/>
+						</div>
+					</div>
+		        </div>
+		        
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">
+		          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+		          <input type="submit" class="btn btn-primary" value="保存" />
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+	 	</form>
 </body>
+<link rel="stylesheet" href="<%=path %>/js/toastr/toastr.css">
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-combined.min.css"> 
-<script src="<%=path %>/js/bootstrap.js"></script>
-<script src="<%=path %>/js/bootstrap.min.js"></script>
-<script src="<%=path %>/js/jquery-2.0.0.min.js"></script>
-<script src="<%=path %>/js/npm.js"></script>
-<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
-<script src="<%=path %>/js/jquery-ui.js"></script>
-<script src="<%=path %>/js/jquery.htmlClean.js"></script>
-<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<%=path %>/js/scripts.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-combined.min.css">
 <script src="<%=path %>/js/zh-cn.js"></script>
-<script src="<%=path %>/js/page.js"></script>
+<script src="<%=path %>/js/bootstrap.js"></script>
+<script src="<%=path %>/js/jquery-ui.js"></script>
+<script src="<%=path %>/js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<%=path %>/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<script src="<%=path %>/js/toastr/toastr.min.js"></script>
+<script src="<%=path %>/js/deletejs.js"></script>
    <script>
         function selectAll(){
             $("INPUT[type='checkbox']").each( function() {
@@ -147,8 +230,26 @@
        		}); 
         } */
         function add(){
-    		window.location.href="contactAdd.do";
+        	$("#ContactModalLabel").text("新增");
+   	    	$('#ContactModal').modal();
     	}
+        
+        function addk(){
+        	var mancom = $("#mancom").val;
+        	var manname = $("#manname").val; 
+        	var mandep = $("#mandep").val;
+        	var manjob = $("#manjob").val;
+        	var mannumber = $("#mannumber").val;
+        	var manmobile = $("#manmobile").val;
+        	var manemail = $("#manemail").val;
+        	var manqq = $("#manqq").val;
+        	var manmsn = $("#manmsn").val;
+        	var manskill = $("#manskill").val;
+        	var logdate = $("#logdate").val;
+        	alert(manname);
+        	window.location.href="contactAddqr.do";
+        }
+        
         function delete1(){
         	if($("[name='imgVo']").is(':checked')) {  
 	             var str=[];

@@ -143,7 +143,7 @@
 					<div class="control-group">
 						<label class="control-label">技术程度：</label>&nbsp;&nbsp;&nbsp;&nbsp;
 						<select style="height: 40px; width: 300px;" name="manskill">
-							<option value="">请选择技术程度</option>
+							<optgroup label="请选择技术程度"></optgroup>
 							<option value="不懂">不懂</option>
 							<option value="懂一点">懂一点</option>
 							<option value="懂部分">懂部分</option>
@@ -163,7 +163,7 @@
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
 					<div class="controls">
-						<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="contactadd();">添加</button>
+						<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="return contactadd();">添加</button>
 					</div>
 				</div>
 			</form>

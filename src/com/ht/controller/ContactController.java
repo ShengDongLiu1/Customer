@@ -153,6 +153,9 @@ public class ContactController {
 		request.setAttribute("lists", pager);
 		List<Customer> listName=contactService.customerSelect();
 		request.setAttribute("listName", listName);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String datetime = df.format(new Date());
+		request.setAttribute("datetimes", datetime);
 		return "Contact/ContactManage";
 	}
 	
@@ -310,7 +313,7 @@ public class ContactController {
 				row.createCell(8).setCellValue(list.get(i).getManqq());
 				row.createCell(9).setCellValue(list.get(i).getManmsn());
 				row.createCell(10).setCellValue(list.get(i).getManskill());
-				row.createCell(10).setCellValue(list.get(i).getLogdate());
+				row.createCell(11).setCellValue(list.get(i).getLogdate());
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
