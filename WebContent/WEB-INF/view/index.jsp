@@ -29,6 +29,15 @@
     <script src="js/jquery/jQuery-2.2.0.min.js"></script>
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script type="text/javascript">
+    	$('#identifier').tooltip(options)
+    	 function bddt(){
+    		$("#myModalLabel").text("百度地图");
+   	    	$('#myModal').modal();
+    	}
+    	
+    </script>
+    	
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="overflow:hidden;">
     <div class="wrapper">
@@ -72,6 +81,8 @@
                                 <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
                                 <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
                                 <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
+                                <li><a href="javascript:void();" onClick="bddt();"><i class="fa fa-paint-brush"></i>百度地图</a></li>
+                               
                                 <li><a href="${pageContext.request.contextPath}/selectmima.do?userid=${user.userid}"><i class="glyphicon glyphicon-wrench"></i>修改密码</a></li>
                                 <li><a href="/Customer/"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
                             </ul>
@@ -121,6 +132,7 @@
                         <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
                         <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
                         <li><a class="tabCloseOther" href="javascript:void();">除此之外全部关闭</a></li>
+                     	
                     </ul>
                 </div>
                 <button class="roll-nav roll-right fullscreen"><i class="fa fa-arrows-alt"></i></button>
@@ -132,4 +144,11 @@
             </div>	
         </div>
     </div>
+    <div class="modal fade" style="height:auto; width: auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content" style="width: 505px;">
+	      		 <iframe width="504" height="709" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/5C-iH"></iframe>
+	      </div>
+	     </div>
+	    </div>
 </html>
