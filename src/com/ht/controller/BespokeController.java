@@ -129,6 +129,18 @@ public class BespokeController {
 		return null;
 	}
 	
+	@RequestMapping("/addqr1")
+	public String add1(Bespoke bespoke,HttpServletResponse response,HttpServletRequest request){
+		try {	
+			bespokeService.BespokeAdd(bespoke);
+			return "addBespoke";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
+	}
+	
 	@RequestMapping("/add")
 	public String add(HttpServletResponse response,HttpServletRequest request){	
 		List<Customer> listName=bespokeService.CustomerSelectName();

@@ -29,8 +29,13 @@
 </head>
 <body>
 	<div class="row-fluid">
+	<div class="control-group" style="margin-left: 50px; margin-top: 30px;"> 
+						<div class="controls">
+							<a href="<%=path %>/bespoke/bespokeQueryAlls.do?page=1"><button class="glyphicon glyphicon-share-alt" type="submit" class="btn" style="height: 40px; width: 150px;" onclick="">返回管理页面</button></a>
+						</div>
+				</div>
 		<div class="span12" style="margin-top: 80px;">
-			<form class="form-horizontal" action="<%=path %>/bespoke/addqr.do" >
+			<form class="form-horizontal" action="<%=path %>/bespoke/addqr1.do" >
 				<div style='float: left;'>
 					<div class="control-group">
 						<label class="control-label">预约公司名称:</label>

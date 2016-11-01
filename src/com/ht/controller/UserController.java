@@ -124,6 +124,19 @@ public class UserController {
 		return null;
 	}
 	
+	@RequestMapping("/addqr1")
+	public String add1(User user,HttpServletResponse response,HttpServletRequest request){
+		try {	
+			user.setPassword(AES.getInstance().encrypt(user.getPassword()));
+			userService.UserAdd(user);
+			return "addUser";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
+			return "result";
+		}
+	}
+	
 	@RequestMapping("/userSelects")
 	public String UserSelects(@RequestParam(value="page",required=false)int page,User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
 		Pager<User> pager = new Pager<>();

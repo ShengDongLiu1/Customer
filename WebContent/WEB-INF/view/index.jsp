@@ -151,9 +151,10 @@
             </div>	
         </div>
     </div>
-    <div class="modal fade" style="height:auto; width: auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   
+  <div class="modal fade" style="width:600px; left: 300px" id="myModal"  aria-labelledby="myModalLabel">
 	    <div class="modal-dialog" role="document">
-	      <div class="modal-content" style="width: 505px;">
+	      <div class="modal-dialog" role="document" style="width: 505px;">
 	      		 <iframe width="504" height="709" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/5C-iH"></iframe>
 	      </div>
 	     </div>

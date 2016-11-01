@@ -121,9 +121,9 @@
 		</div>
 	</div>
 	<form action="<%=path %>/user/addqr.do" method="post">
-	<div class="modal fade" style="height:auto; width: auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" style=" width: 710px;" id="myModal" aria-labelledby="myModalLabel">
 	    <div class="modal-dialog" role="document">
-	      <div class="modal-content" style="width: 670px;">
+	       <div class="modal-content" style="width: 670px; left: -30px;">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">×</span></button>
