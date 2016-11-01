@@ -30,7 +30,7 @@
 </head>
 <body>
 	<div>
-		<div class="modal-dialog" role="document"
+				<div class="modal-dialog" role="document"
 			style="width: 800px; left: -100px;">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -212,30 +212,6 @@
 			</div>
 		</div>
 	</form>
-	<div class="span12" style="float: left; margin-top: 10px;">
-		<button class="btn btn-primary" type="button" onclick="add();">
-			<span class="glyphicon glyphicon-plus-sign"></span> 添加
-		</button>
-		&nbsp;&nbsp;&nbsp;
-		<button class="btn btn-primary" type="button"
-			onclick="return delete1();">
-			<span class="glyphicon glyphicon-trash"></span> 删除
-		</button>
-		&nbsp;&nbsp;&nbsp;
-		<button class="btn btn-primary" type="button" onclick="update();">
-			<span class="glyphicon glyphicon-wrench"></span> 修改
-		</button>
-		&nbsp;&nbsp;&nbsp;
-		<button class="btn btn-primary" type="button" onclick="kaifac();">
-			<span class="glyphicon glyphicon-wrench"></span> 开发成功
-		</button>
-		&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-primary" type="button" onclick="kaifat();">
-			<span class="glyphicon glyphicon-wrench"></span> 停止开发
-		</button>
-		&nbsp;&nbsp;&nbsp;
-	</div>
-
 	<div class="row-fluid">
 		<div class="span12">
 			<table class="table">

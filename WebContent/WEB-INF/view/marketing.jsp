@@ -31,7 +31,7 @@
 </head>
 <body>
 	<div>
-		<form action="<%=path %>/marketing/addqr.do" method="post">
+		<form action="<%=path %>/marketing/addqr.do" method="post" id="form1">
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" style="width: 800px;">
 				<div class="modal-dialog" role="document" style="width: 700px;">
@@ -65,7 +65,7 @@
 									<label class="control-label">成功几率:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											name="cgjl" placeholder="成功几率" />
+										  id="cgjl2" name="cgjl" placeholder="成功几率" />
 									</div>
 								</div>
 							</div>
@@ -81,7 +81,7 @@
 									<label class="control-label">联系电话:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											name="linkPhone" placeholder="联系电话" />
+										 id="linkPhone2"	name="linkPhone" placeholder="联系电话" />
 									</div>
 								</div>
 							</div>
@@ -108,7 +108,7 @@
 									<div class="controls">
 										<input type="text" readonly="readonly"
 											style="height: 30px; width: 230px;" name="createMan"
-											placeholder="创建人" value="${user.status}" />
+											placeholder="创建人" value="${user.uname}" />
 									</div>
 								</div>
 							</div>
@@ -130,7 +130,7 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 						</button>
-						<input type="submit" value="保存" class="btn btn-primary" />
+						<input type="submit" value="保存" onclick="return addqr()" class="btn btn-primary" />
 					</div>
 				</div>
 			</div>
@@ -426,5 +426,36 @@
     	window.location.href='daochu.do?page=${lists.pageNo}';
     	alert('导出成功');
     }
+    
+    
+    
+	function addqr() {
+		var _form = document.getElementById("form1");
+		//获取该表单下的所有input标签
+		var a = _form.getElementsByTagName("input");
+		var mannumber = document.getElementById("linkPhone2");
+		var cgjl = document.getElementById("cgjl2");
+
+		for (var i = 0; i < a.length; i++) {
+			if (a[i].value == "") {
+				alert("您有空白未填写！");
+				return false;
+				break;
+			}
+			if(a[i].value.length<1){
+				alert("至少输输两个字符！");
+				return false;
+				break;
+			}
+		}
+		
+		var MobileExp=/^1([38]\d|4[57]|5[0-35-9]|7[06-8]|8[89])\d{8}$/
+			if(MobileExp.test(mannumber.value)){
+				return true;
+			}else{
+				alert("手机号格式不正确~");
+				return false;
+			}
+	}
 </script>
 </html>

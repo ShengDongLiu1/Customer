@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="UserNameQueryAll" parameterType="List" resultMap="UserResult">
-		select userid,status from User where status!='系统管理员'
+		select userid,uname from User where status!='系统管理员'
 	</select>
 	
 	<insert id="UserAdd" parameterType="User">

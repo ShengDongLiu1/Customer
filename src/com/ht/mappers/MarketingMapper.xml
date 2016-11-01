@@ -170,6 +170,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="findById" parameterType="Integer" resultMap="MarketingResult">
-		select * from marketing where id=#{id}
+		select * from marketing,Customer,User where id=#{id} and Marketing.customerName=Customer.kid
+			and Marketing.assignMan=User.userid
 	</select>
 </mapper> 

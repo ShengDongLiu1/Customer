@@ -102,9 +102,9 @@
 									开发失败
 								</c:if></td>
 							<td><c:if test='${list.devResult == 2 || list.devResult == 3 }'>
-									<a href="javascript:" onclick="">查看详情</a>
+									<a href="querymarketing.do?id=${list.id }&page=1&ss=1">查看详情</a>
 								</c:if> <c:if test="${list.devResult==0 || list.devResult==1 }">
-									<a href="querymarketing.do?id=${list.id }&page=1">开发</a>
+									<a href="querymarketing.do?id=${list.id }&page=1&ss=2">开发</a>
 								</c:if></td>
 						</tr>
 					</c:forEach>

@@ -125,7 +125,7 @@
 						<div class="controls">
 							<select name="testman" style="height: 40px; width: 300px;">
 	                            <c:forEach var="list" items="${userName}">
-	                           	 <option value="${list.status}">${list.status}</option>
+	                           	 <option value="${list.uname}">${list.uname}</option>
 	                            </c:forEach>
 	                    	</select>
 						</div>
@@ -152,7 +152,7 @@
 						<div class="controls">
 							<select name="designated" style="height: 40px; width: 300px;">
 	                            <c:forEach var="list" items="${userName}">
-	                           	 <option value="${list.status}">${list.status}</option>
+	                           	 <option value="${list.uname}">${list.uname}</option>
 	                            </c:forEach>
 	                    	</select>
 						</div>

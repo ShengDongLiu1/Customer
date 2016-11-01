@@ -54,8 +54,6 @@ public class DevelopmentController {
 			Integer page = Integer.valueOf(request.getParameter("page"));
 			Marketing marketing = marketingService.findById(id);
 			request.setAttribute("marketing", marketing);
-			List<User> userName = marketingService.selectUserName();
-			List<Customer> CustomerName = marketingService.selectCustomerName();
 			Pager<Development> pager = new Pager<>();
 			pager.setPageSize(10);
 			int count = developmentService.getTotal();
@@ -74,8 +72,6 @@ public class DevelopmentController {
 			map.put("size", pager.getPageSize());
 			List<Development> lists = developmentService.find(map);
 			request.setAttribute("saleChanceId", id);
-			request.setAttribute("userName", userName);
-			request.setAttribute("CustomerName", CustomerName);
 			if(lists.size()<1){
 				request.setAttribute("wushuju", "暂无计划");
 			}else{
@@ -83,7 +79,15 @@ public class DevelopmentController {
 				request.setAttribute("lists", pager);
 			}
 		}
-		return "develop";
+		String ss1 = request.getParameter("ss");
+		Integer	ss2 = Integer.valueOf(ss1);
+		if(ss2==2){
+			return "develop";
+		}else{
+			return "develop2";
+		}
+		
+		
 	}
 	
 	
@@ -96,7 +100,7 @@ public class DevelopmentController {
 			marketing.setId(id);
 			marketing.setDevResult(1);
 			marketingService.update(marketing);
-			resp.sendRedirect("querymarketing.do?page=1&id="+id);
+			resp.sendRedirect("querymarketing.do?page=1&id="+id+"&ss=2");
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -138,7 +142,7 @@ public class DevelopmentController {
 	public String update(Development development,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			developmentService.update(development);
-			response.sendRedirect("querymarketing.do?page=1&id="+development.getSaleChanceId());
+			response.sendRedirect("querymarketing.do?page=1&id="+development.getSaleChanceId()+"&ss=2");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -176,7 +180,7 @@ public class DevelopmentController {
 		 for(int i=0;i<idsStr.length;i++){
 			 developmentService.delete(Integer.parseInt(idsStr[i]));
 		 }
-		 response.sendRedirect("querymarketing.do?page="+page+"&id="+id);
+		 response.sendRedirect("querymarketing.do?page="+page+"&id="+id+"&ss=2");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
