@@ -43,14 +43,6 @@
 			}
 		}
 		
-		NumberExp = /^((([0-9]{4}|[0-9]{3})-)|(([0-9]{4}|[0-9]{3})))*([0-9]{7}|[0-9]{8})$|^[0-9]{11}$/
-		if (NumberExp.test(mannumber)){
-		    return true;
-		}else{
-		    alert("电话号码格式不对");
-		    return false;
-		}
-		
 		var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
 		if(MobileExp.test(manmobile)){
 			return true;
