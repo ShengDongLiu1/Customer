@@ -13,6 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="ptype" column="ptype"/>
 	</resultMap>
 	
+	<resultMap type="CustomerFw" id="ProductFwResult">
+		<result property="serveType" column="serveType"/>
+		<result property="num" column="num"/>
+	</resultMap>
+	
 	<select id="pselect" parameterType="int" resultMap="ProductResult">
 		select *
 		from product where pid = #{pid}
@@ -78,4 +83,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from product where
 		pid=#{pid}
 	</delete>	
+	
+	<select id="findCustomerFw" resultMap="ProductFwResult">
+		SELECT ptype AS serveType, COUNT(ptype) AS num FROM product GROUP BY ptype;
+	</select>
 </mapper> 

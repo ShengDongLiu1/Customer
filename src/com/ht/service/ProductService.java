@@ -3,6 +3,7 @@ package com.ht.service;
 import java.util.List;
 import java.util.Map;
 
+import com.ht.bean.CustomerFw;
 import com.ht.bean.Product;
 
 public interface ProductService {
@@ -15,4 +16,5 @@ public interface ProductService {
 	public List<Product> queryAll(Map<String,Object> map);
 	public int queryCount();
 	public List<Product> selectState(String state);
+	public List<CustomerFw> findCustomerFw();
 }

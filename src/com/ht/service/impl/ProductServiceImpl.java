@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.ht.bean.CustomerFw;
 import com.ht.bean.Product;
 import com.ht.dao.ProductDao;
 import com.ht.service.ProductService;
@@ -63,4 +64,8 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.selectState(state);
 	}
 	
+	@Override
+	public List<CustomerFw> findCustomerFw() {
+		return productDao.findCustomerFw();
+	}
 }

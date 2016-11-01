@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ht.bean.Customer;
+import com.ht.bean.CustomerFw;
 import com.ht.bean.Product;
 
 public interface ProductDao {
@@ -16,4 +17,5 @@ public interface ProductDao {
 	public List<Product> queryAll(Map<String,Object> map);
 	public int queryCount();
 	public List<Product> selectState(String state);
+	public List<CustomerFw> findCustomerFw();
 }

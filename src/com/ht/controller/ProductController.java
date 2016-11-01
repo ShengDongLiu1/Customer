@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Customer;
+import com.ht.bean.CustomerFw;
 import com.ht.bean.Product;
 import com.ht.common.Pager;
+import com.ht.common.ResponseUtil;
 import com.ht.common.StringUtil;
 import com.ht.service.ProductService;
+
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/product")
@@ -170,6 +174,21 @@ public class ProductController {
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
 			return "result";
 		}
+		return null;
+	}
+	
+	@RequestMapping("/khfwfx")
+	public String khfwfx(HttpServletResponse response,HttpServletRequest request){
+		return "khfwfx";
+	}
+	@RequestMapping("/findCustomerFw")
+	public String findCustomerFw(HttpServletResponse response)throws Exception{
+		List<CustomerFw> customerFwList=productService.findCustomerFw();
+		for (int i = 0; i < customerFwList.size(); i++) {
+			System.out.println(customerFwList.get(i).getServeType());
+		}
+		JSONArray jsonArray=JSONArray.fromObject(customerFwList);
+		ResponseUtil.write(response, jsonArray);
 		return null;
 	}
 }

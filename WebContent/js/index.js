@@ -531,7 +531,7 @@
 					{
 						"F_ModuleId" : "10",
 						"F_ParentId" : "0",
-						"F_FullName" : "客户分析",
+						"F_FullName" : "统计报表",
 						"F_EnCode" : "BaseManage",
 						"F_Icon" : "fa fa-desktop",
 					},
@@ -541,6 +541,13 @@
 						"F_FullName" : "客户管理分析图",
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/customer/khgcfx.do",
+						},
+						{
+							"F_ModuleId" : "cpglfxt",
+							"F_ParentId" : "10",
+							"F_FullName" : "产品管理分析图",
+							"F_Icon" : "fa fa-book",
+							"F_UrlAddress" : "/Customer/product/khfwfx.do",
 						},
 					 ];
 			var _html = "";
