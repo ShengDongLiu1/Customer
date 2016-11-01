@@ -98,7 +98,7 @@
 									<label class="control-label">机会描述:</label>
 									<div class="description">
 										<textarea rows="4" cols="30" style="width: 500px;"
-											placeholder="机会描述" name="overview"></textarea>
+											placeholder="机会描述" name="description"></textarea>
 									</div>
 								</div>
 							</div>
@@ -117,7 +117,6 @@
 									<label class="control-label">指派给:</label>
 									<div class="controls">
 										<select name="assignMan" style="height: 30px; width: 230px;">
-											<option value=""></option>
 											<c:forEach var="list" items="${userName}">
 												<option value="${list.userid}">${list.uname}</option>
 											</c:forEach>
@@ -137,7 +136,8 @@
 			</div>
 		</form>
 
-		<form action="<%=path %>/marketing/updateqr.do" method="post">
+
+	<form action="<%=path %>/marketing/updateqr.do" method="post">
 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" style="width: 800px;">
 				<div class="modal-dialog" role="document" style="width: 700px;">
@@ -150,7 +150,7 @@
 							<h4 class="modal-title" id="myModalLabel1">修改</h4>
 						</div>
 						<div class="modal-body">
-							<input type="hidden" id="ids" name="id" />
+							<input type="hidden" id="ids" value="${list.id }" name="id" />
 							<div style='float: left;'>
 								<div class="control-group">
 									<label class="control-label">客户公司:</label> <select
@@ -165,14 +165,14 @@
 									<label class="control-label">联系人:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											id="linkMan1" name="linkMan" placeholder="联系人" />
+											id="linkMan1"  name="linkMan" placeholder="联系人" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">成功几率:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											value="${Marketing.cgjl }" name="cgjl" placeholder="成功几率" />
+											id="cgjl1" name="cgjl" placeholder="成功几率" />
 									</div>
 								</div>
 							</div>
@@ -181,7 +181,7 @@
 									<label class="control-label">机会来源:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											value="${Marketing.chanceSource }" name="chanceSource"
+										id="chanceSource1" name="chanceSource"
 											placeholder="机会来源" />
 									</div>
 								</div>
@@ -189,7 +189,7 @@
 									<label class="control-label">联系电话:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											name="linkPhone" placeholder="联系电话" />
+										 id="linkPhone1"	name="linkPhone" placeholder="联系电话" />
 									</div>
 								</div>
 							</div>
@@ -199,14 +199,14 @@
 									<label class="control-label">概要:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 600px;"
-											name="overView" placeholder="概要" />
+										 id="overView1"	name="overView"  value="${list.overView }" placeholder="概要" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">机会描述:</label>
 									<div class="description">
 										<textarea rows="4" cols="30" style="width: 500px;"
-											placeholder="机会描述" name="description">${Marketing.description }</textarea>
+										  id="description1"	placeholder="机会描述" name="description">${list.description }</textarea>
 									</div>
 								</div>
 							</div>
@@ -216,7 +216,6 @@
 									<div class="controls">
 										<select name="assignMan" id="assignMan1"
 											style="height: 30px; width: 230px;">
-											<option value=""></option>
 											<c:forEach var="list" items="${userName}">
 												<option value="${list.userid}">${list.uname}</option>
 											</c:forEach>
@@ -235,7 +234,6 @@
 				</div>
 			</div>
 		</form>
-
 	</div>
 
 	<div class="span12" style="float: left; margin-top: 10px;">
@@ -305,7 +303,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${lists.rows}">
+					<c:forEach var="list" items="${lists.rows}" varStatus="status">
 						<tr class="success">
 							<td><span><input type="checkbox" name="imgVo"
 									onclick="select1();" value="${list.id} " /></span></td>
@@ -326,6 +324,7 @@
 							<td><a
 								href="<%=path %>/marketing/delete.do?id=${list.id}&page=${lists.pageNo}">删除</a></td>
 						</tr>
+			
 					</c:forEach>
 				</tbody>
 			</table>
@@ -387,6 +386,19 @@
              	  alert("一次只能修改一个！");
                }else{
             	   $("#ids").val(str);
+            	   $.post("queryById.do",
+            				{'id':$("#ids").val()},
+            				function(data){
+            					$("#customerName1").val(data.customerName);
+            					$("#linkMan1").val(data.linkMan);
+            					$("#linkPhone1").val(data.linkPhone);
+            					$("#cgjl1").val(data.cgjl);
+            					$("#chanceSource1").val(data.chanceSource);
+            					$("#overView1").val(data.overView);
+            					$("#description1").val(data.description);
+            					$("#assignMan1").val(data.assignMan);
+            					
+            				},"json");
             	   $("#myModalLabel1").text("修改");
            		   $('#myModal2').modal();
                }

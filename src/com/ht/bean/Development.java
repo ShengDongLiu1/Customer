@@ -4,6 +4,7 @@ package com.ht.bean;
 public class Development {
 
 	private Integer id; // 编号
+	private Integer saleChanceId;
 	private Marketing marketing; // 销售机会
 	private String planItem; // 计划项
 	private String planDate; // 计划日期
@@ -47,6 +48,14 @@ public class Development {
 
 	public void setExeAffect(String exeAffect) {
 		this.exeAffect = exeAffect;
+	}
+	
+	public Integer getSaleChanceId() {
+		return saleChanceId;
+	}
+	
+	public void setSaleChanceId(Integer saleChanceId) {
+		this.saleChanceId = saleChanceId;
 	}
 
 }

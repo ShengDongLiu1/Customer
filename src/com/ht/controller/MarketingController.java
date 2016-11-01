@@ -3,6 +3,8 @@ package com.ht.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,13 +24,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alibaba.fastjson.JSON;
 import com.ht.bean.Customer;
 import com.ht.bean.Marketing;
 import com.ht.bean.User;
 import com.ht.common.Pager;
 import com.ht.common.StringUtil;
 import com.ht.service.MarketingService;
-import com.sun.org.apache.xpath.internal.operations.And;
 
 @Controller
 @RequestMapping("marketing")
@@ -37,6 +39,16 @@ public class MarketingController {
 	@Resource
 	private MarketingService marketingService;
 	
+	@RequestMapping("/queryById")
+	public void queyById1(@RequestParam(value="id")Integer id, HttpServletRequest request, HttpServletResponse response) throws IOException{
+		/*Integer id = Integer.valueOf(request.getParameter("id"));*/
+		PrintWriter writer = response.getWriter();
+		response.setContentType("text/json");
+		if(!id.equals("") && id!=null){
+			Marketing marketing = marketingService.findById(id);
+			writer.write(JSON.toJSONString(marketing));
+		}
+	}
 	
 	@RequestMapping("/queryAll")
 	public String list2(@RequestParam(value="page",required=false)int page,Marketing marketing,HttpServletResponse response, HttpServletRequest request)throws Exception{
@@ -76,9 +88,6 @@ public class MarketingController {
 			marketing.setCreateTime(df.format(new Date()));// new Date()为获取当前系统时间
 			if(marketing.getAssignMan()!=null && !marketing.getAssignMan().equals("")){
 				marketing.setState(1);
-			}else{
-				marketing.setAssignMan(null);
-				marketing.setState(0);
 			}
 			marketing.setDevResult(0);
 			marketingService.add(marketing);
@@ -116,9 +125,6 @@ public class MarketingController {
 		try {	
 			if(marketing.getAssignMan()!=null && !marketing.getAssignMan().equals("")){
 				marketing.setState(1);
-			}else{
-				marketing.setAssignMan(null);
-				marketing.setState(0);
 			}
 			marketingService.update(marketing);
 			response.sendRedirect("queryAll.do?page=1");

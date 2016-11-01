@@ -41,4 +41,9 @@ public class DevelopmentServiceimpl implements DevelopmentService{
 	public int delete(Integer id) {
 		return developmentDao.delete(id);
 	}
+
+	@Override
+	public Development findById(Integer id) {
+		return developmentDao.findById(id);
+	}
 }

@@ -9,7 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="planItem" column="planItem"/>
 		<result property="planDate" column="planDate"/>
 		<result property="exeAffect" column="exeAffect"/>
-		<association property="saleChance" column="saleChanceId" select="com.ht.dao.MarketingDao.findById"></association>
+		<result property="saleChanceId" column="saleChanceId"/>
+		<association property="marketing" column="saleChanceId" select="com.ht.dao.MarketingDao.findById"></association>
 	</resultMap>
 	
 	<select id="find" parameterType="Map" resultMap="DevelopmentResult">
@@ -29,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="add" parameterType="Development">
-		insert into development values(null,#{saleChance.id},#{planItem},#{planDate},#{exeAffect})
+		insert into development values(null,#{saleChanceId},#{planItem},#{planDate},#{exeAffect})
 	</insert>
 	
 	<update id="update" parameterType="Development">
@@ -52,4 +53,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from development where id=#{id}
 	</delete>
 	
+	
+	<select id="findById" parameterType="Integer" resultMap="DevelopmentResult">
+		select * from development where id=#{id}
+	</select>
 </mapper> 

@@ -332,8 +332,7 @@
                   if(str.length>3){
                 	  toastr.warning("一次只能修改一个！");
                   }else{
-               	 window.location.href='update.do?kid='+str+'&page=${lists.pageNo}';  
-                  }
+                	  window.location.href='update.do?kid='+str+'&page=${lists.pageNo}&state=${requestScope.state}';                  }
         	}else{
         		toastr.warning("请选中您要修改的那一行");
         	}

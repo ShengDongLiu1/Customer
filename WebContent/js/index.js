@@ -426,7 +426,7 @@
 						"F_ParentId" : "3",
 						"F_FullName" : "客户开发计划管理",
 						"F_Icon" : "fa fa-book",
-						"F_UrlAddress" : "/Customer/",
+						"F_UrlAddress" : "/Customer/development/queryAll.do?page=1",
 					},
 					
 					{

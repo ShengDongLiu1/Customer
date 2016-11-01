@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ht.bean.Development;
+import com.ht.bean.Marketing;
 
 public interface DevelopmentDao {
 	
@@ -43,4 +44,7 @@ public interface DevelopmentDao {
 	 * @return
 	 */
 	public int delete(Integer id);
+	
+	
+	public Development findById(Integer id);
 }
