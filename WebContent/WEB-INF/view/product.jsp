@@ -55,21 +55,31 @@
 						<th>产品存货</th>
 						<th>产品价格</th>
 						<th>产品类型</th>
+						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${lists.rows}">
-						<tr class="success">
-							<td><span><input type="checkbox" name="imgVo" onclick="select1();" value="${list.pid} " /></span></td>
-							<td>${list.pname}</td>
-							<td>${list.pnumber}</td>
-							<td>${list.pstock}</td>
-							<td>${list.pprice}</td>
-							<td>${list.ptype}</td>
-							<td><a href="<%=path %>/product/proupdate.do?pid=${list.pid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/product/pdelete.do?pid=${list.pid}&page=${lists.pageNo}">删除</a></td>
+				<c:choose>  
+					<c:when test="${requestScope.tishi != 'tishi' }">
+						<c:forEach var="list" items="${lists.rows}">
+							<tr class="success">
+								<td><span><input type="checkbox" name="imgVo" onclick="select1();" value="${list.pid} " /></span></td>
+								<td>${list.pname}</td>
+								<td>${list.pnumber}</td>
+								<td>${list.pstock}</td>
+								<td>${list.pprice}</td>
+								<td>${list.ptype}</td>
+								<td><a href="<%=path %>/product/proupdate.do?pid=${list.pid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+									href="<%=path %>/product/pdelete.do?pid=${list.pid}&page=${lists.pageNo}">删除</a></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>当前还没有数据，请添加之后再查询！</td>
 						</tr>
-					</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
 		</div>

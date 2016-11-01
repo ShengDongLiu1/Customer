@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,22 +47,26 @@ public class ProductController {
 		Pager<Product> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = productService.queryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
+		if(count>0){
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+			pager.setTotal(total);
+			if(page >= 1 && page <= pager.getTotal()){
+				pager.setPageNo(page);
+			}else if(page < 1){
+				pager.setPageNo(1);
+			}else{
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("pname", StringUtil.formatLike(product.getPname()));
+			map.put("ptype", StringUtil.formatLike(product.getPtype()));
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Product> userList=productService.queryAll(map);
+			pager.setRows(userList);
 		}else{
-			pager.setPageNo(pager.getTotal());
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("pname", StringUtil.formatLike(product.getPname()));
-		map.put("ptype", StringUtil.formatLike(product.getPtype()));
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		List<Product> userList=productService.queryAll(map);
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		return "product";
 	}
@@ -156,6 +161,7 @@ public class ProductController {
 	public String productAdd(Product product,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			System.out.println("**********product="+product);
+			product.setPnumber(UUID.randomUUID().toString().substring(0,6));
 			productService.padd(product);
 			response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {
