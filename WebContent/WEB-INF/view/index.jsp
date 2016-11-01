@@ -35,7 +35,14 @@
     		$("#myModalLabel").text("百度地图");
    	    	$('#myModal').modal();
     	}
-    	
+    	function logout(){
+    		if(confirm("您确定要退出系统吗？")){
+    			return true;
+    		}else{
+    			return false;
+    		}
+    		
+    	}
     </script>
     	
 </head>
@@ -84,7 +91,7 @@
                                 <li><a href="javascript:void();" onClick="bddt();"><i class="fa fa-paint-brush"></i>百度地图</a></li>
                                
                                 <li><a href="${pageContext.request.contextPath}/selectmima.do?userid=${user.userid}"><i class="glyphicon glyphicon-wrench"></i>修改密码</a></li>
-                                <li><a href="/Customer/"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                                <li><a href="${pageContext.request.contextPath}/contact/quitLogin.do" onClick="return logout();"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -20,11 +21,14 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.ht.bean.Contact;
 import com.ht.bean.Customer;
+import com.ht.bean.Login;
 import com.ht.common.Pager;
 import com.ht.common.StringUtil;
 import com.ht.service.ContactService;
@@ -335,6 +339,18 @@ public class ContactController {
 
 		response.sendRedirect("contactQueryPagers.do?page=" + 1);
 		return null;
+	}
+	/**
+	 * 
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/quitLogin")
+	public String quitLogin(HttpServletRequest req){
+		HttpSession session = req.getSession();
+		System.out.println("清除session："+session.getAttribute("user"));
+		session.removeAttribute("user");
+		return "login";
 	}
 	
 }

@@ -67,11 +67,21 @@
 		    return false;
 		}
 	}
+	
+	 function ContactReturn(){ 
+     	window.location.href='contactQueryPagers.do?page=1';
+     }
 </script>
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12" style="margin-top: 80px;">
+				<div class="span12"  style="margin-left:80px; margin-top: -30px; ">
+					<button class="btn btn-primary" type="button" onclick="ContactReturn();">
+					<span class="glyphicon glyphicon-share-alt"></span>	 
+					返回上一级
+					</button>&nbsp;&nbsp;&nbsp;
+				</div> 
 			<form class="form-horizontal" action="<%=path %>/contact/contactUpdateqr.do" >
 				<div style='float: left;'>
 					<div class="control-group">

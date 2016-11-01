@@ -134,7 +134,7 @@
 		        <div class="modal-body">
 					<div style="float: left;">
 						<div class="form-group" style="margin-bottom: 3px">
-							<label class="control-label">客户公司:</label>&nbsp;&nbsp;&nbsp;&nbsp;<select id="mancom" name="mancom" class="form-control" style="height: 35px; width: 280px;">
+							<label class="control-label">客户公司:</label><select id="mancom" name="mancom" class="form-control" style="height: 35px; width: 280px;">
 	                            <optgroup label="请选择客户公司"></optgroup>
 	                            <c:forEach var="list" items="${listName}">
 	                           		<option value="${list.kid}">${list.comname}</option>
@@ -233,22 +233,6 @@
         	$("#ContactModalLabel").text("新增");
    	    	$('#ContactModal').modal();
     	}
-        
-        function addk(){
-        	var mancom = $("#mancom").val;
-        	var manname = $("#manname").val; 
-        	var mandep = $("#mandep").val;
-        	var manjob = $("#manjob").val;
-        	var mannumber = $("#mannumber").val;
-        	var manmobile = $("#manmobile").val;
-        	var manemail = $("#manemail").val;
-        	var manqq = $("#manqq").val;
-        	var manmsn = $("#manmsn").val;
-        	var manskill = $("#manskill").val;
-        	var logdate = $("#logdate").val;
-        	alert(manname);
-        	window.location.href="contactAddqr.do";
-        }
         
         function delete1(){
         	if($("[name='imgVo']").is(':checked')) {  
