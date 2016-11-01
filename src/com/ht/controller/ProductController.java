@@ -3,14 +3,10 @@ package com.ht.controller;
 
 
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,14 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ht.bean.Customer;
-import com.ht.bean.CustomerFw;
 import com.ht.bean.Product;
 import com.ht.common.Pager;
-import com.ht.common.ResponseUtil;
 import com.ht.common.StringUtil;
 import com.ht.service.ProductService;
-
-import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/product")
@@ -158,15 +150,12 @@ public class ProductController {
 	 */
 	@RequestMapping("/add")
 	public String add(){
-		
-		
 		return "addproduct";
 	}
 	@RequestMapping("/productAdd")
 	public String productAdd(Product product,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			System.out.println("**********product="+product);
-	        product.setPnumber(UUID.randomUUID().toString().substring(0,6));
 			productService.padd(product);
 			response.sendRedirect("queryAll.do?page=1");
 		} catch (Exception e) {
@@ -174,21 +163,6 @@ public class ProductController {
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
 			return "result";
 		}
-		return null;
-	}
-	
-	@RequestMapping("/khfwfx")
-	public String khfwfx(HttpServletResponse response,HttpServletRequest request){
-		return "khfwfx";
-	}
-	@RequestMapping("/findCustomerFw")
-	public String findCustomerFw(HttpServletResponse response)throws Exception{
-		List<CustomerFw> customerFwList=productService.findCustomerFw();
-		for (int i = 0; i < customerFwList.size(); i++) {
-			System.out.println(customerFwList.get(i).getServeType());
-		}
-		JSONArray jsonArray=JSONArray.fromObject(customerFwList);
-		ResponseUtil.write(response, jsonArray);
 		return null;
 	}
 }
