@@ -40,17 +40,15 @@ public class CustomerController {
 
 	@Resource
 	private CustomerService customerService;
-	
+
 	@Resource
 	private UserService userService;
-	
-	
-		
-	//记录
+
+	// 记录
 	@RequestMapping("/skip")
-	public String skip(String kid ,HttpServletRequest request)throws Exception{
+	public String skip(String kid, HttpServletRequest request) throws Exception {
 		try {
-		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
+			Customer customer = customerService.csrselect(Integer.valueOf(kid));
 			request.setAttribute("customer", customer);
 			return "Trace/traceAdd";
 		} catch (Exception e) {
@@ -61,7 +59,8 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/crsselect")
-	public String crsselect(@RequestParam(value="kid",required=false)Integer kid,HttpServletResponse response,HttpServletRequest request)throws Exception{
+	public String crsselect(@RequestParam(value = "kid", required = false) Integer kid, HttpServletResponse response,
+			HttpServletRequest request) throws Exception {
 		System.out.println("adssdsa");
 		System.out.println(1);
 		Customer crs = customerService.csrselect(1);
@@ -71,81 +70,85 @@ public class CustomerController {
 		request.setAttribute("lists", list);
 		return "customer";
 	}
-	
+
 	@RequestMapping("/queryAll")
-	public String list2(@RequestParam(value="page",required=false)int page,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
+	public String list2(@RequestParam(value = "page", required = false) int page, Customer customer,
+			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = customerService.queryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
-		}else{
-			pager.setPageNo(pager.getTotal());
+		if (count > 0) {
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
+					: count / pager.getPageSize() + 1;
+			pager.setTotal(total);
+			if (page >= 1 && page <= pager.getTotal()) {
+				pager.setPageNo(page);
+			} else if (page < 1) {
+				pager.setPageNo(1);
+			} else {
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("comname", StringUtil.formatLike(customer.getComname()));
+			map.put("atype", StringUtil.formatLike(customer.getAtype()));
+			map.put("comaddress", StringUtil.formatLike(customer.getComaddress()));
+			map.put("product", StringUtil.formatLike(customer.getProduct()));
+			map.put("testman", StringUtil.formatLike(customer.getTestman()));
+			map.put("state", StringUtil.formatLike(customer.getState()));
+			map.put("designated", StringUtil.formatLike(customer.getDesignated()));
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Customer> userList = customerService.queryAll(map);
+			pager.setRows(userList);
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("comname", StringUtil.formatLike(customer.getComname()));
-		map.put("atype", StringUtil.formatLike(customer.getAtype()));
-		map.put("comaddress", StringUtil.formatLike(customer.getComaddress()));
-		map.put("product", StringUtil.formatLike(customer.getProduct()));
-		map.put("testman", StringUtil.formatLike(customer.getTestman()));
-		map.put("state", StringUtil.formatLike(customer.getState()));
-		map.put("designated", StringUtil.formatLike(customer.getDesignated()));
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		List<Customer> userList=customerService.queryAll(map);
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		return "customer";
 	}
-	
-	
-	//娼滃湪瀹㈡埛
+
+	// 娼滃湪瀹㈡埛
 	@RequestMapping("/queryState")
-	public String queryState(@RequestParam(value="page",required=false)int page,@RequestParam(value="state",required=false)int state,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
+	public String queryState(@RequestParam(value = "page", required = false) int page,
+			@RequestParam(value = "state", required = false) int state, Customer customer, HttpServletResponse response,
+			HttpServletRequest request) throws Exception {
 		List<Customer> userList = null;
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = customerService.queryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() + 1;
 		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
+		if (page >= 1 && page <= pager.getTotal()) {
 			pager.setPageNo(page);
-		}else if(page < 1){
+		} else if (page < 1) {
 			pager.setPageNo(1);
-		}else{
+		} else {
 			pager.setPageNo(pager.getTotal());
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
-		if(state==1){
-			 customer.setState("潜在客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}else if(state==2){
-			 customer.setState("正式客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}
-		else if(state==3){
-			 customer.setState("放弃客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}else if(state==4){
-			 customer.setState("签约客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}else{
-			 userList = customerService.queryAll(map);
-			 request.setAttribute("state", state);
+		if (state == 1) {
+			customer.setState("潜在客户");
+			map.put("state", customer.getState());
+			userList = customerService.selectState(map);
+			request.setAttribute("state", state);
+		} else if (state == 2) {
+			customer.setState("正式客户");
+			map.put("state", customer.getState());
+			userList = customerService.selectState(map);
+			request.setAttribute("state", state);
+		} else if (state == 3) {
+			customer.setState("放弃客户");
+			map.put("state", customer.getState());
+			userList = customerService.selectState(map);
+			request.setAttribute("state", state);
+		} else if (state == 4) {
+			customer.setState("签约客户");
+			map.put("state", customer.getState());
+			userList = customerService.selectState(map);
+			request.setAttribute("state", state);
+		} else {
+			userList = customerService.queryAll(map);
+			request.setAttribute("state", state);
 		}
 		pager.setRows(userList);
 		request.setAttribute("lists", pager);
@@ -153,11 +156,12 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/update")
-	public String update(@RequestParam(value="kid",required=false)String kid ,@RequestParam(value="state",required=false)int state ,
-			@RequestParam(value="page",required=false)int page,HttpServletRequest request)throws Exception{
+	public String update(@RequestParam(value = "kid", required = false) String kid,
+			@RequestParam(value = "state", required = false) int state,
+			@RequestParam(value = "page", required = false) int page, HttpServletRequest request) throws Exception {
 		try {
 			kid = kid.replace(" ", "");
-		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
+			Customer customer = customerService.csrselect(Integer.valueOf(kid));
 			request.setAttribute("customer", customer);
 			request.setAttribute("page", page);
 			request.setAttribute("state", state);
@@ -170,14 +174,14 @@ public class CustomerController {
 			return "result";
 		}
 	}
-	
+
 	@RequestMapping("/updateqr")
-	public String update(Customer customer,HttpServletResponse response,HttpServletRequest request){
-		try {	
+	public String update(Customer customer, HttpServletResponse response, HttpServletRequest request) {
+		try {
 			Integer state1 = Integer.valueOf(request.getParameter("state1"));
 			customerService.csrcupdate(customer);
 			int page = Integer.valueOf(request.getParameter("page"));
-			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
+			response.sendRedirect("queryState.do?page=" + page + "&state=" + state1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -185,22 +189,23 @@ public class CustomerController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/updatestate")
-	public String updatestate(@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
-		try {	
+	public String updatestate(@RequestParam(value = "kid", required = false) String kid, HttpServletResponse response,
+			HttpServletRequest request) {
+		try {
 			Customer customer = new Customer();
 			String state = request.getParameter("state");
 			kid = kid.replace(" ", "");
-			String []idsStr=kid.split(",");
-			 for(int i=0;i<idsStr.length;i++){
-				 customer.setKid(Integer.valueOf(idsStr[i]));
-				 customer.setState(state);
-				 customerService.csrcupdate(customer);
-			 }
+			String[] idsStr = kid.split(",");
+			for (int i = 0; i < idsStr.length; i++) {
+				customer.setKid(Integer.valueOf(idsStr[i]));
+				customer.setState(state);
+				customerService.csrcupdate(customer);
+			}
 			Integer state1 = Integer.valueOf(request.getParameter("state1"));
 			int page = Integer.valueOf(request.getParameter("page"));
-			response.sendRedirect("queryState.do?page="+page+"&state="+state1);
+			response.sendRedirect("queryState.do?page=" + page + "&state=" + state1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -208,17 +213,19 @@ public class CustomerController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/delete")
-	public String delete(@RequestParam(value="page",required=false)int page,@RequestParam(value="kid",required=false)String kid,HttpServletResponse response,HttpServletRequest request){
-		try {	
-			kid = kid.replace(" ", "");//鏇挎崲
-			String []idsStr=kid.split(",");//鎷嗗垎
-		 for(int i=0;i<idsStr.length;i++){
-			 customerService.csrdelete(Integer.parseInt(idsStr[i]));
-		 }
-		 Integer state1 = Integer.valueOf(request.getParameter("state1"));
-		 response.sendRedirect("queryState.do?page="+page+"&state="+state1);
+	public String delete(@RequestParam(value = "page", required = false) int page,
+			@RequestParam(value = "kid", required = false) String kid, HttpServletResponse response,
+			HttpServletRequest request) {
+		try {
+			kid = kid.replace(" ", "");// 鏇挎崲
+			String[] idsStr = kid.split(",");// 鎷嗗垎
+			for (int i = 0; i < idsStr.length; i++) {
+				customerService.csrdelete(Integer.parseInt(idsStr[i]));
+			}
+			Integer state1 = Integer.valueOf(request.getParameter("state1"));
+			response.sendRedirect("queryState.do?page=" + page + "&state=" + state1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -226,19 +233,18 @@ public class CustomerController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/add")
-	public String add(HttpServletRequest req){
+	public String add(HttpServletRequest req) {
 		List<User> userName = userService.UserNameQueryAll();
 		req.setAttribute("userName", userName);
 		return "addcustomer";
 	}
-	
 
 	@RequestMapping("/addqr")
-	public String addqr(Customer customer,HttpServletResponse response,HttpServletRequest request){
-		try {	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss ");  
+	public String addqr(Customer customer, HttpServletResponse response, HttpServletRequest request) {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss ");
 			customer.setNewdate(sdf.format(new Date()));
 			customerService.cadd(customer);
 			response.sendRedirect("queryState.do?page=1&state=5");
@@ -249,7 +255,6 @@ public class CustomerController {
 		}
 		return null;
 	}
-	
 
 	@RequestMapping("/daochu")
 	public String daochu(Customer customer, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -363,19 +368,18 @@ public class CustomerController {
 		response.sendRedirect("queryState.do?page=" + 1 + "&state=" + state);
 		return null;
 	}
-	
-	
+
 	@RequestMapping("/findCustomerGc")
-	public String findCustomerGc(HttpServletResponse response)throws Exception{
-		List<CustomerGc> customerGcList=customerService.findCustomerGc();
-		JSONArray jsonArray=JSONArray.fromObject(customerGcList);
+	public String findCustomerGc(HttpServletResponse response) throws Exception {
+		List<CustomerGc> customerGcList = customerService.findCustomerGc();
+		JSONArray jsonArray = JSONArray.fromObject(customerGcList);
 		ResponseUtil.write(response, jsonArray);
 		return null;
 	}
-	
+
 	@RequestMapping("/khgcfx")
-	public String khgcfx(HttpServletResponse response,HttpServletRequest request){
+	public String khgcfx(HttpServletResponse response, HttpServletRequest request) {
 		return "khgcfx";
 	}
-	
+
 }

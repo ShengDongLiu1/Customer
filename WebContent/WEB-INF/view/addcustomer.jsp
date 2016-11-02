@@ -32,17 +32,17 @@
 		for (var i = 0; i < a.length; i++) {
 			
 			if (a[i].value == "") {
-				alert("您有空白未填写！");
+				toastr.warning("您有空白未填写！");
 				return false;
 				break;
 			}
 			if(a[i].value.length<3){
-				alert("至少输输两个字符！");
+				toastr.warning("至少输输两个字符！");
 				return false;
 				break;
 			}
 			if(!isNaN(a[i].value)){
-				alert("您有地方填写的不能是数字类型，请重新填写！");
+				toastr.warning("您有地方填写的不能是数字类型，请重新填写！");
 				return false;
 				break;
 			 }  

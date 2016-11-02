@@ -55,29 +55,32 @@ public class MarketingController {
 		Pager<Marketing> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = marketingService.getTotal();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
-		}else{
-			pager.setPageNo(pager.getTotal());
+		if(count>0){
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+			pager.setTotal(total);
+			if(page >= 1 && page <= pager.getTotal()){
+				pager.setPageNo(page);
+			}else if(page < 1){
+				pager.setPageNo(1);
+			}else{
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("customerName", StringUtil.formatLike(marketing.getCustomerName()));
+			map.put("linkMan", StringUtil.formatLike(marketing.getLinkMan()));
+			map.put("createMan", StringUtil.formatLike(marketing.getCreateMan()));
+			map.put("assignMan", marketing.getAssignMan());
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Marketing> userList=marketingService.find(map);
+			pager.setRows(userList);
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("customerName", StringUtil.formatLike(marketing.getCustomerName()));
-		map.put("linkMan", StringUtil.formatLike(marketing.getLinkMan()));
-		map.put("createMan", StringUtil.formatLike(marketing.getCreateMan()));
-		map.put("assignMan", marketing.getAssignMan());
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		List<Marketing> userList=marketingService.find(map);
 		List<User> userName = marketingService.selectUserName();
 		List<Customer> CustomerName = marketingService.selectCustomerName();
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		request.setAttribute("userName", userName);
 		request.setAttribute("CustomerName", CustomerName);
+		
 		return "marketing";
 	}
 	

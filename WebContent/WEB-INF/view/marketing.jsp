@@ -383,7 +383,7 @@
                 str+=$(this).val();
                }) 
                if(str.length>3){
-             	  alert("一次只能修改一个！");
+            	   toastr.warning("一次只能修改一个！");
                }else{
             	   $("#ids").val(str);
             	   $.post("queryById.do",
@@ -403,7 +403,7 @@
            		   $('#myModal2').modal();
                }
      	}else{
-     		alert("请选中您要修改的那一行");
+     		toastr.warning("请选中您要修改的那一行");
      	}
      }
 	
@@ -414,9 +414,16 @@
              $("[name='imgVo']:checked").each(function(){
               str+=$(this).val()+",";
              }) 
+           Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
+  	       if (!e) {
+  	         return;
+  	       }else{
 	             window.location.href='delete.do?id='+str+'&page=${lists.pageNo}';
+	             toastr.success('删除数据成功');
+  	       }
+  	     }); 
     	}else{
-    		alert("至少选中一行！");
+    		toastr.warning('至少选中一行！');
     	}
     }
 	
@@ -424,7 +431,7 @@
 	 
     function daochu(){ 
     	window.location.href='daochu.do?page=${lists.pageNo}';
-    	alert('导出成功');
+    	toastr.success('导出成功');
     }
     
     
@@ -438,12 +445,12 @@
 
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {
-				alert("您有空白未填写！");
+				toastr.warning("您有空白未填写！");
 				return false;
 				break;
 			}
 			if(a[i].value.length<1){
-				alert("至少输输两个字符！");
+				toastr.warning("至少输输两个字符！");
 				return false;
 				break;
 			}
@@ -453,7 +460,7 @@
 			if(MobileExp.test(mannumber.value)){
 				return true;
 			}else{
-				alert("手机号格式不正确~");
+				toastr.warning("手机号格式不正确~");
 				return false;
 			}
 	}
