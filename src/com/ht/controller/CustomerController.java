@@ -100,6 +100,8 @@ public class CustomerController {
 			map.put("size", pager.getPageSize());
 			List<Customer> userList = customerService.queryAll(map);
 			pager.setRows(userList);
+		} else {
+			request.setAttribute("tishi", "tishi");
 		}
 		request.setAttribute("lists", pager);
 		return "customer";
@@ -114,43 +116,48 @@ public class CustomerController {
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = customerService.queryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() + 1;
-		pager.setTotal(total);
-		if (page >= 1 && page <= pager.getTotal()) {
-			pager.setPageNo(page);
-		} else if (page < 1) {
-			pager.setPageNo(1);
+		if (count > 0) {
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
+					: count / pager.getPageSize() + 1;
+			pager.setTotal(total);
+			if (page >= 1 && page <= pager.getTotal()) {
+				pager.setPageNo(page);
+			} else if (page < 1) {
+				pager.setPageNo(1);
+			} else {
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			if (state == 1) {
+				customer.setState("潜在客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else if (state == 2) {
+				customer.setState("正式客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else if (state == 3) {
+				customer.setState("放弃客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else if (state == 4) {
+				customer.setState("签约客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else {
+				userList = customerService.queryAll(map);
+				request.setAttribute("state", state);
+			}
+			pager.setRows(userList);
 		} else {
-			pager.setPageNo(pager.getTotal());
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		if (state == 1) {
-			customer.setState("潜在客户");
-			map.put("state", customer.getState());
-			userList = customerService.selectState(map);
-			request.setAttribute("state", state);
-		} else if (state == 2) {
-			customer.setState("正式客户");
-			map.put("state", customer.getState());
-			userList = customerService.selectState(map);
-			request.setAttribute("state", state);
-		} else if (state == 3) {
-			customer.setState("放弃客户");
-			map.put("state", customer.getState());
-			userList = customerService.selectState(map);
-			request.setAttribute("state", state);
-		} else if (state == 4) {
-			customer.setState("签约客户");
-			map.put("state", customer.getState());
-			userList = customerService.selectState(map);
-			request.setAttribute("state", state);
-		} else {
-			userList = customerService.queryAll(map);
-			request.setAttribute("state", state);
-		}
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		return "customer";
 	}

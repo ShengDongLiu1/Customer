@@ -31,7 +31,7 @@
 </head>
 <body>
 	<div>
-		<form action="<%=path %>/marketing/addqr.do" method="post" id="form1">
+		<form action="<%=path%>/marketing/addqr.do" method="post" id="form1">
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" style="width: 800px;">
 				<div class="modal-dialog" role="document" style="width: 700px;">
@@ -65,7 +65,7 @@
 									<label class="control-label">成功几率:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-										  id="cgjl2" name="cgjl" placeholder="成功几率" />
+											id="cgjl2" name="cgjl" placeholder="成功几率" />
 									</div>
 								</div>
 							</div>
@@ -81,7 +81,7 @@
 									<label class="control-label">联系电话:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-										 id="linkPhone2"	name="linkPhone" placeholder="联系电话" />
+											id="linkPhone2" name="linkPhone" placeholder="联系电话" />
 									</div>
 								</div>
 							</div>
@@ -130,14 +130,15 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 						</button>
-						<input type="submit" value="保存" onclick="return addqr()" class="btn btn-primary" />
+						<input type="submit" value="保存" onclick="return addqr()"
+							class="btn btn-primary" />
 					</div>
 				</div>
 			</div>
 		</form>
 
 
-	<form action="<%=path %>/marketing/updateqr.do" method="post">
+		<form action="<%=path%>/marketing/updateqr.do" method="post">
 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" style="width: 800px;">
 				<div class="modal-dialog" role="document" style="width: 700px;">
@@ -165,7 +166,7 @@
 									<label class="control-label">联系人:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-											id="linkMan1"  name="linkMan" placeholder="联系人" />
+											id="linkMan1" name="linkMan" placeholder="联系人" />
 									</div>
 								</div>
 								<div class="control-group">
@@ -181,15 +182,14 @@
 									<label class="control-label">机会来源:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-										id="chanceSource1" name="chanceSource"
-											placeholder="机会来源" />
+											id="chanceSource1" name="chanceSource" placeholder="机会来源" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">联系电话:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 230px;"
-										 id="linkPhone1"	name="linkPhone" placeholder="联系电话" />
+											id="linkPhone1" name="linkPhone" placeholder="联系电话" />
 									</div>
 								</div>
 							</div>
@@ -199,14 +199,15 @@
 									<label class="control-label">概要:</label>
 									<div class="controls">
 										<input type="text" style="height: 30px; width: 600px;"
-										 id="overView1"	name="overView"  value="${list.overView }" placeholder="概要" />
+											id="overView1" name="overView" value="${list.overView }"
+											placeholder="概要" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">机会描述:</label>
 									<div class="description">
 										<textarea rows="4" cols="30" style="width: 500px;"
-										  id="description1"	placeholder="机会描述" name="description">${list.description }</textarea>
+											id="description1" placeholder="机会描述" name="description">${list.description }</textarea>
 									</div>
 								</div>
 							</div>
@@ -250,8 +251,8 @@
 					</select> 联系人: <input type="text" style="height: 30px; width: 150px;"
 						name="linkMan" placeholder="联系人" /> 创建人:<input type="text"
 						style="height: 30px; width: 150px;" name="createMan"
-						placeholder="创建人" /> 指定人: <select name="assignMan"
-						id="assignMan" style="height: 30px; width: 150px;">
+						placeholder="创建人" /> 指定人: <select name="assignMan" id="assignMan"
+						style="height: 30px; width: 150px;">
 						<option value="">请选择指派人</option>
 						<c:forEach var="list" items="${userName}">
 							<option value="${list.userid}">${list.uname}</option>
@@ -303,29 +304,37 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${lists.rows}" varStatus="status">
-						<tr class="success">
-							<td><span><input type="checkbox" name="imgVo"
-									onclick="select1();" value="${list.id} " /></span></td>
-							<td>${list.customers.comname}</td>
-							<td>${list.chanceSource}</td>
-							<td>${list.overView}</td>
-							<td>${list.linkMan}</td>
-							<td>${list.linkPhone}</td>
-							<td>${list.description}</td>
-							<td>${list.createMan}</td>
-							<td>${list.createTime}</td>
-							<td>${list.users.uname}</td>
-							<td><c:if test="${list.state == 0 }">
+					<c:choose>
+						<c:when test="${requestScope.tishi != 'tishi' }">
+							<c:forEach var="list" items="${lists.rows}" varStatus="status">
+								<tr class="success">
+									<td><span><input type="checkbox" name="imgVo"
+											onclick="select1();" value="${list.id} " /></span></td>
+									<td>${list.customers.comname}</td>
+									<td>${list.chanceSource}</td>
+									<td>${list.overView}</td>
+									<td>${list.linkMan}</td>
+									<td>${list.linkPhone}</td>
+									<td>${list.description}</td>
+									<td>${list.createMan}</td>
+									<td>${list.createTime}</td>
+									<td>${list.users.uname}</td>
+									<td><c:if test="${list.state == 0 }">
 									未分配
 								</c:if> <c:if test="${list.state == 1 }">
 									已分配
 								</c:if></td>
-							<td><a
-								href="<%=path %>/marketing/delete.do?id=${list.id}&page=${lists.pageNo}">删除</a></td>
-						</tr>
-			
-					</c:forEach>
+									<td><a
+										href="<%=path %>/marketing/delete.do?id=${list.id}&page=${lists.pageNo}">删除</a></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>当前还没有数据，请添加之后再查询！</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>
@@ -345,9 +354,8 @@
 </body>
 
 <script type="text/javascript">
-	$(function(){
+	$(function() {
 	})
-
 
 	$('#identifier').tooltip(options)
 	function selectAll() {
@@ -369,73 +377,72 @@
 		$("#myModalLabel").text("新增");
 		$('#myModal').modal();
 	}
-	
-	function update1(){
+
+	function update1() {
 		$("#ids").val(str);
- 	   $("#myModalLabel1").text("修改");
-	   $('#myModal2').modal();	
+		$("#myModalLabel1").text("修改");
+		$('#myModal2').modal();
 	}
-	
-	 function update(){
-     	if($("[name='imgVo']").is(':checked')) {  
-     		  var str=[];
-               $("[name='imgVo']:checked").each(function(){
-                str+=$(this).val();
-               }) 
-               if(str.length>3){
-            	   toastr.warning("一次只能修改一个！");
-               }else{
-            	   $("#ids").val(str);
-            	   $.post("queryById.do",
-            				{'id':$("#ids").val()},
-            				function(data){
-            					$("#customerName1").val(data.customerName);
-            					$("#linkMan1").val(data.linkMan);
-            					$("#linkPhone1").val(data.linkPhone);
-            					$("#cgjl1").val(data.cgjl);
-            					$("#chanceSource1").val(data.chanceSource);
-            					$("#overView1").val(data.overView);
-            					$("#description1").val(data.description);
-            					$("#assignMan1").val(data.assignMan);
-            					
-            				},"json");
-            	   $("#myModalLabel1").text("修改");
-           		   $('#myModal2').modal();
-               }
-     	}else{
-     		toastr.warning("请选中您要修改的那一行");
-     	}
-     }
-	
-	
-	function delete1(){
-    	if($("[name='imgVo']").is(':checked')) {  
-             var str=[];
-             $("[name='imgVo']:checked").each(function(){
-              str+=$(this).val()+",";
-             }) 
-           Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
-  	       if (!e) {
-  	         return;
-  	       }else{
-	             window.location.href='delete.do?id='+str+'&page=${lists.pageNo}';
-	             toastr.success('删除数据成功');
-  	       }
-  	     }); 
-    	}else{
-    		toastr.warning('至少选中一行！');
-    	}
-    }
-	
-	
-	 
-    function daochu(){ 
-    	window.location.href='daochu.do?page=${lists.pageNo}';
-    	toastr.success('导出成功');
-    }
-    
-    
-    
+
+	function update() {
+		if ($("[name='imgVo']").is(':checked')) {
+			var str = [];
+			$("[name='imgVo']:checked").each(function() {
+				str += $(this).val();
+			})
+			if (str.length > 3) {
+				toastr.warning("一次只能修改一个！");
+			} else {
+				$("#ids").val(str);
+				$.post("queryById.do", {
+					'id' : $("#ids").val()
+				}, function(data) {
+					$("#customerName1").val(data.customerName);
+					$("#linkMan1").val(data.linkMan);
+					$("#linkPhone1").val(data.linkPhone);
+					$("#cgjl1").val(data.cgjl);
+					$("#chanceSource1").val(data.chanceSource);
+					$("#overView1").val(data.overView);
+					$("#description1").val(data.description);
+					$("#assignMan1").val(data.assignMan);
+
+				}, "json");
+				$("#myModalLabel1").text("修改");
+				$('#myModal2').modal();
+			}
+		} else {
+			toastr.warning("请选中您要修改的那一行");
+		}
+	}
+
+	function delete1() {
+		if ($("[name='imgVo']").is(':checked')) {
+			var str = [];
+			$("[name='imgVo']:checked").each(function() {
+				str += $(this).val() + ",";
+			})
+			Ewin.confirm({
+				message : "确认要删除选择的数据吗？"
+			}).on(
+					function(e) {
+						if (!e) {
+							return;
+						} else {
+							window.location.href = 'delete.do?id=' + str
+									+ '&page=${lists.pageNo}';
+							toastr.success('删除数据成功');
+						}
+					});
+		} else {
+			toastr.warning('至少选中一行！');
+		}
+	}
+
+	function daochu() {
+		window.location.href = 'daochu.do?page=${lists.pageNo}';
+		toastr.success('导出成功');
+	}
+
 	function addqr() {
 		var _form = document.getElementById("form1");
 		//获取该表单下的所有input标签
@@ -449,20 +456,20 @@
 				return false;
 				break;
 			}
-			if(a[i].value.length<1){
+			if (a[i].value.length < 1) {
 				toastr.warning("至少输输两个字符！");
 				return false;
 				break;
 			}
 		}
-		
-		var MobileExp=/^1([38]\d|4[57]|5[0-35-9]|7[06-8]|8[89])\d{8}$/
-			if(MobileExp.test(mannumber.value)){
-				return true;
-			}else{
-				toastr.warning("手机号格式不正确~");
-				return false;
-			}
+
+		var MobileExp = /^1([38]\d|4[57]|5[0-35-9]|7[06-8]|8[89])\d{8}$/
+		if (MobileExp.test(mannumber.value)) {
+			return true;
+		} else {
+			toastr.warning("手机号格式不正确~");
+			return false;
+		}
 	}
 </script>
 </html>

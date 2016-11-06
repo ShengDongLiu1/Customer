@@ -43,8 +43,8 @@
 				<div class="modal-body">
 					<div style='float: left;'>
 						<div class="control-group">
-							<label class="control-label">客户公司:</label> 
-							<input type="text" id="customerName2" value="${marketing.customers.comname }"> 
+							<label class="control-label">客户公司:</label> <input type="text"
+								id="customerName2" value="${marketing.customers.comname }">
 						</div>
 						<div class="control-group">
 							<label class="control-label">联系人:</label>
@@ -98,14 +98,14 @@
 					</div>
 					<div style="float: left;">
 						<div class="control-group">
-							<label class="control-label">创建人:</label>
-							<input type="text" id="customerName2" value="${marketing.users.uname }"> 
+							<label class="control-label">创建人:</label> <input type="text"
+								id="customerName2" value="${marketing.users.uname }">
 						</div>
 					</div>
 					<div style="float: left; margin-left: 120px;">
 						<div class="control-group">
-							<label class="control-label">指派人:</label> 	
-							<input type="text" id="customerName2" value="${marketing.users.uname }"> 
+							<label class="control-label">指派人:</label> <input type="text"
+								id="customerName2" value="${marketing.users.uname }">
 						</div>
 					</div>
 				</div>
@@ -177,8 +177,9 @@
 						<h4 class="modal-title" id="myModalLabel2">添加计划</h4>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" id="ids" value="${requestScope.saleChanceId }"
-							name="id" /> <input type="hidden" value="${requestScope.id }" name="idd" />
+						<input type="hidden" id="ids"
+							value="${requestScope.saleChanceId }" name="id" /> <input
+							type="hidden" value="${requestScope.id }" name="idd" />
 						<div class="control-group">
 							<label class="control-label">日期:</label>
 							<div class="controls">
@@ -230,7 +231,7 @@
 			<span class="glyphicon glyphicon-wrench"></span> 开发成功
 		</button>
 		&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-primary" type="button" onclick="kaifat();">
+		<button class="btn btn-primary" type="button" onclick="kaifat();">
 			<span class="glyphicon glyphicon-wrench"></span> 停止开发
 		</button>
 		&nbsp;&nbsp;&nbsp;
@@ -250,18 +251,26 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:if test="${requestScope.wushuju!='暂无数据'}">
-					<c:forEach var="list" items="${lists.rows}" varStatus="status">
-						<tr class="success">
-							<td><span><input type="checkbox" name="imgVo"
-									onclick="select1();" value="${list.id} " /></span></td>
-							<td>${list.marketing.id}</td>
-							<td>${list.planDate}</td>
-							<td>${list.planItem}</td>
-							<td>${list.exeAffect}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
+					<c:choose>
+						<c:when test="${requestScope.tishi != 'tishi' }">
+
+							<c:forEach var="list" items="${lists.rows}" varStatus="status">
+								<tr class="success">
+									<td><span><input type="checkbox" name="imgVo"
+											onclick="select1();" value="${list.id} " /></span></td>
+									<td>${list.marketing.id}</td>
+									<td>${list.planDate}</td>
+									<td>${list.planItem}</td>
+									<td>${list.exeAffect}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>当前还没有计划，请添加之后再查询！</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>
@@ -338,12 +347,14 @@
 				str += $(this).val() + ",";
 			})
 			$.post("queryById.do", {
-					'id' : str,
-				}, function(data) {
-					window.location.href = 'delete.do?id=' + str
-					+ '&page=${lists.pageNo}'+'&idd='+data.saleChanceId;
-				}, "json");
-		
+				'id' : str,
+			},
+					function(data) {
+						window.location.href = 'delete.do?id=' + str
+								+ '&page=${lists.pageNo}' + '&idd='
+								+ data.saleChanceId;
+					}, "json");
+
 		} else {
 			alert("至少选中一行！");
 		}
@@ -353,15 +364,17 @@
 		window.location.href = 'daochu.do?page=${lists.pageNo}';
 		alert('导出成功');
 	}
-	
-	function kaifac(){
+
+	function kaifac() {
 		var id = $("#ids").val()
-		window.location.href = 'kaifac.do?page=${lists.pageNo}&devResult=2&id='+id;
+		window.location.href = 'kaifac.do?page=${lists.pageNo}&devResult=2&id='
+				+ id;
 	}
-	
-	function kaifat(){
+
+	function kaifat() {
 		var id = $("#ids").val()
-		window.location.href = 'kaifac.do?page=${lists.pageNo}&devResult=3&id='+id;
+		window.location.href = 'kaifac.do?page=${lists.pageNo}&devResult=3&id='
+				+ id;
 	}
 </script>
 </html>

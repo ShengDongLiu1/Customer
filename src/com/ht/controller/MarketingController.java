@@ -74,6 +74,8 @@ public class MarketingController {
 			map.put("size", pager.getPageSize());
 			List<Marketing> userList=marketingService.find(map);
 			pager.setRows(userList);
+		}else{
+			request.setAttribute("tishi", "tishi");
 		}
 		List<User> userName = marketingService.selectUserName();
 		List<Customer> CustomerName = marketingService.selectCustomerName();

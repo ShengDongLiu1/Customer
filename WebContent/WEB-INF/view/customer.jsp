@@ -136,27 +136,36 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${lists.rows}">
-						<tr class="success">
-							<td><span><input type="checkbox" name="imgVo"
-									onclick="select1();" value="${list.kid} " /></span></td>
-							<td>${list.comname}</td>
-							<td>${list.atype}</td>
-							<td>${list.combackdrop}</td>
-							<td>${list.comaddress}</td>
-							<td>${list.product}</td>
-							<td>${list.structure}</td>
-							<td>${list.testman}</td>
-							<td>${list.amessage}</td>
-							<td>${list.state}</td>
-							<td>${list.newdate}</td>
-							<td>${list.designated}</td>
-							<td><a
-								href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}"
-								onclick="return delete2();">删除 </a>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${requestScope.tishi != 'tishi' }">
+							<c:forEach var="list" items="${lists.rows}">
+								<tr class="success">
+									<td><span><input type="checkbox" name="imgVo"
+											onclick="select1();" value="${list.kid} " /></span></td>
+									<td>${list.comname}</td>
+									<td>${list.atype}</td>
+									<td>${list.combackdrop}</td>
+									<td>${list.comaddress}</td>
+									<td>${list.product}</td>
+									<td>${list.structure}</td>
+									<td>${list.testman}</td>
+									<td>${list.amessage}</td>
+									<td>${list.state}</td>
+									<td>${list.newdate}</td>
+									<td>${list.designated}</td>
+									<td><a
+										href="<%=path %>/customer/update.do?kid=${list.kid}&page=${lists.pageNo}&state=${requestScope.state}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+										href="<%=path %>/customer/delete.do?kid=${list.kid}&page=${lists.pageNo}&state1=${requestScope.state}"
+										onclick="return delete2();">删除 </a>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>当前还没有数据，请添加之后再查询！</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>

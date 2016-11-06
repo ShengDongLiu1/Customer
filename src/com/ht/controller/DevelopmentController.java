@@ -57,29 +57,29 @@ public class DevelopmentController {
 			Pager<Development> pager = new Pager<>();
 			pager.setPageSize(10);
 			int count = developmentService.getTotal();
-			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
-					: count / pager.getPageSize() + 1;
-			pager.setTotal(total);
-			if (page >= 1 && page <= pager.getTotal()) {
-				pager.setPageNo(page);
-			} else if (page < 1) {
-				pager.setPageNo(1);
-			} else {
-				pager.setPageNo(pager.getTotal());
-			}
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("saleChanceId", id);
-			map.put("start", pager.getBeginIndex());
-			map.put("size", pager.getPageSize());
-			List<Development> lists = developmentService.find(map);
-			request.setAttribute("saleChanceId", id);
-			if (lists.size() < 1) {
-				request.setAttribute("wushuju", "暂无计划");
-			} else {
+			if(count>0){
+				int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
+						: count / pager.getPageSize() + 1;
+				pager.setTotal(total);
+				if (page >= 1 && page <= pager.getTotal()) {
+					pager.setPageNo(page);
+				} else if (page < 1) {
+					pager.setPageNo(1);
+				} else {
+					pager.setPageNo(pager.getTotal());
+				}
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("saleChanceId", id);
+				map.put("start", pager.getBeginIndex());
+				map.put("size", pager.getPageSize());
+				List<Development> lists = developmentService.find(map);
 				pager.setRows(lists);
 				request.setAttribute("lists", pager);
+			}else {
+				request.setAttribute("tishi", "tishi");
 			}
 		}
+		request.setAttribute("saleChanceId", id);
 		String ss1 = request.getParameter("ss");
 		Integer ss2 = Integer.valueOf(ss1);
 		if (ss2 == 2) {
