@@ -87,6 +87,8 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:choose>
+						<c:when test="${requestScope.tishi != 'tishi' }">
 					<c:forEach var="list" items="${beslist.rows}">
 						<tr class="success">
 						<td><span><input type="checkbox" name="imgVo" value="${list.bepid}" /></span></td>
@@ -99,6 +101,13 @@
 								href="<%=path %>/bespoke/delete.do?bepid=${list.bepid}">删除</a></td>
 						</tr>
 					</c:forEach>
+					</c:when>
+						<c:otherwise>
+							<tr>
+								<td>当前还没有数据，请添加之后再查询！</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>
