@@ -92,34 +92,38 @@ public class ContactController {
 		Pager<Contact> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = contactService.contactQueryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
+		if(count > 0){
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+			pager.setTotal(total);
+			if(page >= 1 && page <= pager.getTotal()){
+				pager.setPageNo(page);
+			}else if(page < 1){
+				pager.setPageNo(1);
+			}else{
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String,Object> map=new HashMap<String,Object>();
+			String i = contact.getMancom().toString();
+			if(i != "0"){
+				map.put("mancom", i);
+			}else{
+				map.put("mancom", null);
+			}
+			/*Map<String,Object> map=new HashMap<String,Object>();*/
+			/*map.put("mancom", StringUtil.formatLike(contact.getMancom()+""));*/
+			map.put("manname", StringUtil.formatLike(contact.getManname()));
+			map.put("mandep", StringUtil.formatLike(contact.getMandep()));
+			map.put("manjob", StringUtil.formatLike(contact.getManjob()));
+			map.put("manmobile", StringUtil.formatLike(contact.getManmobile()));
+			map.put("manskill", StringUtil.formatLike(contact.getManskill()));
+			map.put("logdate", StringUtil.formatLike(contact.getLogdate()));
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Contact> userList=contactService.queryAll(map);
+			pager.setRows(userList);
 		}else{
-			pager.setPageNo(pager.getTotal());
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		String i = contact.getMancom().toString();
-		if(i != "0"){
-			map.put("mancom", i);
-		}else{
-			map.put("mancom", null);
-		}
-		/*Map<String,Object> map=new HashMap<String,Object>();*/
-		/*map.put("mancom", StringUtil.formatLike(contact.getMancom()+""));*/
-		map.put("manname", StringUtil.formatLike(contact.getManname()));
-		map.put("mandep", StringUtil.formatLike(contact.getMandep()));
-		map.put("manjob", StringUtil.formatLike(contact.getManjob()));
-		map.put("manmobile", StringUtil.formatLike(contact.getManmobile()));
-		map.put("manskill", StringUtil.formatLike(contact.getManskill()));
-		map.put("logdate", StringUtil.formatLike(contact.getLogdate()));
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		List<Contact> userList=contactService.queryAll(map);
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		List<Customer> listName=contactService.customerSelect();
 		request.setAttribute("listName", listName);
@@ -140,20 +144,24 @@ public class ContactController {
 		Pager<Contact> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = contactService.contactQueryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
+		if(count > 0){
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
+			pager.setTotal(total);
+			if(page >= 1 && page <= pager.getTotal()){
+				pager.setPageNo(page);
+			}else if(page < 1){
+				pager.setPageNo(1);
+			}else{
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Contact> userList=contactService.queryAlls(map);
+			pager.setRows(userList);
 		}else{
-			pager.setPageNo(pager.getTotal());
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		List<Contact> userList=contactService.queryAlls(map);
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		List<Customer> listName=contactService.customerSelect();
 		request.setAttribute("listName", listName);

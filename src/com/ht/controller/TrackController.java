@@ -1,4 +1,5 @@
 package com.ht.controller;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,97 +39,109 @@ import com.ht.service.TrackService;
 public class TrackController {
 	@Resource
 	private TrackService trackService;
-	
+
 	@Resource
 	private CustomerService customerService;
-	
+
 	@Resource
 	private ContactService contactService;
-	
-	//查看客户
+
+	// 查看客户
 	@RequestMapping("/queryState")
-	public String queryState(@RequestParam(value="page",required=false)int page,@RequestParam(value="state",required=false)int state,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
+	public String queryState(@RequestParam(value = "page", required = false) int page,
+			@RequestParam(value = "state", required = false) int state, Customer customer, HttpServletResponse response,
+			HttpServletRequest request) throws Exception {
 		List<Customer> userList = null;
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = customerService.queryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
-		}else{
-			pager.setPageNo(pager.getTotal());
+		if (count > 0) {
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
+					: count / pager.getPageSize() + 1;
+			pager.setTotal(total);
+			if (page >= 1 && page <= pager.getTotal()) {
+				pager.setPageNo(page);
+			} else if (page < 1) {
+				pager.setPageNo(1);
+			} else {
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			if (state == 1) {
+				customer.setState("潜在客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else if (state == 2) {
+				customer.setState("正式客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else if (state == 3) {
+				customer.setState("放弃客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else if (state == 4) {
+				customer.setState("签约客户");
+				map.put("state", customer.getState());
+				userList = customerService.selectState(map);
+				request.setAttribute("state", state);
+			} else {
+				userList = customerService.queryAll(map);
+				request.setAttribute("state", state);
+			}
+			pager.setRows(userList);
+		} else {
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		if(state==1){
-			 customer.setState("潜在客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}else if(state==2){
-			 customer.setState("正式客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}
-		else if(state==3){
-			 customer.setState("放弃客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}else if(state==4){
-			 customer.setState("签约客户");
-			 map.put("state", customer.getState());
-			 userList=customerService.selectState(map);
-			 request.setAttribute("state", state);
-		}else{
-			 userList = customerService.queryAll(map);
-			 request.setAttribute("state", state);
-		}
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		return "Trace/clientSelect";
+
 	}
-	
-	
+
 	@RequestMapping("/queryAll")
-	public String list2(@RequestParam(value="page",required=false)int page,Customer customer,HttpServletResponse response, HttpServletRequest request)throws Exception{
+	public String list2(@RequestParam(value = "page", required = false) int page, Customer customer,
+			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		Pager<Customer> pager = new Pager<>();
 		pager.setPageSize(10);
 		int count = customerService.queryCount();
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
-		}else{
-			pager.setPageNo(pager.getTotal());
+		if (count > 0) {
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
+					: count / pager.getPageSize() + 1;
+			pager.setTotal(total);
+			if (page >= 1 && page <= pager.getTotal()) {
+				pager.setPageNo(page);
+			} else if (page < 1) {
+				pager.setPageNo(1);
+			} else {
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("comname", StringUtil.formatLike(customer.getComname()));
+			map.put("atype", StringUtil.formatLike(customer.getAtype()));
+			map.put("comaddress", StringUtil.formatLike(customer.getComaddress()));
+			map.put("product", StringUtil.formatLike(customer.getProduct()));
+			map.put("testman", StringUtil.formatLike(customer.getTestman()));
+			map.put("state", StringUtil.formatLike(customer.getState()));
+			map.put("designated", StringUtil.formatLike(customer.getDesignated()));
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Customer> userList = customerService.queryAll(map);
+			pager.setRows(userList);
+		} else {
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("comname", StringUtil.formatLike(customer.getComname()));
-		map.put("atype", StringUtil.formatLike(customer.getAtype()));
-		map.put("comaddress", StringUtil.formatLike(customer.getComaddress()));
-		map.put("product", StringUtil.formatLike(customer.getProduct()));
-		map.put("testman", StringUtil.formatLike(customer.getTestman()));
-		map.put("state", StringUtil.formatLike(customer.getState()));
-		map.put("designated", StringUtil.formatLike(customer.getDesignated()));
-		map.put("start", pager.getBeginIndex());
-		map.put("size", pager.getPageSize());
-		List<Customer> userList=customerService.queryAll(map);
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
 		return "Trace/clientSelect";
 	}
-	
+
 	@RequestMapping("/skip")
-	public String skip(String kid ,HttpServletRequest request)throws Exception{
+	public String skip(String kid, HttpServletRequest request) throws Exception {
 		try {
-		    Customer customer = customerService.csrselect(Integer.valueOf(kid));
+			Customer customer = customerService.csrselect(Integer.valueOf(kid));
 			request.setAttribute("customer", customer);
 			return "Trace/traceAdd";
 		} catch (Exception e) {
@@ -137,73 +150,84 @@ public class TrackController {
 			return "result";
 		}
 	}
-	
+
 	@RequestMapping("/add")
-	public String Track_add(Track track,String recordtime,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	public String Track_add(Track track, String recordtime, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
 		track.setRecordtime(df.format(new Date()));
 		trackService.takadd(track);
 		response.sendRedirect("/Customer/track/trackQueryPagers.do?page=1");
 		return null;
 	}
 
-	
 	@RequestMapping("/tackQueryPager")
-	public String contactQueryPager(@RequestParam(value="page",required=false)int page,Track track,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception{
+	public String contactQueryPager(@RequestParam(value = "page", required = false) int page, Track track,
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
 		Pager<Track> pager = new Pager<>();
 		pager.setPageSize(10);
-		int count = trackService.trackQueryCount(); 
-		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
-		pager.setTotal(total);
-		if(page >= 1 && page <= pager.getTotal()){
-			pager.setPageNo(page);
-		}else if(page < 1){
-			pager.setPageNo(1);
-		}else{
-			pager.setPageNo(pager.getTotal());
+		int count = trackService.trackQueryCount();
+		if (count > 0) {
+
+			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize()
+					: count / pager.getPageSize() + 1;
+			pager.setTotal(total);
+			if (page >= 1 && page <= pager.getTotal()) {
+				pager.setPageNo(page);
+			} else if (page < 1) {
+				pager.setPageNo(1);
+			} else {
+				pager.setPageNo(pager.getTotal());
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			/*
+			 * String i = track.getKid().toString(); if(i != "0"){
+			 * map.put("kid", i); }else{ map.put("kid", null); }
+			 */
+			/*
+			 * Map<String,Object> map=new HashMap<String,Object>();
+			 * map.put("kid",StringUtil.formatLike(track.getKid()+""));
+			 */
+			map.put("measure", StringUtil.formatLike(track.getMeasure()));
+			map.put("recordtime", StringUtil.formatLike(track.getRecordtime()));
+			map.put("start", pager.getBeginIndex());
+			map.put("size", pager.getPageSize());
+			List<Track> userList = trackService.queryAllss(map);
+			pager.setRows(userList);
+		} else {
+			request.setAttribute("tishi", "tishi");
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
-		/*String i = track.getKid().toString();
-		if(i != "0"){
-			map.put("kid", i);
-		}else{
-			map.put("kid", null);
-		}*/
-		/*Map<String,Object> map=new HashMap<String,Object>();
-		map.put("kid",StringUtil.formatLike(track.getKid()+""));*/
-		map.put("measure", StringUtil.formatLike(track.getMeasure()));
-		map.put("recordtime",StringUtil.formatLike(track.getRecordtime()));
-		map.put("start", pager.getBeginIndex()); 
-		map.put("size", pager.getPageSize());
-		List<Track> userList=trackService.queryAllss(map);
-		pager.setRows(userList);
 		request.setAttribute("lists", pager);
-		/*List<Customer> listName=contactService.customerSelect();
-		request.setAttribute("listName", listName);*/
+		/*
+		 * List<Customer> listName=contactService.customerSelect();
+		 * request.setAttribute("listName", listName);
+		 */
 		return "Trace/pagingSelect";
 	}
-	
-	
+
 	@RequestMapping("/trackQueryPagers")
-	public String bespokeQueryAll(@RequestParam(value="page",required=false)int page, Track track,HttpServletResponse response, HttpServletRequest request,HttpSession session)throws Exception{
+	public String bespokeQueryAll(@RequestParam(value = "page", required = false) int page, Track track,
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
 		Pager<Track> pager = new Pager<>();
 		pager.setPageSize(10);
 		pager.setPageNo(page);
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", pager.getBeginIndex());
 		map.put("size", pager.getPageSize());
-		List<Track> userList=trackService.queryAlls(map);
+		List<Track> userList = trackService.queryAlls(map);
 		pager.setRows(userList);
 		request.setAttribute("lists", pager);
-		/*List<Customer> listName=contactService.customerSelect();
-		request.setAttribute("listName", listName);*/
+		/*
+		 * List<Customer> listName=contactService.customerSelect();
+		 * request.setAttribute("listName", listName);
+		 */
 		return "Trace/pagingSelect";
 	}
-	
+
 	@RequestMapping("/trackUpdate")
-	public String trackUpdate(Track track,HttpServletRequest request,HttpServletResponse response){
+	public String trackUpdate(Track track, HttpServletRequest request, HttpServletResponse response) {
 		try {
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
 			String recordtime = df.format(new Date());
 			track.setRecordtime(recordtime);
 			trackService.takcupdate(track);
@@ -215,9 +239,9 @@ public class TrackController {
 			return "result";
 		}
 	}
-	
+
 	@RequestMapping("/skiPage")
-	public String skiPage(String tid , HttpServletRequest request)throws Exception{
+	public String skiPage(String tid, HttpServletRequest request) throws Exception {
 		try {
 			Track track = trackService.takselect(Integer.valueOf(tid));
 			System.out.println(track);
@@ -229,20 +253,19 @@ public class TrackController {
 			return "result";
 		}
 	}
-	
+
 	@RequestMapping("/trackDelete")
-	public String trackDelete(String tid,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String trackDelete(String tid, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		tid = tid.replace(" ", "");
-		String []idsStr=tid.split(",");
-		for(int i=0;i<idsStr.length;i++){
+		String[] idsStr = tid.split(",");
+		for (int i = 0; i < idsStr.length; i++) {
 			trackService.takdelete(Integer.valueOf(idsStr[i]));
 		}
 		response.sendRedirect("/Customer/track/trackQueryPagers.do?page=1");
 		return null;
 	}
-	
-	
-	//数据导出
+
+	// 数据导出
 	@RequestMapping("/daochu")
 	public String daochu(Track track, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 声明一个工作薄
@@ -274,7 +297,7 @@ public class TrackController {
 		cell.setCellValue("记录时间");
 		cell.setCellStyle(style);
 		cell = row.createCell((int) 5);
-		
+
 		Pager<Track> pager = new Pager<>();
 		pager.setPageNo(1);
 		pager.setPageSize(100);

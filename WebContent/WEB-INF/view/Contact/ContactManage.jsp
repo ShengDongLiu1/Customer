@@ -89,24 +89,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${lists.rows}">
-						<tr class="success">
-							<td><span><input type="checkbox" name="imgVo" onclick="select1();" value="${list.manid} " /></span></td>
-							<td>${list.customers.comname}</td>
-							<td>${list.manname}</td>
-							<td>${list.mandep}</td>
-							<td>${list.manjob}</td>
-							<td>${list.mannumber}</td>
-							<td>${list.manmobile}</td>
-							<td>${list.manemail}</td>
-							<td>${list.manqq}</td>
-							<td>${list.manmsn}</td>
-							<td>${list.manskill}</td>
-							<td>${list.logdate}</td>
-							<%-- <td><a href="<%=path %>/contact/contactUpdate.do?manid=${list.manid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="<%=path %>/contact/contactDelete.do?manid=${list.manid}&page=${lists.pageNo}">删除</a></td> --%>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${requestScope.tishi != 'tishi' }">
+							<c:forEach var="list" items="${lists.rows}">
+								<tr class="success">
+									<td><span><input type="checkbox" name="imgVo" onclick="select1();" value="${list.manid} " /></span></td>
+									<td>${list.customers.comname}</td>
+									<td>${list.manname}</td>
+									<td>${list.mandep}</td>
+									<td>${list.manjob}</td>
+									<td>${list.mannumber}</td>
+									<td>${list.manmobile}</td>
+									<td>${list.manemail}</td>
+									<td>${list.manqq}</td>
+									<td>${list.manmsn}</td>
+									<td>${list.manskill}</td>
+									<td>${list.logdate}</td>
+									<%-- <td><a href="<%=path %>/contact/contactUpdate.do?manid=${list.manid}&page=${lists.pageNo}">更新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+										href="<%=path %>/contact/contactDelete.do?manid=${list.manid}&page=${lists.pageNo}">删除</a></td> --%>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>当前还没有数据，请添加之后再查询！</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>
