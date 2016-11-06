@@ -93,6 +93,8 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:choose>
+						<c:when test="${requestScope.tishi != 'tishi' }">
 					<c:forEach var="list" items="${userList.rows}">
 						<tr class="success">
 							<td>${list.userid}</td>
@@ -106,6 +108,13 @@
 								href="<%=path %>/user/delete.do?userid=${list.userid}">删除</a></td>
 						</tr>
 					</c:forEach>
+					</c:when>
+						<c:otherwise>
+							<tr>
+								<td>当前还没有数据，请添加之后再查询！</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>

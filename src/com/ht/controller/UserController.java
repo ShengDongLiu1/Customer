@@ -40,6 +40,7 @@ public class UserController {
 		pager.setPageSize(10);
 		pager.setPageNo(page);
 		int count = userService.UserQueryCount();
+		if (count > 0) {
 		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() +1;
 		pager.setTotal(total);
 		if(page >= 1 && page <= pager.getTotal()){
@@ -55,6 +56,9 @@ public class UserController {
 		map.put("size", pager.getPageSize());
 		List<User> userList=userService.UserQueryAll(map);
 		pager.setRows(userList);
+		}else{
+			request.setAttribute("tishi", "tishi");
+		}
 		request.setAttribute("userList", pager);
 		List<Integer> age=new ArrayList<Integer>();
 		for (int i = 18; i < 50; i++) {
