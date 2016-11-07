@@ -236,7 +236,7 @@
 		</div>
 	</div>
 
-	<div class="modal fade" style="width: 600px; left: 300px" id="myModal"
+	<div class="modal fade" style="width: 600px; left: 600px" id="myModal"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-dialog" role="document" style="width: 505px;">

@@ -70,7 +70,7 @@
 			</button>
 			&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-primary" type="button" onclick="selects();">
-			<span class="glyphicon glyphicon-share-alts"></span> 查看全部
+			<span class="glyphicon glyphicon-share-alt"></span> 查看全部
 			</button>
 		</div>
 		<p style="clear:both;"></p>

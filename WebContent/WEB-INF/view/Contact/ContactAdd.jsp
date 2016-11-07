@@ -37,7 +37,14 @@
 				break;
 			}
 		}
-
+		
+		var MobileExp = /^1([38]\d|4[57]|5[0-35-9]|7[06-8]|8[89])\d{8}$/
+			if (MobileExp.test(manmobile.value)) {
+				return true;
+			} else {
+				toastr.warning("手机号格式不正确~");
+				return false;
+			}
 		toastr.success('添加成功');
 	}
 	

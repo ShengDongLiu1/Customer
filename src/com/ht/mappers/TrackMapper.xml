@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="tid" column="tid" />
 		<result property="measure" column="measure" />
 		<result property="recordtime" column="recordtime" />
-		<association property="customer" javaType="Customer">
+		<collection property="customer" ofType="Customer">
 			<id property="kid" column="kid" />
 			<result property="comname" column="comname" />
 			<result property="atype" column="atype" />
@@ -21,13 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result property="state" column="state" />
 			<result property="newdate" column="newdate" />
 			<result property="designated" column="designated" />
-		</association>
-		<association property="login" javaType="com.ht.bean.Login">
+		</collection>
+		<collection property="login" ofType="com.ht.bean.Login">
 			<id property="userid" column="userid"/>
 			<result property="email" column="email"/>
 			<result property="password" column="password"/>
 			<result property="status" column="status"/>
-		</association>
+			<result property="uname" column="uname"/>
+		</collection>
 	</resultMap>
 
 	<select id="takselect" parameterType="int" resultType="Track">

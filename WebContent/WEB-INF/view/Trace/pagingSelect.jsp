@@ -90,7 +90,7 @@
 									<td>${list.customer.comname}</td>
 									<td>${list.customer.testman}</td>
 									<td>${list.measure}</td>
-									<td>${user.email}</td>
+									<td>${list.login.uname}</td>
 									<td>${list.recordtime}</td>
 								</tr>
 							</c:forEach>

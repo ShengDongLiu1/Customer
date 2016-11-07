@@ -33,7 +33,7 @@
 	<div>
 		<form action="<%=path%>/marketing/addqr.do" method="post" id="form1">
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" style="width: 800px;">
+				aria-labelledby="myModalLabel" style="width: 800px; height:580px;">
 				<div class="modal-dialog" role="document" style="width: 700px;">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -140,7 +140,7 @@
 
 		<form action="<%=path%>/marketing/updateqr.do" method="post">
 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" style="width: 800px;">
+				aria-labelledby="myModalLabel" style="width: 800px; height: 580px;" >
 				<div class="modal-dialog" role="document" style="width: 700px;">
 					<div class="modal-content">
 						<div class="modal-header">
