@@ -56,7 +56,9 @@ public class ProductController {
 			pager.setTotal(total);
 			if(page >= 1 && page <= pager.getTotal()){
 				pager.setPageNo(page);
-			}else if(page < 1){
+			} else if (page < 1) {
+				pager.setPageNo(1);
+			} else if(pager.getTotal() == 0){
 				pager.setPageNo(1);
 			}else{
 				pager.setPageNo(pager.getTotal());

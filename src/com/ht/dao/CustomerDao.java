@@ -20,7 +20,7 @@ public interface CustomerDao {
 	
 	public List<Customer> queryAll(Map<String,Object> map);
 	
-	public int queryCount();
+	public int queryCount(String state);
 	
 	public List<Customer> selectState(Map<String,Object> map);
 

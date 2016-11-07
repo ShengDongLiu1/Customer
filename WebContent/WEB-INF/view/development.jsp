@@ -180,11 +180,9 @@
      		  var str2=[];
                $("[name='imgVo']:checked").each(function(){
                 str+=$(this).val();
-                alert($("#comname2").val());
                }) 
-               alert(str2)
                if(str.length>3){
-             	  alert("一次只能修改一个！");
+            	   toastr.warning("一次只能修改一个！");
                }else{
             	   $("#ids").val(str);
             	   $.post("queryById.do",
@@ -204,7 +202,7 @@
            		   $('#myModal2').modal();
                }
      	}else{
-     		alert("请选中您要修改的那一行");
+     		toastr.warning("请选中您要修改的那一行");
      	}
      }
 	

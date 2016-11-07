@@ -76,6 +76,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="queryCount" resultType="int">
 		select count(*) from customer
+		<where>
+			<if test="state!=null and state!='' ">
+				and state = #{state,jdbcType=VARCHAR}
+			</if>
+		</where> 
 	</select>
 
 	<!-- <select id="getTotal" parameterType="Map" resultType="Long"> select 

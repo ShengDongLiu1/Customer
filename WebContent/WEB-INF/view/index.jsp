@@ -28,7 +28,17 @@
     <link rel="stylesheet" href="css/skins/_all-skins.css">
     <script src="js/jquery/jQuery-2.2.0.min.js"></script>
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
+    <script type="text/javascript">
+    if("${user.status}" == '系统管理员'){
+        document.write("<script src='js/index.js'><\/script>");	
+    }else if("${user.status}" == '客户经理'){
+    	document.write("<script src='js/index2.js'><\/script>");	
+    }else if("${user.status}" == '销售'){
+    	document.write("<script src='js/index3.js'><\/script>");	
+    }else{
+    	window.location.href = "<%=path %>"
+    }
+    </script>
     <script type="text/javascript">
     	$('#identifier').tooltip(options)
     	 function bddt(){
@@ -60,24 +70,6 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o "></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                        </li>
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                        </li>
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                        </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
@@ -85,11 +77,7 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
                                 <li><a href="javascript:void();" onClick="bddt();"><i class="fa fa-paint-brush"></i>百度地图</a></li>
-                               
                                 <li><a href="${pageContext.request.contextPath}/selectmima.do?userid=${user.userid}"><i class="glyphicon glyphicon-wrench"></i>修改密码</a></li>
                                 <li><a href="${pageContext.request.contextPath}/contact/quitLogin.do" onClick="return logout();"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
                             </ul>
@@ -124,7 +112,6 @@
                 <nav class="page-tabs menuTabs">
                     <div class="page-tabs-content" style="margin-left: 0px;">
                         <a href="javascript:;" class="menuTab active" data-id="/Home/Default">欢迎首页</a>
-                        <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>
                     </div>
                 </nav>
                 <button class="roll-nav roll-right tabRight">

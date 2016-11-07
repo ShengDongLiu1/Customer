@@ -29,7 +29,7 @@
      	 }
    	function daochu(){ 
     	window.location.href='daochu.do?page=${lists.pageNo}';
-    	alert('导出成功');
+    	toastr.success('导出成功');
     }
    </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

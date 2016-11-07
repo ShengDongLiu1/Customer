@@ -65,7 +65,9 @@ public class DevelopmentController {
 					pager.setPageNo(page);
 				} else if (page < 1) {
 					pager.setPageNo(1);
-				} else {
+				} else if(pager.getTotal() == 0){
+					pager.setPageNo(1);
+				}else{
 					pager.setPageNo(pager.getTotal());
 				}
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -124,7 +126,9 @@ public class DevelopmentController {
 				pager.setPageNo(page);
 			} else if (page < 1) {
 				pager.setPageNo(1);
-			} else {
+			} else if(pager.getTotal() == 0){
+				pager.setPageNo(1);
+			}else{
 				pager.setPageNo(pager.getTotal());
 			}
 			Map<String, Object> map = new HashMap<String, Object>();

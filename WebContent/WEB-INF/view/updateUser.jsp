@@ -97,26 +97,24 @@
 	</div>
 
 </body>
+<link rel="stylesheet" href="<%=path%>/js/toastr/toastr.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=path %>/css/bootstrap.css">
+	href="<%=path%>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=path %>/css/bootstrap.min.css">
+	href="<%=path%>/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=path %>/css/bootstrap-theme.css">
+	href="<%=path%>/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=path %>/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=path %>/css/bootstrap-combined.min.css">
-<script src="<%=path %>/js/bootstrap.js"></script>
-<script src="<%=path %>/js/bootstrap.min.js"></script>
-<script src="<%=path %>/js/jquery-2.0.0.min.js"></script>
-<script src="<%=path %>/js/npm.js"></script>
-<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
-<script src="<%=path %>/js/jquery-ui.js"></script>
-<script src="<%=path %>/js/jquery.htmlClean.js"></script>
-<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<%=path %>/js/scripts.js"></script>
-<script src="<%=path %>/js/zh-cn.js"></script>
+	href="<%=path%>/css/bootstrap-combined.min.css">
+<script src="<%=path%>/js/zh-cn.js"></script>
+<script src="<%=path%>/js/bootstrap.js"></script>
+<script src="<%=path%>/js/jquery-ui.js"></script>
+<script src="<%=path%>/js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="<%=path%>/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<%=path%>/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path%>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<script src="<%=path%>/js/toastr/toastr.min.js"></script>
+<script src="<%=path%>/js/deletejs.js"></script>
 <script type="text/javascript">
 	function updateUser() {
 		
@@ -126,19 +124,19 @@
 				  return true;
 				 }
 				 else {
-				  alert("手机号格式不正确！应该为11位长度的数字！");
+				  toastr.warning("手机号格式不正确！应该为11位长度的数字！");
 				  return false;
 				 }
 		
 		var a = document.getElementsByTagName("input");//就可以调用所有input型数据
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {
-				alert("您有空白未填写！");
+				toastr.warning("您有空白未填写！");
 				return false;
 				break;
 			}
 			if(a[i].value.length<1){
-				alert("至少输输两个字符！");
+				toastr.warning("至少输输两个字符！");
 				return false;
 				break;
 			}

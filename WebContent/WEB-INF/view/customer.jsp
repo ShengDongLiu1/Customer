@@ -335,13 +335,9 @@
 			}); 
 	 } */
 
-	function add() {
-		$("#myModalLabel").text("新增");
-		$('#myModal').modal();
-	}
-	function addk() {
-
-	}
+	 function add(){
+ 		window.location.href="add.do";
+ 	}
 
 	function delete1() {
 		if ($("[name='imgVo']").is(':checked')) {
@@ -472,9 +468,8 @@
 	}
 
 	function daochu() {
-		window.location.href = 'daochu.do?state=${requestScope.state}'
-				+ '&page=${lists.pageNo}';
 		toastr.success('导出成功');
+		response.setHeader("refresh","3;url=daochu.do?state=${requestScope.state}"+ '&page=${lists.pageNo}')
 	}
 
 	function record() {

@@ -7,31 +7,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-combined.min.css"> 
-<script src="<%=path %>/js/zh-cn.js"></script>
-<script src="<%=path %>/js/bootstrap.js"></script>
-<script src="<%=path %>/js/jquery-ui.js"></script>
-<script src="<%=path %>/js/jquery/jQuery-2.2.0.min.js"></script>
-<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<%=path %>/js/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
-<script src="<%=path %>/js/toastr/toastr.min.js"></script>
-<script src="<%=path %>/js/deletejs.js"></script>
- <script>
-   	$('#identifier').tooltip(options)
-   	 	 function add() {
-     		$("#myModalLabel").text("新增");
-   	    	$('#myModal').modal();
-     	 }
-   	function daochu(){ 
-    	window.location.href='daochu.do?page=${lists.pageNo}';
-    	alert('导出成功');
-    }
-   </script>
+
+<link rel="stylesheet" href="<%=path%>/js/toastr/toastr.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/bootstrap-combined.min.css">
+<script src="<%=path%>/js/zh-cn.js"></script>
+<script src="<%=path%>/js/bootstrap.js"></script>
+<script src="<%=path%>/js/jquery-ui.js"></script>
+<script src="<%=path%>/js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="<%=path%>/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<%=path%>/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path%>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<script src="<%=path%>/js/toastr/toastr.min.js"></script>
+<script src="<%=path%>/js/deletejs.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -210,5 +204,16 @@
 	    </div>
 	  </div>
 	 </form>
+ <script>
+   	$('#identifier').tooltip(options)
+   	 	 function add() {
+     		$("#myModalLabel").text("新增");
+   	    	$('#myModal').modal();
+     	 }
+   	function daochu(){ 
+    	window.location.href='daochu.do?page=${lists.pageNo}';
+    	toastr.success('导出成功');
+    }
+   </script>
 </body>
 </html>

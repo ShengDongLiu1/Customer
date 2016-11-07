@@ -19,7 +19,7 @@ public interface CustomerService {
 	
 	public List<Customer> queryAll(Map<String,Object> map);
 	
-	public Integer queryCount();
+	public Integer queryCount(String state);
 	
 	public List<Customer> selectState(Map<String, Object> map);
 	
