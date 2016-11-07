@@ -69,9 +69,10 @@
 					</div>
 				</div>
 				<p style="clear: both;"></p>
-				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
+				<div class="control-group" style="margin-left:200px; margin-top: 40px;"> 
 						<div class="controls">
 							<button type="submit" class="btn" style="height: 40px; width: 150px;">确认</button>
+							<a href="<%=path %>/product/queryAll.do?page=1" style="margin-left: 80px;"><button type="button" class="btn" style="height: 40px; width: 150px;">返回产品管理</button></a>
 						</div>
 				</div>
 			</form>

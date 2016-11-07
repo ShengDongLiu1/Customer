@@ -96,23 +96,23 @@
 	</div>
 </body>
 <link rel="stylesheet" href="<%=path%>/js/toastr/toastr.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=path%>/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=path%>/css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=path%>/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=path%>/css/bootstrap-combined.min.css">
-<script src="<%=path%>/js/zh-cn.js"></script>
-<script src="<%=path%>/js/bootstrap.js"></script>
-<script src="<%=path%>/js/jquery-ui.js"></script>
-<script src="<%=path%>/js/jquery/jQuery-2.2.0.min.js"></script>
-<script src="<%=path%>/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<%=path%>/js/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=path%>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-combined.min.css"> 
+<script src="<%=path %>/js/bootstrap.js"></script>
+<script src="<%=path %>/js/bootstrap.min.js"></script>
+<script src="<%=path %>/js/jquery-2.0.0.min.js"></script>
+<script src="<%=path %>/js/npm.js"></script>
+<script src="<%=path %>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<script src="<%=path %>/js/jquery-ui.js"></script>
+<script src="<%=path %>/js/jquery.htmlClean.js"></script>
+<script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<%=path %>/js/scripts.js"></script>
+<script src="<%=path %>/js/zh-cn.js"></script>
+<script src="<%=path %>/js/page.js"></script>
 <script src="<%=path%>/js/toastr/toastr.min.js"></script>
-<script src="<%=path%>/js/deletejs.js"></script>
    <script>
         function selectAll(){
             $("INPUT[type='checkbox']").each( function() {
@@ -131,7 +131,7 @@
 	             }) 
 	            window.location.href='pdelete.do?pid='+str+'&page=${lists.pageNo}';
         	}else{
-        		toastr.warning("至少选中一行！");
+        		toastr.success("至少选中一行！");
         	}
         }
         function update(){
@@ -141,12 +141,12 @@
                    str+=$(this).val();
                   }) 
                   if(str.length>3){
-                	  toastr.warning("一次只能修改一个！");
+                	  toastr.success("一次只能修改一个！");
                   }else{
                 	  window.location.href='proupdate.do?pid='+str+'&page=${lists.pageNo}';  
                   }
         	}else{
-        		toastr.warning("请选中您要修改的那一行");
+        		toastr.success("请选中您要修改的那一行");
         	}
         }
       
