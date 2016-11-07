@@ -3,6 +3,8 @@ package com.ht.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ht.bean.Bespoke;
+import com.alibaba.fastjson.JSON;
 import com.ht.bean.User;
 import com.ht.common.AES;
 import com.ht.common.Pager;
@@ -33,6 +35,18 @@ import com.ht.service.UserService;
 public class UserController {
 	@Resource
 	private UserService userService;
+	
+	
+
+	@RequestMapping("/queryById")
+	public void queyById1(@RequestParam(value="userid")Integer id, HttpServletRequest request, HttpServletResponse response) throws IOException{
+		PrintWriter writer = response.getWriter();
+		response.setContentType("text/json");
+		if(!id.equals("") && id!=null){
+			User user = userService.UserSelect(id);
+			writer.write(JSON.toJSONString(user));
+		}
+	}
 	
 	@RequestMapping("/UserQueryAll")
 	public String UserQueryAll(@RequestParam(value="page",required=false)int page,User user,HttpServletResponse response, HttpServletRequest request)throws Exception{
