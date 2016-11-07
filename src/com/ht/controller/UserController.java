@@ -149,6 +149,11 @@ public class UserController {
 		try {	
 			user.setPassword(AES.getInstance().encrypt(user.getPassword()));
 			userService.UserAdd(user);
+			List<Integer> age=new ArrayList<Integer>();
+			for (int i = 18; i < 50; i++) {
+				age.add(i);
+			}
+			request.setAttribute("uage", age);
 			return "addUser";
 		} catch (Exception e) {
 			e.printStackTrace();

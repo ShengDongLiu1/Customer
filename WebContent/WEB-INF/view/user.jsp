@@ -207,8 +207,7 @@
  <script>
    	$('#identifier').tooltip(options)
    	 	 function add() {
-     		$("#myModalLabel").text("新增");
-   	    	$('#myModal').modal();
+   			window.location.href="addUser.do";
      	 }
    	function daochu(){ 
     	window.location.href='daochu.do?page=${lists.pageNo}';

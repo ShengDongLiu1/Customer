@@ -139,6 +139,8 @@ public class BespokeController {
 	public String add1(Bespoke bespoke,HttpServletResponse response,HttpServletRequest request){
 		try {	
 			bespokeService.BespokeAdd(bespoke);
+			List<Customer> listName=bespokeService.CustomerSelectName();
+			request.setAttribute("listName", listName);
 			return "addBespoke";
 		} catch (Exception e) {
 			e.printStackTrace();
