@@ -251,7 +251,7 @@
 	             }) 
 	            window.location.href='contactDelete.do?manid='+str+'&page=${lists.pageNo}';
         	}else{
-        		alert("至少选中一行！");
+        		toastr.warning("至少选中一行！");
         	}
         }
         
@@ -262,18 +262,18 @@
                    str+=$(this).val();
                   }) 
                   if(str.length>3){
-                	  alert("一次只能修改一个！");
+                	  toastr.warning("一次只能修改一个！");
                   }else{
                 	  window.location.href='contactUpdate.do?manid='+str+'&page=${lists.pageNo}';  
                   }
         	}else{
-        		alert("请选中您要修改的那一行");
+        		toastr.warning("请选中您要修改的那一行");
         	}
         }
         
         function daochu(){ 
         	window.location.href='daochu.do?&page=${lists.pageNo}';
-        	alert('导出成功');
+        	toastr.success('导出成功');
         }
       
     </script>

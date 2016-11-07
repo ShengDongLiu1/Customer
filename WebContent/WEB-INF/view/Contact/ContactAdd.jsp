@@ -32,33 +32,18 @@
 		var manemail = document.getElementById("mail");
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {
-				alert("您有空白未填写！");
-				return false;
-				break;
-			}
-			if(a[i].value.length<1){
-				alert("至少输输两个字符！");
+				toastr.warning("您有空白未填写！");
 				return false;
 				break;
 			}
 		}
-		
-		var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
-		if(MobileExp.test(manmobile)){
-			return true;
-		}else{
-			alert("手机号格式不正确~");
-			return false;
-		}
-		
-		EmailExp = /[a-z0-9]*@[a-z0-9]*\.[a-z0-9]+/gi
-		if (EmailExp.test(manemail)){
-		    return true;
-		}else{
-		    alert("电子信箱格式不对！");
-		    return false;
-		}
+
+		toastr.success('添加成功');
 	}
+	
+	function back(){ 
+    	window.location.href='contactQueryPagers.do?&page=${lists.pageNo}';
+    }
 </script>
 
 </head>
@@ -66,6 +51,11 @@
 	<div class="row-fluid">
 		<div class="span12" style="margin-top: 80px;">
 			<form id="ContactAdd_form" class="form-horizontal" action="<%=path %>/contact/contactAddqr.do" action="post">
+			<div class="span12"  style="float: left; margin-top: -50px; "> 
+				<div class="controls">
+					<a href="<%=path %>/contact/contactQueryPagers.do?&page=1"><button class="btn btn-primary" type="button" ><span class="glyphicon glyphicon-share-alt"></span>返回上一页</button></a>
+				</div>
+			</div>
 				<div style='float: left;'>
 					<div class="control-group">
 						<label class="control-label">客户公司:</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -163,6 +153,7 @@
 	</div>
 
 </body>
+<link rel="stylesheet" href="<%=path%>/js/toastr/toastr.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -183,5 +174,6 @@
 <script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
+<script src="<%=path%>/js/toastr/toastr.min.js"></script>
 
 </html>

@@ -32,40 +32,28 @@
 		var manemail = document.getElementById("mail");
 		for (var i = 0; i < a.length; i++) {
 			if (a[i].value == "") {
-				alert("您有空白未填写！");
+				toastr.warning("您有空白未填写！");
 				return false;
 				break;
 			}
-			if(a[i].value.length<1){
-				alert("至少输输两个字符！");
+			
+			/* var MobileExp=/^[0-9]{11}$/
+			if(MobileExp.test(manmobile)){
+				return true;
+			}else{
+				toastr.warning("手机号格式不正确~");
 				return false;
-				break;
 			}
+			
+			EmailExp = /[a-z0-9]*@[a-z0-9]*\.[a-z0-9]+/gi
+			if (EmailExp.test(manemail)){
+			    return true;
+			}else{
+				toastr.warning("电子信箱格式不对！");
+			    return false;
+			} */
 		}
-		
-		NumberExp = /^((([0-9]{4}|[0-9]{3})-)|(([0-9]{4}|[0-9]{3})))*([0-9]{7}|[0-9]{8})$|^[0-9]{11}$/
-		if (NumberExp.test(mannumber)){
-		    return true;
-		}else{
-		    alert("电话号码格式不对");
-		    return false;
-		}
-		
-		var MobileExp=/^0?1[3|4|5|8][0-9]\d{8}$/
-		if(MobileExp.test(manmobile)){
-			return true;
-		}else{
-			alert("手机号格式不正确~");
-			return false;
-		}
-		
-		EmailExp = /[a-z0-9]*@[a-z0-9]*\.[a-z0-9]+/gi
-		if (EmailExp.test(manemail)){
-		    return true;
-		}else{
-		    alert("电子信箱格式不对！");
-		    return false;
-		}
+		toastr.success('修改成功');
 	}
 	
 	 function ContactReturn(){ 
@@ -182,16 +170,16 @@
 				</div>
 				<p style="clear: both;"></p>
 				<div class="control-group" style="margin-left: 300px; margin-top: 40px;"> 
-						<div class="controls">
-							<input type="hidden" id="page" name="page" value="${page }">
-							<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="contactupdate();">确认</button>
-						</div>
+					<div class="controls">
+						<input type="hidden" id="page" name="page" value="${page }">
+						<button type="submit" class="btn" style="height: 40px; width: 150px;" onclick="return contactupdate();">确认</button>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-
 </body>
+<link rel="stylesheet" href="<%=path%>/js/toastr/toastr.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -212,5 +200,6 @@
 <script src="<%=path %>/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<%=path %>/js/scripts.js"></script>
 <script src="<%=path %>/js/zh-cn.js"></script>
+<script src="<%=path%>/js/toastr/toastr.min.js"></script>
 
 </html>
