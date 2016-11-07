@@ -118,27 +118,24 @@
 		</div>
 	</div>
 </body>
+<link rel="stylesheet" href="<%=path%>/js/toastr/toastr.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=path%>/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/bootstrap-combined.min.css">
-<script src="<%=path%>/js/bootstrap.js"></script>
-<script src="<%=path%>/js/bootstrap.min.js"></script>
-<script src="<%=path%>/js/jquery-2.0.0.min.js"></script>
-<script src="<%=path%>/js/npm.js"></script>
-<script src="<%=path%>/js/jquery-migrate-1.4.1.min (1).js"></script>
-<script src="<%=path%>/js/jquery-ui.js"></script>
-<script src="<%=path%>/js/jquery.htmlClean.js"></script>
-<script src="<%=path%>/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<%=path%>/js/scripts.js"></script>
 <script src="<%=path%>/js/zh-cn.js"></script>
-<script src="<%=path%>/js/page.js"></script>
+<script src="<%=path%>/js/bootstrap.js"></script>
+<script src="<%=path%>/js/jquery-ui.js"></script>
+<script src="<%=path%>/js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="<%=path%>/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<%=path%>/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path%>/js/jquery-migrate-1.4.1.min (1).js"></script>
+<script src="<%=path%>/js/toastr/toastr.min.js"></script>
+<script src="<%=path%>/js/deletejs.js"></script>
 <script>
 	function add() {
 		window.location.href = 'queryState.do?page=1&state=5';
@@ -157,9 +154,22 @@
 			$("[name='tid']:checked").each(function() {
 				str += $(this).val() + ",";
 			})
-			window.location.href = 'trackDelete.do?tid=' + str + '';
+			Ewin
+					.confirm({
+						message : "确认要删除选择的数据吗？"
+					})
+					.on(
+							function(e) {
+								if (!e) {
+									return;
+								} else {
+									toastr.success('删除数据成功');
+									window.location.href = 'trackDelete.do?tid=' + str + '';
+								}
+							});
+			
 		} else {
-			alert("至少选中一行！");
+			toastr.warning("至少选中一行！");
 		}
 	}
 
@@ -170,18 +180,18 @@
 				str += $(this).val();
 			})
 			if (str.length > 3) {
-				alert("一次只能修改一个！");
+				toastr.warning("一次只能修改一个！");
 			} else {
 				window.location.href = 'skiPage.do?tid=' + str + '';
 			}
 		} else {
-			alert("请选中您要修改的那一行");
+			toastr.warning("请选中您要修改的那一行");
 		}
 	}
 
 	function daochu() {
 		window.location.href = 'daochu.do?&page=${lists.pageNo}';
-		alert('导出成功');
+		toastr.success('导出成功');
 	}
 </script>
 </html>

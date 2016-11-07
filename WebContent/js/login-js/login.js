@@ -32,9 +32,9 @@
 				}else if($('#code').val() == ''){
 					show_err_msg('验证码还没填呢！');
 					$('#code').focus();
-				}else if($('#status').val() == ''){
+				/*}else if($('#status').val() == ''){
 					show_err_msg('用户类型还没选呢！');
-					$('#status').focus();
+					$('#status').focus();*/
 				}else{
 					show_msg('登录中！  正在为您跳转...');
 					$("#login_form").submit();

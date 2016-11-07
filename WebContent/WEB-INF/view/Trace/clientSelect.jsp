@@ -169,7 +169,7 @@
 			})
 			window.location.href = "skip.do?kid=" + str + ""
 		} else {
-			alert("请选中您要记录的那一行");
+			toastr.warning("请选中您要记录的那一行");
 		}
 	}
 

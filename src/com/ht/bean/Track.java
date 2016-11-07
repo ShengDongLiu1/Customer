@@ -2,7 +2,7 @@ package com.ht.bean;
 
 public class Track {
 	private Integer tid;
-	private Integer uid;
+	private Integer userid;
 	private Integer kid;
 	private String measure;
 	private String recordtime;
@@ -16,11 +16,12 @@ public class Track {
 	public void setTid(Integer tid) {
 		this.tid = tid;
 	}
-	public Integer getUid() {
-		return uid;
+	
+	public Integer getUserid() {
+		return userid;
 	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	public Integer getKid() {
 		return kid;

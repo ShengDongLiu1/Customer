@@ -78,7 +78,7 @@
 								<input id="code" name="code" type="text" class="form-control x164 in"/>
 								<img id="codeimg" src="<%=path %>/yzm/code.do" onclick="changeImg()" />
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="t"></label>
 								<label for="j_customer" class="m"></label>
 								<select id="status" name="status" class="input" style="margin-top: 15px;height: 24px">
@@ -87,7 +87,7 @@
 									<option value="客户经理">客户经理</option>
 									<option value="销售">销售</option>
 								</select>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label class="t"></label>　　　
 								<button type="button" id="submit_btn" class="btn btn-primary btn-lg">&nbsp;登&nbsp;录&nbsp </button>

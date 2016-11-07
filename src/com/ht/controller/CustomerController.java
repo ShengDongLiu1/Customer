@@ -73,7 +73,7 @@ public class CustomerController {
 
 	@RequestMapping("/queryAll")
 	public String list2(@RequestParam(value = "page", required = false) int page,
-			@RequestParam(value = "state", required = false) int state, Customer customer,
+			@RequestParam(value = "state1", required = false) int state, Customer customer,
 			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Pager<Customer> pager = new Pager<>();
@@ -89,8 +89,8 @@ public class CustomerController {
 		} else{
 			customer.setState("");
 		}
-		int count = customerService.queryCount(customer.getState());
 		map.put("state", StringUtil.formatLike(customer.getState()));
+		int count = customerService.queryCount(customer.getState());
 		int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() + 1;
 		pager.setTotal(total);
 		if (page >= 1 && page <= pager.getTotal()) {
@@ -121,7 +121,8 @@ public class CustomerController {
 	@RequestMapping("/queryState")
 	public String queryState(@RequestParam(value = "page", required = false) int page,
 			@RequestParam(value = "state", required = false) int state, Customer customer, HttpServletResponse response,
-			HttpServletRequest request) throws Exception {List<Customer> userList = null;
+			HttpServletRequest request) throws Exception {
+			List<Customer> userList = null;
 			Pager<Customer> pager = new Pager<>();
 			pager.setPageSize(10);
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -135,7 +136,7 @@ public class CustomerController {
 			} else if (state == 4) {
 				customer.setState("签约客户");
 			} else {
-				customer.setState(null);
+				customer.setState("");
 			}
 			count = customerService.queryCount(customer.getState());
 			int total = count % pager.getPageSize() == 0 ? count / pager.getPageSize() : count / pager.getPageSize() + 1;
@@ -149,8 +150,8 @@ public class CustomerController {
 			}else{
 				pager.setPageNo(pager.getTotal());
 			}
-			map.put("start", pager.getBeginIndex());
 			map.put("state", customer.getState());
+			map.put("start", pager.getBeginIndex());
 			map.put("size", pager.getPageSize());
 			userList = customerService.queryAll(map);
 			request.setAttribute("state", state);

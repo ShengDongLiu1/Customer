@@ -41,7 +41,7 @@
 					<div class="control-group">
 						<div class="controls">
 							<input type="hidden" style="height: 40px; width: 200px;"
-								name="uid" value="${user.userid} " />
+								name="userid" value="${user.userid}" />
 						</div>
 					</div>
 					<div class="control-group"

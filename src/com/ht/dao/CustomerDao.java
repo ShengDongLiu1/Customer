@@ -3,6 +3,8 @@ package com.ht.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ht.bean.Customer;
 import com.ht.bean.CustomerGc;
 
@@ -20,7 +22,7 @@ public interface CustomerDao {
 	
 	public List<Customer> queryAll(Map<String,Object> map);
 	
-	public int queryCount(String state);
+	public int queryCount(@Param(value="state")String state);
 	
 	public List<Customer> selectState(Map<String,Object> map);
 

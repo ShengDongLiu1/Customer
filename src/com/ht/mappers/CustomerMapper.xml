@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from customer
 		<where>
 			<if test="state!=null and state!='' ">
-				and state = #{state,jdbcType=VARCHAR}
+				and state = #{state}
 			</if>
 		</where> 
 	</select>

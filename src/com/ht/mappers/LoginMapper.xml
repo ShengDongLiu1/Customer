@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="login" resultMap="LoginResult">
-		select * from user where email=#{email} and password=#{password} and status=#{status}
+		select * from user where email=#{email} and password=#{password} <!-- and status=#{status} -->
 	</select>
 	
 	<select id="selectmima" resultMap="LoginResult"><!-- 查询原始密码 -->

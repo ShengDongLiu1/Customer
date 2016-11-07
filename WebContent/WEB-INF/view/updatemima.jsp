@@ -105,7 +105,7 @@
 							</div>
 							<div class="form-group">
 								<label class="t"></label>　　　
-								<button type="button" class="btn btn-success" onclick="return updatamima();">确认修改</button>
+								<button type="submit" id="updatemm_btn" class="btn btn-success" onclick="return updatamima();">确认修改</button>
 								<input type="reset" id="cz" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-warning">
 							</div>
 						</form>
