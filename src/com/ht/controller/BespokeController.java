@@ -141,12 +141,13 @@ public class BespokeController {
 			bespokeService.BespokeAdd(bespoke);
 			List<Customer> listName=bespokeService.CustomerSelectName();
 			request.setAttribute("listName", listName);
-			return "addBespoke";
+			response.sendRedirect("bespokeQueryAlls.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
 			return "result";
 		}
+		return null;
 	}
 	
 	@RequestMapping("/add")
