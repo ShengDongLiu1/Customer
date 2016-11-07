@@ -121,7 +121,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/addUser")
-	public String add(HttpServletResponse response,HttpServletRequest request){	
+	public String add(HttpServletResponse response,HttpServletRequest request) throws IOException{	
 		List<Integer> age=new ArrayList<Integer>();
 		for (int i = 18; i < 50; i++) {
 			age.add(i);
@@ -135,7 +135,7 @@ public class UserController {
 		try {	
 			user.setPassword(AES.getInstance().encrypt(user.getPassword()));
 			userService.UserAdd(user);
-			response.sendRedirect("UserQueryAll.do?page=1");
+			response.sendRedirect("/Customer/user/UserQueryAll.do?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());
@@ -149,12 +149,13 @@ public class UserController {
 		try {	
 			user.setPassword(AES.getInstance().encrypt(user.getPassword()));
 			userService.UserAdd(user);
+			response.sendRedirect("/Customer/user/UserQueryAll.do?page=1");
 			List<Integer> age=new ArrayList<Integer>();
 			for (int i = 18; i < 50; i++) {
 				age.add(i);
 			}
 			request.setAttribute("uage", age);
-			return "addUser";
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("InfoMessage", "更新信息失败！具体异常信息：" + e.getMessage());

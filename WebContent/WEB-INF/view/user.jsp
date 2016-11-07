@@ -68,6 +68,10 @@
 			<button class="btn btn-primary" type="button" onclick="daochu();">
 			<span class="glyphicon glyphicon-share-alt"></span> 导出数据
 			</button>
+			&nbsp;&nbsp;&nbsp;
+			<button class="btn btn-primary" type="button" onclick="selects();">
+			<span class="glyphicon glyphicon-share-alts"></span> 查看全部
+			</button>
 		</div>
 		<p style="clear:both;"></p>
 	</div>
@@ -213,6 +217,9 @@
     	window.location.href='daochu.do?page=${lists.pageNo}';
     	toastr.success('导出成功');
     }
+   	function selects(){
+   		window.location.href='UserQueryAll.do?page=1';
+   	}
    </script>
 </body>
 </html>

@@ -48,15 +48,19 @@
 					<div class="control-group">
 						<label class="control-label">用户密码:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;" name="password"
+							<input type="password" style="height: 40px; width: 300px;" name="password"
 								placeholder="用户密码"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">用户状态:</label>
 						<div class="controls">
-							<input type="text" style="height: 40px; width: 300px;" name="status"
-								placeholder="用户状态" />
+							<select  id="status" name="status" style="height: 40px; width: 300px;">
+                                 	 <option value="系统管理员">系统管理员</option>
+                                 	 <option value="客户经理">客户经理</option>
+                                 	 <option value="销售">销售</option>
+	                         </select>
+	                         
 						</div>
 					</div>
 					
