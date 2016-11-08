@@ -146,7 +146,7 @@
 		<header class="main-header">
 			<a href="http://www.learun.cn/adms/index.html" target="_blank"
 				class="logo"> <span class="logo-mini">CRM</span> <span
-				class="logo-lg">HT<strong>客户管理系统</strong></span>
+				class="logo-lg"><strong>客户关系管理系统</strong></span>
 			</a>
 			<nav class="navbar navbar-static-top">
 				<a class="sidebar-toggle"> <span class="sr-only">Toggle
@@ -204,7 +204,7 @@
 				<nav class="page-tabs menuTabs">
 					<div class="page-tabs-content" style="margin-left: 0px;">
 						<a href="javascript:;" class="menuTab active"
-							data-id="/Home/Default">欢迎首页</a>
+							data-id="/Customer/customer/khgcfx.do">欢迎首页</a>
 					</div>
 				</nav>
 				<button class="roll-nav roll-right tabRight">
