@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
-	<select id="queryCount" parameterType="int" resultMap="TrackResult">
+	<select id="queryCount" resultType="int">
 		select count(*) from track
 	</select>
 

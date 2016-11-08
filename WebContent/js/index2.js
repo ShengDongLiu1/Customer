@@ -471,6 +471,41 @@
 						"F_Icon" : "fa fa-book",
 						"F_UrlAddress" : "/Customer/bespoke/bespokeQueryAlls.do?page=1",
 					},
+					{
+						"F_ModuleId" : "6",
+						"F_ParentId" : "0",
+						"F_EnCode" : "BaseManage",
+						"F_FullName" : "日志管理",
+						"F_Icon" : "fa fa-briefcase",
+					},
+					{
+						"F_ModuleId" : "genz",
+						"F_ParentId" : "6",
+						"F_FullName" : "记录查询",
+						"F_Icon" : "fa fa-book",
+						"F_UrlAddress" : "/Customer/track/trackQueryPagers.do?page=1",
+					},
+					{
+						"F_ModuleId" : "8",
+						"F_ParentId" : "0",
+						"F_EnCode" : "prgl",
+						"F_FullName" : "产品管理",
+						"F_Icon" : "glyphicon glyphicon-globe",
+					},
+					{
+						"F_ModuleId" : "chanpingxinxi",
+						"F_ParentId" : "8",
+						"F_FullName" : "新增产品",
+						"F_Icon" : "fa fa-book",
+						"F_UrlAddress" : "/Customer/product/add.do",
+					},
+					{
+						"F_ModuleId" : "cpgl",
+						"F_ParentId" : "8",
+						"F_FullName" : "管理产品",
+						"F_Icon" : "fa fa-book",
+						"F_UrlAddress" : "/Customer/product/queryAll.do?page=1",
+					},
 
 					{
 						"F_ModuleId" : "10",

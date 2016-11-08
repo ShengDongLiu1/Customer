@@ -56,14 +56,12 @@
 						<label class="control-label">用户状态:</label>
 						<div class="controls">
 							<select  id="status" name="status" style="height: 40px; width: 300px;">
-                                 	 <option value="系统管理员">系统管理员</option>
                                  	 <option value="客户经理">客户经理</option>
                                  	 <option value="销售">销售</option>
 	                         </select>
 	                         
 						</div>
 					</div>
-					
 					<div class="control-group">
 						<label class="control-label">用户名:</label>
 						<div class="controls">

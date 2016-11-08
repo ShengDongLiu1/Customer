@@ -20,6 +20,8 @@ public interface TrackService {
 	public int trackQueryCount();
 	
 	public List<Login> LoginSelect();
+
+	public int queryCount();
 	
 	public List<Customer> CustomerSelect();
 	

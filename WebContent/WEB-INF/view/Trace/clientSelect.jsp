@@ -113,6 +113,7 @@
 					<ul>
 						<li><a
 							href="<%=path %>/track/queryState.do?page=${lists.pageNo - 1}&state=${requestScope.state}">上一页</a></li>
+						<li><a>${lists.pageNo }/${lists.total }</a></li>
 						<li><a
 							href="<%=path %>/track/queryState.do?page=${lists.pageNo + 1}&state=${requestScope.state}">下一页</a></li>
 					</ul>

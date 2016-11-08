@@ -70,7 +70,7 @@
 			</button>
 			&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-primary" type="button" onclick="selects();">
-			<span class="glyphicon glyphicon-share-alt"></span> 查看全部
+			查看全部
 			</button>
 		</div>
 		<p style="clear:both;"></p>
@@ -121,6 +121,7 @@
 				<div class="pagination">
 					<ul>
 						<li><a href="<%=path %>/user/UserQueryAll.do?page=${userList.pageNo - 1}">上一页</a></li>
+						<li><a>${userList.pageNo }/${userList.total }</a></li>
 						<li><a href="<%=path %>/user/UserQueryAll.do?page=${userList.pageNo + 1}">下一页</a></li>
 					</ul>
 				</div>

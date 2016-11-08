@@ -66,6 +66,11 @@ public class TrackServiceImpl implements TrackService {
 		
 		return trackDao.queryAllss(map);
 	}
+
+	@Override
+	public int queryCount() {
+		return trackDao.queryCount();
+	}
 	
 
 }

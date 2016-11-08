@@ -280,6 +280,7 @@
 					<ul>
 						<li><a
 							href="<%=path %>/marketing/queryAll.do?page=${lists.pageNo - 1}">上一页</a></li>
+						<li><a>${lists.pageNo }/${lists.total }</a></li>
 						<li><a
 							href="<%=path %>/marketing/queryAll.do?page=${lists.pageNo + 1}">下一页</a></li>
 					</ul>

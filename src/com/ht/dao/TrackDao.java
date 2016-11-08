@@ -1,8 +1,8 @@
 package com.ht.dao;
 
 import java.util.List;
-
 import java.util.Map;
+
 import com.ht.bean.Customer;
 import com.ht.bean.Login;
 import com.ht.bean.Track;
@@ -18,6 +18,8 @@ public interface TrackDao {
 	public Track takselect(int id);
 	
 	public int trackQueryCount();
+
+	public int queryCount();
 	
 	public List<Login> LoginSelect();
 	
